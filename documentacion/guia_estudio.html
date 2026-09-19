@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Estudio — TFI · Nicolás Martínez</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap">
+<style>
+:root{
+  --fondo:#070c16;--surface:#0e1726;--border:#1a2d48;
+  --dorado:#E6B800;--electrico:#00C8FF;--azul:#4A90E2;
+  --verde:#1DB954;--rojo:#E53935;--texto:#d8e8f4;--dim:#4a6a8a;
+  --ff:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ffi:'Inter',system-ui,sans-serif;--ffc:'Fira Code',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fondo);color:var(--texto);font-family:var(--ffi);line-height:1.65;}
+@media print{
+  body{background:#fff;color:#000;}
+  .tarjeta{break-inside:avoid;border:1px solid #ccc!important;}
+  .no-print{display:none!important;}
+}
+
+/* HEADER */
+.header{
+  background:linear-gradient(135deg,#05090f,#0c1926);
+  border-bottom:3px solid var(--dorado);
+  padding:36px 60px; text-align:center;
+  position:relative;
+}
+.header h1{font-family:var(--ff);font-size:1.6rem;font-weight:800;color:var(--dorado);margin-bottom:6px;}
+.header p{font-size:0.88rem;color:var(--dim);}
+.header-badges{display:flex;gap:10px;justify-content:center;margin-top:14px;flex-wrap:wrap;}
+.badge{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;border-radius:50px;font-size:0.76rem;font-weight:700;font-family:var(--ff);}
+.badge-def{background:rgba(229,57,53,0.12);border:1px solid rgba(229,57,53,0.35);color:#E53935;}
+.badge-ok{background:rgba(29,185,84,0.12);border:1px solid rgba(29,185,84,0.3);color:var(--verde);}
+.badge-time{background:rgba(230,184,0,0.1);border:1px solid rgba(230,184,0,0.3);color:var(--dorado);}
+
+/* SECCIONES */
+main{max-width:1100px;margin:0 auto;padding:36px 60px 80px;}
+.seccion{margin-bottom:50px;}
+.seccion-titulo{
+  font-family:var(--ff);font-size:1.1rem;font-weight:800;
+  color:var(--dorado);margin-bottom:20px;padding-bottom:10px;
+  border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;
+}
+
+/* TARJETAS FLASH */
+.tarjetas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;}
+.tarjeta{
+  background:var(--surface);border:1px solid var(--border);border-radius:14px;
+  overflow:hidden;transition:transform 0.2s,box-shadow 0.2s;cursor:pointer;
+}
+.tarjeta:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.5);}
+.tarjeta-front{padding:20px;position:relative;}
+.tarjeta-num{
+  position:absolute;top:12px;right:14px;font-family:var(--ffc);
+  font-size:0.72rem;color:var(--dim);
+}
+.tarjeta-icon{font-size:1.8rem;margin-bottom:10px;display:block;}
+.tarjeta-pregunta{font-family:var(--ff);font-weight:700;font-size:0.9rem;color:var(--texto);line-height:1.4;}
+.tarjeta-back{
+  background:rgba(0,200,255,0.05);border-top:1px solid var(--border);
+  padding:14px 20px;font-size:0.84rem;color:var(--dim);line-height:1.6;
+}
+.tarjeta-back strong{color:var(--dorado);font-weight:600;}
+.tarjeta-back em{color:var(--electrico);font-style:normal;}
+
+/* TARJETA COLORES por tipo */
+.tarjeta.tipo-tecnico .tarjeta-front{border-left:4px solid var(--azul);}
+.tarjeta.tipo-pedagogico .tarjeta-front{border-left:4px solid var(--verde);}
+.tarjeta.tipo-personal .tarjeta-front{border-left:4px solid var(--dorado);}
+.tarjeta.tipo-tribunal .tarjeta-front{border-left:4px solid var(--rojo);}
+
+/* FRASES PARA MEMORIZAR */
+.frases{display:flex;flex-direction:column;gap:14px;}
+.frase-item{
+  background:var(--surface);border:1px solid var(--border);border-radius:12px;
+  padding:16px 20px;display:flex;align-items:flex-start;gap:14px;
+}
+.frase-slide{
+  flex-shrink:0;background:rgba(230,184,0,0.1);border:1px solid rgba(230,184,0,0.3);
+  border-radius:50%;width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  font-family:var(--ff);font-weight:800;font-size:0.85rem;color:var(--dorado);
+}
+.frase-texto{font-family:var(--ff);font-style:italic;font-size:0.92rem;color:var(--dorado-s,#F2CC45);line-height:1.55;flex:1;}
+.frase-contexto{font-size:0.76rem;color:var(--dim);margin-top:5px;}
+
+/* TIMING VISUAL */
+.timing-barra{display:flex;flex-direction:column;gap:8px;}
+.timing-slide{display:flex;align-items:center;gap:12px;background:var(--surface);border-radius:10px;padding:10px 16px;border:1px solid var(--border);}
+.timing-num{font-family:var(--ff);font-weight:800;font-size:1rem;color:var(--dorado);min-width:28px;}
+.timing-titulo{flex:1;font-size:0.85rem;}
+.timing-min{font-family:var(--ffc);font-size:0.78rem;color:var(--dim);min-width:60px;text-align:right;}
+.timing-bar-wrap{width:140px;height:6px;background:rgba(255,255,255,0.08);border-radius:3px;overflow:hidden;}
+.timing-bar-fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--electrico),var(--dorado));}
+
+/* PREGUNTAS DEL TRIBUNAL */
+.qa-lista{display:flex;flex-direction:column;gap:16px;}
+.qa-item{background:var(--surface);border-radius:12px;overflow:hidden;border:1px solid var(--border);}
+.qa-pregunta{background:rgba(229,57,53,0.06);border-bottom:1px solid rgba(229,57,53,0.2);padding:14px 20px;font-weight:700;font-size:0.9rem;display:flex;align-items:flex-start;gap:10px;}
+.qa-pregunta::before{content:'❓';flex-shrink:0;}
+.qa-respuesta{padding:14px 20px;font-size:0.86rem;line-height:1.65;color:var(--dim);}
+.qa-respuesta strong{color:var(--dorado);}
+.qa-clave{display:flex;align-items:center;gap:6px;margin-top:8px;font-size:0.78rem;color:var(--verde);}
+
+/* TIPS DE PRESENTACIÓN */
+.tips-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.tip-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:18px;}
+.tip-icon{font-size:1.5rem;margin-bottom:8px;display:block;}
+.tip-titulo{font-family:var(--ff);font-weight:700;font-size:0.9rem;color:var(--texto);margin-bottom:8px;}
+.tip-texto{font-size:0.84rem;color:var(--dim);line-height:1.6;}
+.tip-texto strong{color:var(--dorado);}
+
+/* CHECK LIST */
+.checklist{display:flex;flex-direction:column;gap:8px;}
+.check-item{display:flex;align-items:center;gap:10px;padding:10px 16px;background:var(--surface);border:1px solid var(--border);border-radius:10px;font-size:0.87rem;}
+.check-item input[type="checkbox"]{width:18px;height:18px;accent-color:var(--verde);flex-shrink:0;cursor:pointer;}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <h1>📚 Guía de Estudio — TFI</h1>
+  <p>Experiencia Significativa de Actualización Científico-Tecnológica · IPA Mendoza</p>
+  <div class="header-badges">
+    <span class="badge badge-def">📅 25/09/2026 · 18:30 hs</span>
+    <span class="badge badge-time">⏱ 15–20 minutos</span>
+    <span class="badge badge-ok">✓ 8 slides</span>
+    <span class="badge badge-ok">✓ Presencial</span>
+  </div>
+</header>
+
+<main>
+
+  <!-- ════ DISTRIBUCIÓN DE TIEMPOS ══════════════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">⏱ Distribución de Tiempos por Slide</h2>
+    <div class="timing-barra">
+      <div class="timing-slide">
+        <span class="timing-num">01</span>
+        <span class="timing-titulo">Portada · Presentación personal</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:25%"></div></div>
+        <span class="timing-min">~1:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">02</span>
+        <span class="timing-titulo">Trayectoria · El ciclo de 4 momentos</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:33%"></div></div>
+        <span class="timing-min">~2:00 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">03</span>
+        <span class="timing-titulo">¿Por qué freeCodeCamp? · 4 razones</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:42%"></div></div>
+        <span class="timing-min">~2:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">04</span>
+        <span class="timing-titulo">Certificado oficial · 4 ejes formativos</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:42%"></div></div>
+        <span class="timing-min">~2:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">05</span>
+        <span class="timing-titulo">Portafolio Básico · Alumnos en acción</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:42%"></div></div>
+        <span class="timing-min">~2:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">06</span>
+        <span class="timing-titulo">Habitación → Casa · Vue.js</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:42%"></div></div>
+        <span class="timing-min">~2:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">07</span>
+        <span class="timing-titulo">Portafolio Avanzado · Canal Nico Code</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:25%"></div></div>
+        <span class="timing-min">~1:30 min</span>
+      </div>
+      <div class="timing-slide">
+        <span class="timing-num">08</span>
+        <span class="timing-titulo">Reflexión Docente · ETP · Cierre</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:33%"></div></div>
+        <span class="timing-min">~2:00 min</span>
+      </div>
+      <div class="timing-slide" style="border-color:var(--dorado);background:rgba(230,184,0,0.05);">
+        <span class="timing-num" style="color:var(--verde);">∑</span>
+        <span class="timing-titulo" style="font-weight:700;color:var(--verde);">TOTAL — Margen para preguntas: 3 minutos</span>
+        <div class="timing-bar-wrap"><div class="timing-bar-fill" style="width:100%;background:var(--verde)"></div></div>
+        <span class="timing-min" style="color:var(--verde);">~17 min</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ FRASES CLAVE PARA MEMORIZAR ══════════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">🗣 Frases Clave — Memorizarlas Literalmente</h2>
+    <div class="frases">
+      <div class="frase-item">
+        <span class="frase-slide">1</span>
+        <div>
+          <p class="frase-texto">"¿Cuándo podemos decir que realmente aprendimos algo técnico?"</p>
+          <p class="frase-contexto">Apertura · Dirigir al tribunal/público. Generar expectativa antes de responder.</p>
+        </div>
+      </div>
+      <div class="frase-item">
+        <span class="frase-slide">3</span>
+        <div>
+          <p class="frase-texto">"El desafío no era solo escribir código, sino construir experiencias digitales que funcionaran en distintos contextos y dispositivos."</p>
+          <p class="frase-contexto">Cierre del bloque freeCodeCamp. Decirla despacio.</p>
+        </div>
+      </div>
+      <div class="frase-item">
+        <span class="frase-slide">5</span>
+        <div>
+          <p class="frase-texto">"El aprendizaje comenzó a consolidarse cuando los conceptos dejaron de ser ejercicios y se transformaron en un producto concreto."</p>
+          <p class="frase-contexto">Al mostrar el collage de alumnos. Señalar la pantalla mientras se dice.</p>
+        </div>
+      </div>
+      <div class="frase-item">
+        <span class="frase-slide">6</span>
+        <div>
+          <p class="frase-texto">"Es como pasar de una habitación única a una casa organizada por espacios."</p>
+          <p class="frase-contexto">LA analogía central de la presentación. Señalar el slide al decirla.</p>
+        </div>
+      </div>
+      <div class="frase-item">
+        <span class="frase-slide">7</span>
+        <div>
+          <p class="frase-texto">"En la era de la Inteligencia Artificial, saber las bases importa más que nunca. Porque si no entendés qué está generando la IA, no podés revisarlo, ni mejorarlo, ni enseñarlo."</p>
+          <p class="frase-contexto">Cierre del bloque YouTube. Fuerte y directo.</p>
+        </div>
+      </div>
+      <div class="frase-item">
+        <span class="frase-slide">8</span>
+        <div>
+          <p class="frase-texto">"Un portafolio web no es solo un trabajo práctico — es la primera presencia digital real que tiene un estudiante técnico cuando sale a buscar empleo."</p>
+          <p class="frase-contexto">Vinculación con ETP. Hablar de cara al tribunal.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ TARJETAS FLASH — CONCEPTOS ═══════════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">🃏 Tarjetas de Concepto — Preguntate esto antes de ensayar</h2>
+    <div class="tarjetas-grid">
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T1</span>
+          <span class="tarjeta-icon">📱</span>
+          <p class="tarjeta-pregunta">¿Qué es Responsive Web Design y por qué importa hoy?</p>
+        </div>
+        <div class="tarjeta-back">
+          <strong>Diseño adaptable:</strong> que el sitio funcione correctamente en celular, tablet y PC. <em>+60% del tráfico web actual es mobile.</em> Sin responsive = excluir a la mayoría.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T2</span>
+          <span class="tarjeta-icon">🏗</span>
+          <p class="tarjeta-pregunta">¿Qué es HTML semántico y por qué es mejor que usar solo &lt;div&gt;?</p>
+        </div>
+        <div class="tarjeta-back">
+          HTML semántico usa etiquetas con significado real: <em>&lt;header&gt;, &lt;main&gt;, &lt;section&gt;, &lt;nav&gt;</em>. El navegador, los lectores de pantalla y Google entienden la estructura. Un &lt;div&gt; no dice nada.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T3</span>
+          <span class="tarjeta-icon">🎨</span>
+          <p class="tarjeta-pregunta">¿Qué es CSS Flexbox y para qué sirve?</p>
+        </div>
+        <div class="tarjeta-back">
+          Sistema de maquetación <strong>unidimensional</strong> (una fila o columna). Perfecto para alinear elementos y distribuir espacio de forma flexible. Esta presentación usa Flexbox en casi todos los layouts.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T4</span>
+          <span class="tarjeta-icon">⊞</span>
+          <p class="tarjeta-pregunta">¿Qué es CSS Grid y cuándo usarlo?</p>
+        </div>
+        <div class="tarjeta-back">
+          Sistema de maquetación <strong>bidimensional</strong> (filas y columnas simultáneamente). Ideal para galerías, portafolios, layouts de página completa. El collage de esta presentación usa Grid.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T5</span>
+          <span class="tarjeta-icon">🏡</span>
+          <p class="tarjeta-pregunta">¿Qué es un framework y cómo lo explicás sin jerga técnica?</p>
+        </div>
+        <div class="tarjeta-back">
+          Un sistema ya preparado para el trabajo web avanzado. La analogía: <strong>pasar de una habitación única a una casa organizada por espacios</strong>. Cada componente tiene su responsabilidad y puede modificarse sin afectar los demás.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tecnico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">T6</span>
+          <span class="tarjeta-icon">⚡</span>
+          <p class="tarjeta-pregunta">¿Qué es Vue.js y qué problema resuelve?</p>
+        </div>
+        <div class="tarjeta-back">
+          Framework JavaScript para construir interfaces web interactivas con <strong>arquitectura de componentes</strong>. Resuelve la complejidad de los proyectos grandes: separación de responsabilidades, reutilización, estado reactivo.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-pedagogico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">P1</span>
+          <span class="tarjeta-icon">🏫</span>
+          <p class="tarjeta-pregunta">¿Dónde podrías enseñar HTML/CSS en la ETP?</p>
+        </div>
+        <div class="tarjeta-back">
+          <strong>Informática y Programación:</strong> primer año de cualquier técnica. <strong>Diseño Gráfico:</strong> maquetación web como herramienta profesional. <strong>Emprendimiento:</strong> portafolio como presencia digital laboral.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-pedagogico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">P2</span>
+          <span class="tarjeta-icon">📚</span>
+          <p class="tarjeta-pregunta">¿Qué es la transposición didáctica y cómo la aplicaste?</p>
+        </div>
+        <div class="tarjeta-back">
+          Transformar un saber técnico/experto en un saber enseñable. Lo apliqué <strong>creando tutoriales en YouTube</strong> que simplifican conceptos complejos del desarrollo web para estudiantes sin experiencia.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-pedagogico">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">P3</span>
+          <span class="tarjeta-icon">🤖</span>
+          <p class="tarjeta-pregunta">¿Por qué son importantes las bases de HTML/CSS en la era de la IA?</p>
+        </div>
+        <div class="tarjeta-back">
+          La IA genera código — pero <strong>si no entendés las bases, no podés revisar, corregir ni enseñar</strong> lo que genera. HTML y CSS son la alfabetización digital del desarrollador web actual.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-personal">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">M1</span>
+          <span class="tarjeta-icon">🎯</span>
+          <p class="tarjeta-pregunta">¿Por qué elegiste freeCodeCamp y no otra plataforma?</p>
+        </div>
+        <div class="tarjeta-back">
+          <strong>Gratuita, sin fines de lucro, 100% práctica, comunidad global de 100k graduados.</strong> El currículo coincide con lo que la industria pide hoy. Y se aprende construyendo, no leyendo.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tribunal">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">❓</span>
+          <span class="tarjeta-icon">⚖</span>
+          <p class="tarjeta-pregunta">¿Cómo mediste que los alumnos aprendieron? ¿Usaste algún criterio de evaluación?</p>
+        </div>
+        <div class="tarjeta-back">
+          El criterio principal fue la <strong>producción concreta</strong>: el portafolio web publicado y funcional. Evaluamos accesibilidad, adaptabilidad y claridad del código. La publicación en la web es la evidencia más directa.
+        </div>
+      </div>
+
+      <div class="tarjeta tipo-tribunal">
+        <div class="tarjeta-front">
+          <span class="tarjeta-num">❓</span>
+          <span class="tarjeta-icon">🔄</span>
+          <p class="tarjeta-pregunta">¿Qué cambiarías si lo hicieras de nuevo?</p>
+        </div>
+        <div class="tarjeta-back">
+          Incorporaría desde el inicio más instancias de <strong>feedback entre pares</strong>. Y arrancaría con Git/GitHub desde la primera clase — porque publicar en la web les abre las puertas al portfolio profesional real.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ PREGUNTAS POSIBLES DEL TRIBUNAL ═══════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">🎤 Preguntas Posibles del Tribunal — Con Respuestas Sugeridas</h2>
+    <div class="qa-lista">
+
+      <div class="qa-item">
+        <div class="qa-pregunta">¿Por qué HTML y CSS puro, sin usar herramientas más modernas como React o Next.js?</div>
+        <div class="qa-respuesta">
+          <strong>Las bases primero.</strong> HTML y CSS son los cimientos de todo lo que existe en la web. React, Next.js, Vue — todos generan HTML y CSS al final. Si un estudiante no entiende las bases, usar un framework es construir sobre arena.<br><br>
+          Esta presentación en sí es la demostración: <em>100% HTML y CSS, sin frameworks, sin librerías</em>. Fondos animados, transiciones, diseño responsive, efectos hover — todo con los estándares básicos de la web.
+          <div class="qa-clave">✦ Clave: señalar la presentación misma como evidencia</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-pregunta">¿Qué evidencia tenés de que los alumnos aprendieron realmente y no solo copiaron el tutorial?</div>
+        <div class="qa-respuesta">
+          <strong>La personalización.</strong> Cada portafolio tiene datos reales del alumno, sus habilidades, su foto, sus proyectos propios. No son copias — son adaptaciones. La comprensión se evidencia en las decisiones de diseño que cada uno tomó. Y el despliegue en la web real (Netlify) lo confirma.
+          <div class="qa-clave">✦ Clave: mostrar el collage del slide 5 y señalar las diferencias entre cada portafolio</div>
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-pregunta">¿Cómo se vincula esto con el diseño curricular de la ETP?</div>
+        <div class="qa-respuesta">
+          El diseño curricular de la ETP en Mendoza incorpora Informática, Diseño y Comunicación, y Formación para el Trabajo. En los tres hay lugar para el desarrollo web: como herramienta de expresión, como competencia laboral y como contenido técnico específico.<br><br>
+          <strong>Un portafolio web</strong> es simultáneamente un producto técnico, un documento de presentación laboral y una muestra de capacidades cognitivas — algo que el currículum de papel no puede ofrecer.
+        </div>
+      </div>
+
+      <div class="qa-item">
+        <div class="qa-pregunta">¿Cómo usaste la plataforma en tu propia práctica docente, más allá de recomendarla?</div>
+        <div class="qa-respuesta">
+          La usé como <strong>modelo de metodología</strong>. freeCodeCamp enseña construyendo proyectos paso a paso. Yo repliqué eso en mis tutoriales de YouTube y en las clases presenciales — aprender haciendo, con un producto visible al final de cada sesión. El canal "Nico Code" nació directamente de esa metodología.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ════ TIPS DE PRESENTACIÓN ════════════════════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">💡 Tips para el Día de la Defensa</h2>
+    <div class="tips-grid">
+      <div class="tip-card">
+        <span class="tip-icon">👁</span>
+        <p class="tip-titulo">Contacto visual</p>
+        <p class="tip-texto">Mirá al tribunal, no a la pantalla. La pantalla está detrás de vos para el público. <strong>Vos tenés las palabras — ellos tienen el visual.</strong></p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⏸</span>
+        <p class="tip-titulo">Las pausas son tuyas</p>
+        <p class="tip-texto">Una pausa de 2-3 segundos después de una frase importante <strong>da más impacto que seguir hablando</strong>. Dejá que el mensaje aterrice.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">🖱</span>
+        <p class="tip-titulo">Mostrar los efectos visuales</p>
+        <p class="tip-texto">Pasá el mouse sobre imágenes para mostrar el zoom. En el certificado, mostrá el efecto 3D. <strong>La presentación es parte del contenido técnico.</strong></p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⌨</span>
+        <p class="tip-titulo">Teclas de navegación</p>
+        <p class="tip-texto">Usá las <strong>flechas del teclado</strong> para navegar. No el mouse. Más profesional y seguro. <kbd>T</kbd> activa el cronómetro discreto (solo vos lo ves).</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">❓</span>
+        <p class="tip-titulo">Si no sabés una respuesta</p>
+        <p class="tip-texto">"Eso lo tengo para seguir investigando" es una respuesta válida y honesta. <strong>No inventar.</strong> El tribunal valora la honestidad académica.</p>
+      </div>
+      <div class="tip-card">
+        <span class="tip-icon">⚡</span>
+        <p class="tip-titulo">Antes de empezar</p>
+        <p class="tip-texto">F11 → pantalla completa. Verificar que el slide 1 esté visible. <strong>Respirar 3 segundos</strong> antes de hablar. Empezar solo cuando te sentís listo.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ CHECKLIST PRE-DEFENSA ═════════════════════════════════════ -->
+  <section class="seccion">
+    <h2 class="seccion-titulo">✅ Checklist — La noche anterior y el día de la defensa</h2>
+    <div class="checklist">
+      <label class="check-item"><input type="checkbox"> Ensayé la presentación completa cronometrando (al menos 2 veces)</label>
+      <label class="check-item"><input type="checkbox"> Tengo el archivo index.html en el escritorio / acceso rápido</label>
+      <label class="check-item"><input type="checkbox"> El archivo funciona offline (sin internet)</label>
+      <label class="check-item"><input type="checkbox"> Memoricé las 6 frases clave de la sección anterior</label>
+      <label class="check-item"><input type="checkbox"> Ensayé la analogía "habitación → casa" sin mirar el guion</label>
+      <label class="check-item"><input type="checkbox"> Sé cómo navegar con las flechas del teclado y activar la tecla T</label>
+      <label class="check-item"><input type="checkbox"> Tengo respuestas para las 4 preguntas del tribunal preparadas</label>
+      <label class="check-item"><input type="checkbox"> Llevé el guion.html en el teléfono o impreso como backup</label>
+      <label class="check-item"><input type="checkbox"> Sé el link del portafolio y del canal de YouTube de memoria</label>
+      <label class="check-item"><input type="checkbox"> Llegué 15 minutos antes para verificar el proyector</label>
+    </div>
+  </section>
+
+</main>
+
+</body>
+</html>

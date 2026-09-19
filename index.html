@@ -3,431 +3,849 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Trabajo Final Integrador - Dante Nicolás Martínez</title>
+  <meta name="description" content="TFI — Aprender, construir y enseñar. Dante Nicolás Martínez. Desarrollo Web Responsive y su transferencia en la ETP.">
+  <title>TFI — Aprender, construir y enseñar · Nicolás Martínez</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23003865'/><text x='4' y='24' font-size='20' font-family='monospace' fill='%23E6B800'>&lt;/&gt;</text></svg>">
   <link rel="stylesheet" href="estilos.css">
 </head>
-<body>
+<body data-slide-theme="metatron">
 
-  <!-- 🌌 FONDO DINÁMICO: Geometría Sagrada (Flor de la Vida / Metatrón) Animada y Sutil -->
-  <div class="fondo-animado">
-    <svg class="geometria-svg" viewBox="0 0 1000 1000">
-      <!-- Círculos de Geometría Sagrada superpuestos (Flor de la Vida / Semilla) -->
-      <circle cx="500" cy="500" r="450" />
-      <circle cx="500" cy="500" r="300" />
-      <circle cx="500" cy="500" r="150" />
-      <circle cx="500" cy="200" r="300" />
-      <circle cx="500" cy="800" r="300" />
-      <circle cx="240" cy="350" r="300" />
-      <circle cx="760" cy="350" r="300" />
-      <circle cx="240" cy="650" r="300" />
-      <circle cx="760" cy="650" r="300" />
-      <!-- Polígonos de resonancia -->
-      <polygon points="500,50 900,750 100,750" />
-      <polygon points="500,950 100,250 900,250" />
-    </svg>
-
-    <svg class="geometria-dorada" viewBox="0 0 1000 1000">
-      <circle cx="500" cy="500" r="400" stroke-dasharray="8,8" />
-      <polygon points="500,100 850,500 500,900 150,500" />
-      <polygon points="500,200 800,500 500,800 200,500" />
-    </svg>
+  <!-- BANNER DE ACCESIBILIDAD ALTO CONTRASTE (SLIDE 4 DEMO) -->
+  <div id="a11y-status-banner" class="a11y-banner" aria-live="polite">
+    ♿ Modo Alto Contraste & Accesibilidad WCAG AAA Activado
   </div>
 
-  <div id="progreso"></div>
-  <div id="indicadores"></div>
-
-  <!-- 🔍 LIGHTBOX MODAL: Para ampliar Línea de Tiempo, Certificado y Capturas -->
-  <div id="lightbox" onclick="cerrarLightbox()">
-    <button class="lightbox-btn-cerrar" onclick="cerrarLightbox()">✖ Cerrar (Esc)</button>
-    <img id="lightbox-img" src="" alt="Ampliación en alta resolución" onclick="event.stopPropagation()">
+  <!-- OVERLAY PANTALLA COMPLETA EN HOVER (SLIDE 2) -->
+  <div id="hover-fullscreen-overlay" class="hover-fullscreen-modal" aria-hidden="true">
+    <div class="hover-fullscreen-content">
+      <img src="imagenes/linea_tiempo.png" alt="Línea de tiempo en pantalla completa">
+    </div>
   </div>
 
-  <div id="escenario">
+  <!-- PUNTERO DEL MOUSE DINÁMICO / CUSTOM CURSOR -->
+  <div id="cursor-dot" aria-hidden="true"></div>
+  <div id="cursor-ring" aria-hidden="true"></div>
+  <div id="cursor-badge" aria-hidden="true"></div>
 
-    <!-- DIAPOSITIVA 1: Portada y Título -->
-    <section class="diapositiva activa" data-titulo="Portada">
-      <div>
+  <!-- FONDO GLOBAL -->
+  <div class="fondo-global" aria-hidden="true"></div>
+
+  <!-- HUD Y NAVEGACIÓN -->
+  <div id="progreso" role="progressbar" aria-label="Progreso de la presentación"></div>
+  <nav id="indicadores" aria-label="Navegación por diapositivas"></nav>
+  <div id="timer-container" aria-hidden="true">
+    <span class="timer-etiqueta">Tiempo</span>
+    <span id="timer-display">00:00</span>
+  </div>
+  <div id="titulo-hud" aria-hidden="true"><span id="titulo-actual"></span></div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Imagen ampliada">
+    <button id="lightbox-cerrar" class="lightbox-btn-cerrar">✕ Cerrar (Esc)</button>
+    <img id="lightbox-img" src="" alt="Imagen ampliada">
+  </div>
+
+  <main id="escenario">
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 1 — PORTADA
+         Fondo: Geometría Sagrada / Metatrón
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva activa" data-titulo="Portada" data-theme="metatron" aria-label="Diapositiva 1">
+
+      <div class="slide-bg" aria-hidden="true">
+        <svg class="geo-principal" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="500" cy="500" r="460"/>
+          <circle cx="500" cy="500" r="307"/>
+          <circle cx="500" cy="154" r="154"/>
+          <circle cx="500" cy="193" r="307"/>
+          <circle cx="500" cy="807" r="307"/>
+          <circle cx="234" cy="346" r="307"/>
+          <circle cx="766" cy="346" r="307"/>
+          <circle cx="234" cy="654" r="307"/>
+          <circle cx="766" cy="654" r="307"/>
+          <polygon points="500,40 910,760 90,760"/>
+          <polygon points="500,960 90,240 910,240"/>
+          <polygon points="500,100 866,550 134,550"/>
+          <polygon points="500,900 134,450 866,450"/>
+          <circle cx="500" cy="500" r="460" stroke-dasharray="5 12"/>
+        </svg>
+        <svg class="geo-dorado" viewBox="0 0 1000 1000" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="500" cy="500" r="420" stroke-dasharray="7 10"/>
+          <polygon points="500,80 900,580 100,580"/>
+          <polygon points="500,920 100,420 900,420"/>
+          <circle cx="500" cy="500" r="240" stroke-dasharray="4 14"/>
+          <line x1="500" y1="80" x2="500" y2="920"/>
+          <line x1="100" y1="580" x2="900" y2="420"/>
+          <line x1="900" y1="580" x2="100" y2="420"/>
+        </svg>
+      </div>
+
+      <div class="slide-contenido">
         <h1>Aprender, construir y enseñar</h1>
         <h2>Experiencia de actualización en Desarrollo Web Responsive y su transferencia en la ETP</h2>
 
-        <div style="display:flex; gap:25px; align-items:center; margin-top:20px;">
-          <div style="flex:1.2;">
-            <h3>Dante Nicolás Martínez</h3>
-            <p><strong>Título de Base:</strong> Técnico Universitario en Programación (UTN FRSR)</p>
-            <p><strong>Desempeño actual:</strong> Auxiliar Docente y Tutor en la UTN FRSR (Modalidad Virtual)</p>
-            <p><strong>Formación pedagógica:</strong> 2.º Año del Profesorado para la ETP (Mendoza)</p>
-            <p><strong>Espacio Curricular:</strong> Actualización Científico-Tecnológica (192 hs) - Prof. Celeste Derra</p>
+        <div class="portada-layout">
+          <div class="portada-info">
+            <div class="badges-row">
+              <span class="badge badge-utn">⚙ UTN FRSR</span>
+              <span class="badge badge-ipa">🎓 IPA Mendoza — ETP</span>
+              <span class="badge badge-hrs">✓ 192 hs</span>
+            </div>
+
+            <p class="nombre-principal">Dante Nicolás Martínez</p>
+            <p class="portada-rol">Técnico Universitario en Programación · Auxiliar Docente UTN FRSR</p>
+
+            <ul class="datos-lista">
+              <li class="dato-item">
+                <span class="dato-label">Título de base</span>
+                <span>Técnico Universitario en Programación (UTN FRSR) — Egresado 2024</span>
+              </li>
+              <li class="dato-item">
+                <span class="dato-label">Desempeño actual</span>
+                <span>Auxiliar Docente y Tutor — UTN FRSR (Modalidad Virtual)</span>
+              </li>
+              <li class="dato-item">
+                <span class="dato-label">Formación pedagógica</span>
+                <span>2.º Año del Profesorado para la ETP — Mendoza</span>
+              </li>
+              <li class="dato-item">
+                <span class="dato-label">Espacio curricular</span>
+                <span>Actualización Científico-Tecnológica (192 hs) — Prof. Celeste Derra</span>
+              </li>
+            </ul>
           </div>
-          <div style="flex:1; background:rgba(74,144,226,.12); padding:20px; border-radius:14px; border-left:4px solid var(--azul-claro);">
-            <p class="idea-fuerza" style="margin:0; border:none; background:none; padding:0; text-align:left; font-size:1.05rem;">
-              “La actualización tecnológica adquiere sentido cuando puede aplicarse, compartirse y convertirse en oportunidades reales de formación.”
-            </p>
-          </div>
+
+          <aside class="portada-cita animada">
+            <div class="cita-mesh" aria-hidden="true"></div>
+            <div class="cita-contenido">
+              <p class="cita-texto">"La actualización tecnológica adquiere sentido cuando puede aplicarse, compartirse y convertirse en oportunidades reales de formación."</p>
+              <span class="cita-firma">— Idea fuerza del TFI</span>
+            </div>
+            <div class="cita-borde-brillo" aria-hidden="true"></div>
+          </aside>
         </div>
       </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 1 / 8</span>
-      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
     </section>
 
-    <!-- DIAPOSITIVA 2: Línea de Tiempo Personal con Zoom -->
-    <section class="diapositiva" data-titulo="Línea de Tiempo y Ciclo">
-      <div>
+    <!-- ══════════════════════════════════════════
+         SLIDE 2 — LÍNEA DE TIEMPO
+         Fondo: Geometría Sagrada Colorida + Pantalla Completa en Hover
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="Trayectoria y Ciclo" data-theme="sacred" aria-label="Diapositiva 2" aria-hidden="true">
+
+      <div class="slide-bg slide-bg-sacred" aria-hidden="true">
+        <svg class="geo-sacred-flor" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="grad-sacred-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00C8FF" stop-opacity="0.7"/>
+              <stop offset="50%" stop-color="#E6B800" stop-opacity="0.6"/>
+              <stop offset="100%" stop-color="#FF3366" stop-opacity="0.7"/>
+            </linearGradient>
+            <linearGradient id="grad-sacred-2" x1="100%" y1="0%" x2="0%" y2="100%">
+              <stop offset="0%" stop-color="#41B883" stop-opacity="0.6"/>
+              <stop offset="50%" stop-color="#00C8FF" stop-opacity="0.5"/>
+              <stop offset="100%" stop-color="#9B59B6" stop-opacity="0.7"/>
+            </linearGradient>
+          </defs>
+          <circle cx="400" cy="400" r="360" stroke="url(#grad-sacred-1)" stroke-width="1.5" fill="none"/>
+          <circle cx="400" cy="400" r="240" stroke="url(#grad-sacred-2)" stroke-width="1.5" fill="none"/>
+          <circle cx="400" cy="400" r="120" stroke="url(#grad-sacred-1)" stroke-width="1.5" fill="none"/>
+          <circle cx="400" cy="280" r="120" stroke="url(#grad-sacred-1)" stroke-width="1" fill="none"/>
+          <circle cx="400" cy="520" r="120" stroke="url(#grad-sacred-1)" stroke-width="1" fill="none"/>
+          <circle cx="296" cy="340" r="120" stroke="url(#grad-sacred-2)" stroke-width="1" fill="none"/>
+          <circle cx="504" cy="340" r="120" stroke="url(#grad-sacred-2)" stroke-width="1" fill="none"/>
+          <circle cx="296" cy="460" r="120" stroke="url(#grad-sacred-1)" stroke-width="1" fill="none"/>
+          <circle cx="504" cy="460" r="120" stroke="url(#grad-sacred-1)" stroke-width="1" fill="none"/>
+          <polygon points="400,60 694,570 106,570" stroke="url(#grad-sacred-2)" stroke-width="1.2" fill="none"/>
+          <polygon points="400,740 106,230 694,230" stroke="url(#grad-sacred-1)" stroke-width="1.2" fill="none"/>
+          <circle cx="400" cy="400" r="380" stroke="#E6B800" stroke-width="0.8" stroke-dasharray="8 14" fill="none"/>
+        </svg>
+      </div>
+
+      <div class="slide-contenido">
         <h1>Mi Trayectoria y el Ciclo de Aprendizaje</h1>
-        <h2>Línea de tiempo personal y evolución técnica</h2>
+        <h2>¿Cuándo podemos decir que realmente aprendimos algo técnico?</h2>
 
         <div class="timeline-box">
-          <div class="img-wrap-zoom">
-            <img src="imagenes/linea_tiempo.png" id="img-linea-tiempo" alt="Línea de tiempo personal" onclick="abrirLightbox('imagenes/linea_tiempo.png')">
-            <br>
-            <button class="btn-zoom" onclick="abrirLightbox('imagenes/linea_tiempo.png')">🔍 Ampliar Línea de Tiempo (Pantalla Completa)</button>
+          <!-- Al colocar el mouse arriba se despliega en pantalla completa inmediatamente -->
+          <div class="timeline-fullscreen-hover-trigger"
+               onmouseenter="activarHoverFullscreen()"
+               onmouseleave="desactivarHoverFullscreen()"
+               onclick="abrirLightbox('imagenes/linea_tiempo.png')"
+               title="Pasa el mouse para ver en pantalla completa">
+            <div class="zoom-glow-aura"></div>
+            <img src="imagenes/linea_tiempo.png"
+                 alt="Línea de tiempo personal — de la curiosidad tecnológica a la vocación pedagógica"
+                 class="timeline-img-zoomable">
           </div>
-          <div style="flex:1;">
-            <h3 style="color:var(--dorado);">El Ciclo en 4 Momentos:</h3>
-            <ul style="margin-top:10px;">
-              <li><strong>1. Comprender:</strong> Fundamentos y estándares globales.</li>
-              <li><strong>2. Construir:</strong> Desarrollo de proyectos concretos y visibles.</li>
-              <li><strong>3. Resolver:</strong> Superación de problemas del mundo real.</li>
-              <li><strong>4. Enseñar:</strong> Multiplicación de saberes en la ETP.</li>
+
+          <div class="timeline-info">
+            <h3>En mi experiencia, aprender ocurre en 4 etapas:</h3>
+            <ul class="ciclo-lista">
+              <li class="ciclo-item">
+                <span class="ciclo-n">1</span>
+                <span class="ciclo-txt"><strong>Comprender:</strong> Fundamentos y estándares globales del desarrollo web.</span>
+              </li>
+              <li class="ciclo-item">
+                <span class="ciclo-n">2</span>
+                <span class="ciclo-txt"><strong>Construir:</strong> Traducir esos saberes en productos concretos y funcionales.</span>
+              </li>
+              <li class="ciclo-item">
+                <span class="ciclo-n">3</span>
+                <span class="ciclo-txt"><strong>Resolver:</strong> Enfrentar y superar los problemas prácticos del desarrollo real.</span>
+              </li>
+              <li class="ciclo-item">
+                <span class="ciclo-n">4</span>
+                <span class="ciclo-txt"><strong>Enseñar:</strong> Llevar el conocimiento al aula para multiplicar su impacto.</span>
+              </li>
             </ul>
+            <p class="idea-fuerza" style="margin-top:auto;">"Esta experiencia que vengo a mostrarles resume justamente ese recorrido."</p>
           </div>
         </div>
       </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 2 / 8</span>
-      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
     </section>
 
-    <!-- DIAPOSITIVA 3: Certificación freeCodeCamp -->
-    <section class="diapositiva" data-titulo="Certificación Oficial">
-      <div>
-        <h1>Especialización en freeCodeCamp (300 Horas)</h1>
-        <h2>Certificación Internacional en Responsive Web Design</h2>
+    <!-- ══════════════════════════════════════════
+         SLIDE 3 — ¿POR QUÉ FREECODECAMP? (PADDING & CENTRADO AJUSTADOS)
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="¿Por qué freeCodeCamp?" data-theme="code" aria-label="Diapositiva 3" aria-hidden="true">
 
-        <div class="timeline-box">
-          <div class="img-wrap-zoom">
-            <img src="imagenes/mi certificado.jpeg" alt="Certificado freeCodeCamp" onclick="abrirLightbox('imagenes/mi certificado.jpeg')">
-            <br>
-            <button class="btn-zoom" onclick="abrirLightbox('imagenes/mi certificado.jpeg')">🔍 Ampliar Certificado Oficial</button>
+      <div class="slide-bg" aria-hidden="true">
+        <span class="code-tag">&lt;html&gt;</span>
+        <span class="code-tag">{ CSS3 }</span>
+        <span class="code-tag">&lt;main role="main"&gt;</span>
+        <span class="code-tag">@media (max-width: 768px)</span>
+        <span class="code-tag">display: grid;</span>
+        <span class="code-tag">&lt;section&gt;</span>
+        <span class="code-tag">display: flex;</span>
+        <span class="code-tag">backdrop-filter: blur()</span>
+        <span class="code-tag">/* 300 Horas */</span>
+        <span class="code-tag">:root { --accent }</span>
+      </div>
+
+      <div class="slide-contenido">
+        <h1>¿Por qué elegí freeCodeCamp?</h1>
+        <h2>Certificación Internacional en Responsive Web Design — 300 horas</h2>
+
+        <div class="freecode-grid" id="freecode-display-grid">
+          <div class="freecode-card" data-card-idx="1">
+            <span class="grid-badge-col">col 1 / row 1</span>
+            <div class="freecode-icon-box">
+              <span class="freecode-icon">🆓</span>
+            </div>
+            <div class="freecode-text-content">
+              <p class="freecode-titulo">100% Gratuito · Sin Fines de Lucro</p>
+              <p class="freecode-desc">Acceso universal y libre. <strong>Sin costo ni barreras de entrada</strong> para que cualquier estudiante técnico pueda formarse al nivel de la industria global.</p>
+            </div>
           </div>
-          <div style="flex:1;">
+
+          <div class="freecode-card" data-card-idx="2">
+            <span class="grid-badge-col">col 2 / row 1</span>
+            <div class="freecode-icon-box">
+              <span class="freecode-icon">💻</span>
+            </div>
+            <div class="freecode-text-content">
+              <p class="freecode-titulo">Metodología 100% Práctica</p>
+              <p class="freecode-desc">Aprender <strong>construyendo proyectos reales</strong> paso a paso, iterando directamente en el navegador con pruebas automáticas integradas.</p>
+            </div>
+          </div>
+
+          <div class="freecode-card" data-card-idx="3">
+            <span class="grid-badge-col">col 1 / row 2</span>
+            <div class="freecode-icon-box">
+              <span class="freecode-icon">🌎</span>
+            </div>
+            <div class="freecode-text-content">
+              <p class="freecode-titulo">Comunidad Global & Ecosistema</p>
+              <p class="freecode-desc">Más de <strong>100.000 graduados</strong> trabajando en gigantes tecnológicos: Amazon, Spotify, Apple, Google y Microsoft.</p>
+            </div>
+          </div>
+
+          <div class="freecode-card" data-card-idx="4">
+            <span class="grid-badge-col">col 2 / row 2</span>
+            <div class="freecode-icon-box">
+              <span class="freecode-icon">📈</span>
+            </div>
+            <div class="freecode-text-content">
+              <p class="freecode-titulo">Estándares Demandados en la Industria</p>
+              <p class="freecode-desc">HTML5 semántico, CSS3 moderno, Flexbox, CSS Grid y accesibilidad universal (a11y) — las <strong>bases insustituibles</strong> del software.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- DEMO INTERACTIVA EN VIVO DE CAPACIDADES CSS/HTML -->
+        <div class="tech-demo-bar">
+          <div class="demo-tag">⚡ Demostración en Vivo:</div>
+          <div class="demo-buttons">
+            <button type="button" class="btn-demo-mode active" onclick="cambiarModoDemo(this, 'normal')">↺ Normal</button>
+            <button type="button" class="btn-demo-mode" onclick="cambiarModoDemo(this, 'flex')">Flexbox Dinámico</button>
+            <button type="button" class="btn-demo-mode" onclick="cambiarModoDemo(this, 'grid')">CSS Grid Inspector 3D</button>
+            <button type="button" class="btn-demo-mode" onclick="cambiarModoDemo(this, 'cyberpunk')">⚡ Modo Cyberpunk</button>
+          </div>
+          <span class="demo-status" id="demo-status-text">Vista estándar: CSS Grid 2x2 equilibrado</span>
+        </div>
+
+        <p class="freecode-highlight">
+          "El desafío no era solo escribir código, sino construir experiencias digitales que funcionaran en distintos contextos y dispositivos."
+        </p>
+      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 4 — CERTIFICADO & ACCESIBILIDAD CAMBIO DE COLORES
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="Certificación Oficial" data-theme="cert" aria-label="Diapositiva 4" aria-hidden="true">
+
+      <div class="slide-bg" aria-hidden="true">
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+        <div class="particula"></div>
+      </div>
+
+      <div class="slide-contenido">
+        <h1>Certificación Oficial — freeCodeCamp</h1>
+        <h2>Responsive Web Design · Expedida el 13 de marzo de 2025</h2>
+
+        <div class="cert-layout">
+          <!-- Columna visual: Certificado y Simulador Responsive -->
+          <div class="cert-visual-container">
+            <div class="cert-img-wrap" id="cert-main-wrapper" title="Haz clic para ver en pantalla completa">
+              <span class="cert-sello">✓ 300 HORAS CERTIFICADAS</span>
+              <div class="cert-glow-ring"></div>
+              <img class="cert-img" id="cert-img-element"
+                   src="imagenes/mi certificado.jpeg"
+                   alt="Certificado oficial freeCodeCamp — Responsive Web Design — Dante Nicolás Martínez"
+                   onclick="abrirLightbox('imagenes/mi certificado.jpeg')">
+            </div>
+
+            <!-- SIMULADOR INTERACTIVO MOBILE-FIRST -->
+            <div id="simulador-mobile-first" class="simulador-responsive-frame" aria-hidden="true">
+              <div class="simulador-header">
+                <span class="sim-dot red"></span>
+                <span class="sim-dot yellow"></span>
+                <span class="sim-dot green"></span>
+                <span class="sim-viewport-title" id="sim-viewport-label">📱 Vista Mobile: 375px (Mobile First)</span>
+                <div class="sim-device-toggles">
+                  <button type="button" class="btn-sim active" onclick="ajustarSimulador('mobile')">📱 Mobile</button>
+                  <button type="button" class="btn-sim" onclick="ajustarSimulador('tablet')">📟 Tablet</button>
+                  <button type="button" class="btn-sim" onclick="ajustarSimulador('desktop')">💻 Desktop</button>
+                  <button type="button" class="btn-sim close-btn" onclick="cerrarSimulador()">✕ Cerrar</button>
+                </div>
+              </div>
+              <div class="simulador-body" id="sim-body-device">
+                <div class="mock-website">
+                  <header class="mock-nav">
+                    <span class="mock-logo">&lt;NicoCode /&gt;</span>
+                    <span class="mock-menu-btn">☰</span>
+                  </header>
+                  <div class="mock-hero">
+                    <p class="mock-hero-t">Diseño Mobile-First</p>
+                    <p class="mock-hero-sub">El diseño se concibe primero para pantallas móviles y se expande progresivamente con media queries.</p>
+                  </div>
+                  <div class="mock-cards-flow" id="mock-cards-container">
+                    <div class="mock-c">1. HTML Semántico</div>
+                    <div class="mock-c">2. Flexbox/Grid</div>
+                    <div class="mock-c">3. Media Queries</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="cert-info">
             <h3>Ejes Formativos Abordados:</h3>
-            <ul>
-              <li><strong>Metodología práctica:</strong> Aprendizaje basado en proyectos paso a paso.</li>
-              <li><strong>Diseño Adaptable (Responsive):</strong> Interfaces fluidas en celulares, tablets y PC.</li>
-              <li><strong>Accesibilidad e Inclusión:</strong> Desarrollo pensado para todas las personas.</li>
+            <ul class="cert-ejes">
+              <li class="cert-eje interactive-eje" id="eje-btn-responsive" onclick="toggleSimuladorMobileFirst()" onmouseenter="activarEfectoEje('responsive')" onmouseleave="desactivarEfectoEje()">
+                <span class="cert-eje-icon anim-icon">📱</span>
+                <span class="cert-eje-txt"><strong>Diseño Adaptable (Mobile-First):</strong> Pensado primero para smartphones y luego adaptado a tablets y PC.</span>
+                <span class="eje-pill action-pill">▶ Simular</span>
+              </li>
+              <li class="cert-eje interactive-eje" id="eje-btn-a11y" onclick="toggleAccesibilidadModo(this)" onmouseenter="activarEfectoEje('accesibilidad')" onmouseleave="desactivarEfectoEje()">
+                <span class="cert-eje-icon anim-icon">♿</span>
+                <span class="cert-eje-txt"><strong>Accesibilidad e Inclusión:</strong> Estándares WCAG AAA, lectores de pantalla y contrastes de alto impacto.</span>
+                <span class="eje-pill a11y-pill">WCAG AAA ⚡</span>
+              </li>
+              <li class="cert-eje interactive-eje" onmouseenter="activarEfectoEje('semantica')" onmouseleave="desactivarEfectoEje()">
+                <span class="cert-eje-icon anim-icon">🏗</span>
+                <span class="cert-eje-txt"><strong>HTML5 Semántico:</strong> Jerarquía y significado real para navegadores y motores de búsqueda.</span>
+                <span class="eje-pill">Semántica</span>
+              </li>
+              <li class="cert-eje interactive-eje" onmouseenter="activarEfectoEje('css3')" onmouseleave="desactivarEfectoEje()">
+                <span class="cert-eje-icon anim-icon">🎨</span>
+                <span class="cert-eje-txt"><strong>CSS3 Moderno:</strong> Flexbox, CSS Grid, Variables y aceleración por GPU sin dependencias.</span>
+                <span class="eje-pill">GPU CSS3</span>
+              </li>
             </ul>
-            <p class="idea-fuerza" style="margin-top:12px; font-size:0.95rem;">
-              “Un sitio web que no se adapta hoy, es una experiencia que deja afuera a los usuarios.”
+
+            <p class="idea-fuerza" style="margin-top:auto;">
+              "Un sitio web que no se adapta hoy, es una experiencia que excluye."
             </p>
           </div>
         </div>
       </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 3 / 8</span>
-      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
     </section>
 
-    <!-- DIAPOSITIVA 4: Collage Evidencias - Portafolio Básico (Efecto Hover Zoom) -->
-    <section class="diapositiva" data-titulo="Evidencias: Portafolio Básico">
-      <div>
-        <h1>De la Teoría a la Práctica: Portafolio Básico</h1>
+    <!-- ══════════════════════════════════════════
+         SLIDE 5 — PORTAFOLIO BÁSICO (CARRUSEL A TODO EL ALTO)
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="Del Curso al Aula: Portafolio Básico" data-theme="grid" aria-label="Diapositiva 5" aria-hidden="true">
+
+      <div class="slide-bg slide-bg-grid" aria-hidden="true"></div>
+
+      <div class="slide-contenido slide-full-height-carrusel">
+        <h1>Del Curso al Aula: Portafolio Básico</h1>
         <h2>Producciones reales de los estudiantes de 1.° Año UTN FRSR</h2>
 
-        <p style="font-size:0.9rem; color:var(--secundario);"><em>Pasa el mouse sobre cualquier portafolio para ver el zoom dinámico, o haz clic para ampliarlo en pantalla completa:</em></p>
-
-        <!-- Collage animado de 8 capturas -->
-        <div class="collage-container">
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_1.png')">
-            <img src="imagenes/portafolio_basico/basico_1.png" alt="Portafolio 1">
-            <div class="collage-caption">Alumno 1 - Inicio</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_2.png')">
-            <img src="imagenes/portafolio_basico/basico_2.png" alt="Portafolio 2">
-            <div class="collage-caption">Alumno 2 - Sobre Mí</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_3.png')">
-            <img src="imagenes/portafolio_basico/basico_3.png" alt="Portafolio 3">
-            <div class="collage-caption">Alumno 3 - Habilidades</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_4.png')">
-            <img src="imagenes/portafolio_basico/basico_4.png" alt="Portafolio 4">
-            <div class="collage-caption">Alumno 4 - Proyectos</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_5.png')">
-            <img src="imagenes/portafolio_basico/basico_5.png" alt="Portafolio 5">
-            <div class="collage-caption">Alumno 5 - Responsive</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_6.png')">
-            <img src="imagenes/portafolio_basico/basico_6.png" alt="Portafolio 6">
-            <div class="collage-caption">Alumno 6 - Experiencia</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_7.png')">
-            <img src="imagenes/portafolio_basico/basico_7.png" alt="Portafolio 7">
-            <div class="collage-caption">Alumno 7 - Contacto</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_8.png')">
-            <img src="imagenes/portafolio_basico/basico_8.png" alt="Portafolio 8">
-            <div class="collage-caption">Alumno 8 - Despliegue</div>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 4 / 8</span>
-      </div>
-    </section>
-
-    <!-- DIAPOSITIVA 5: Infografía Visual del Cuerpo Humano vs Desarrollo Web -->
-    <section class="diapositiva" data-titulo="Infografía: Cuerpo Humano y Frameworks">
-      <div>
-        <h1>Evolución Tecnológica: Arquitectura por Componentes</h1>
-        <h2>Analogía Didáctica del Cuerpo Humano aplicada a los Frameworks de Software</h2>
-
-        <div class="anatomia-grid">
-
-          <!-- Lado Izquierdo: Tradicional -->
-          <div class="anatomia-card tradicional">
-            <div class="anatomia-header">
-              <span class="anatomia-icon">🦴</span>
-              <div>
-                <h4 style="color:var(--rojo);">Desarrollo Lineal Tradicional</h4>
-                <p style="font-size:0.85rem; color:var(--secundario);">Como un hueso rígido sin articulaciones</p>
-              </div>
-            </div>
-            <p style="font-size:0.9rem;">Todo el código se encuentra acumulado en un único bloque continuo.</p>
-            <div class="anatomia-partes">
-              <div class="organo-item">⚠️ Difícil de modificar</div>
-              <div class="organo-item">⚠️ Riesgo de romper el todo</div>
-              <div class="organo-item">⚠️ Poco reutilizable</div>
-              <div class="organo-item">⚠️ Crecimiento complejo</div>
-            </div>
-          </div>
-
-          <!-- Lado Derecho: Modular -->
-          <div class="anatomia-card modular">
-            <div class="anatomia-header">
-              <span class="anatomia-icon">🫀</span>
-              <div>
-                <h4 style="color:var(--verde);">Frameworks y Componentes</h4>
-                <p style="font-size:0.85rem; color:var(--secundario);">Como los órganos del cuerpo humano</p>
-              </div>
-            </div>
-            <p style="font-size:0.9rem;">Módulos autónomos (Header, Proyectos) que se comunican coordinadamente.</p>
-            <div class="anatomia-partes">
-              <div class="organo-item">✅ Corazón: Lógica reactiva</div>
-              <div class="organo-item">✅ Pulmones: Intercambio datos</div>
-              <div class="organo-item">✅ Músculos: Módulos reusables</div>
-              <div class="organo-item">✅ Piel: Diseño responsive</div>
-            </div>
-          </div>
-
-        </div>
-
-        <div style="background:rgba(0,56,101,0.25); padding:10px 15px; border-radius:10px; margin-top:6px;">
-          <p style="font-size:0.9rem;"><strong>Frameworks reconocidos en la industria:</strong> Herramientas estándar como React, Angular, Svelte o Vue permiten estructurar software robusto y escalable.</p>
-        </div>
-      </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 5 / 8</span>
-      </div>
-    </section>
-
-    <!-- DIAPOSITIVA 6: Collage Evidencias - Portafolio Avanzado (Efecto Hover Zoom) -->
-    <section class="diapositiva" data-titulo="Evidencias: Portafolio Avanzado">
-      <div>
-        <h1>Evidencias del Portafolio Avanzado (Frameworks)</h1>
-        <h2>Aplicación de arquitectura modular y buenas prácticas profesionales</h2>
-
-        <p style="font-size:0.9rem; color:var(--secundario);"><em>Pasa el mouse para interactuar con cada proyecto avanzado:</em></p>
-
-        <!-- Collage animado de 8 capturas avanzadas -->
-        <div class="collage-container">
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_1.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_1.png" alt="Avanzado 1">
-            <div class="collage-caption">Componente Header</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_2.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_2.png" alt="Avanzado 2">
-            <div class="collage-caption">Componente Proyectos</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_3.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_3.png" alt="Avanzado 3">
-            <div class="collage-caption">Manejo de Datos</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_5.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_5.png" alt="Avanzado 5">
-            <div class="collage-caption">Interactividad</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_6.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_6.png" alt="Avanzado 6">
-            <div class="collage-caption">Diseño Adaptable</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_7.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_7.png" alt="Avanzado 7">
-            <div class="collage-caption">Modo Oscuro</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_8.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_8.png" alt="Avanzado 8">
-            <div class="collage-caption">Estructura Modular</div>
-          </div>
-          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_9.png')">
-            <img src="imagenes/portafolio_avanzado/avanzado_9.png" alt="Avanzado 9">
-            <div class="collage-caption">Publicación Web</div>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 6 / 8</span>
-      </div>
-    </section>
-
-    <!-- DIAPOSITIVA 7: Transposición Didáctica y Canal YouTube -->
-    <section class="diapositiva" data-titulo="Transposición Didáctica">
-      <div>
-        <h1>Transposición Didáctica: Canal "Nico Code"</h1>
-        <h2>Material audiovisual creado para acompañar a los estudiantes en la ETP</h2>
-
-        <div style="display:flex; gap:25px; align-items:center; margin-top:10px;">
-          <div style="flex:1.1;">
-            <p><strong>Recursos abiertos y libres:</strong> Acompañamiento a los alumnos mediante clases grabadas en YouTube:</p>
-            <ul style="margin-top:10px;">
-              <li><strong>Serie Portafolio Básico (7 clases):</strong> Maquetación paso a paso y despliegue gratuito.</li>
-              <li><strong>Serie Portafolio Avanzado (10 clases):</strong> Componentes y buenas prácticas.</li>
-            </ul>
-            <p style="margin-top:12px; color:var(--dorado); font-style:italic;">
-              “La transposición didáctica permite acercar desafíos reales de la industria a la realidad del aula técnica.”
-            </p>
-          </div>
-          <div style="flex:0.9; text-align:center; background:rgba(0,0,0,0.3); padding:20px; border-radius:14px; border:1px solid rgba(74,144,226,0.3);">
-            <p style="font-size:1.1rem; color:var(--dorado); margin-bottom:12px;">📺 Canal Oficial en YouTube</p>
-            <p style="font-size:0.9rem; margin-bottom:15px; color:var(--secundario);">Haz clic para abrir directamente los videos formativos:</p>
-            <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe" target="_blank" class="btn-link-final btn-link-youtube">
-              ▶ Ir al Canal "Nico Code" en YouTube
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 7 / 8</span>
-      </div>
-    </section>
-
-    <!-- DIAPOSITIVA 8: Conclusión, Síntesis y Enlaces Finales -->
-    <section class="diapositiva" data-titulo="Conclusión y Enlaces">
-      <div>
-        <h1>Conclusión y Diálogo con el Tribunal</h1>
-        <h2 style="color:var(--dorado);">Cierre de la Experiencia y Recursos de Contacto</h2>
-
-        <div style="background:rgba(230,184,0,0.08); border-left:4px solid var(--dorado); padding:16px 20px; border-radius:8px; margin:14px 0;">
-          <p style="font-size:1.05rem; line-height:1.6;">
-            "A lo largo de estas 192 horas de actualización, vivencié que el aprendizaje técnico se vuelve significativo cuando completamos el ciclo: <strong>Comprendimos</strong> estándares modernos, <strong>Construimos</strong> soluciones reales, <strong>Enseñamos</strong> facilitando el camino a nuestros alumnos y <strong>Profesionalizamos</strong> nuestra labor docente para la Educación Técnico-Profesional de Mendoza."
+        <div class="carrusel-header-bar">
+          <p class="carrusel-intro-txt">
+            ✦ <strong>Carrusel Inmersivo Continuo en Loop</strong> · Pasa el cursor para pausar · Clic para ampliar
           </p>
+          <div class="carrusel-controles-mini">
+            <button class="btn-mini-carrusel" onclick="moverCarrusel('carrusel-basico', -1)" aria-label="Anterior">◀</button>
+            <button class="btn-mini-carrusel" onclick="moverCarrusel('carrusel-basico', 1)" aria-label="Siguiente">▶</button>
+          </div>
         </div>
 
-        <div style="text-align:center; margin-top:15px;">
-          <h3 style="color:var(--azul-claro); margin-bottom:10px;">¡Muchas gracias por su atención!</h3>
-          <p style="font-size:0.9rem; color:var(--secundario);">Enlaces directos a los recursos desarrollados:</p>
+        <!-- CARRUSEL EXPANDIDO A TODO EL ALTO -->
+        <div class="carrusel-track-wrapper carrusel-wrapper-tall" id="carrusel-basico-wrapper" onmouseenter="pausarCarrusel('carrusel-basico')" onmouseleave="reanudarCarrusel('carrusel-basico')">
+          <div class="carrusel-track carrusel-track-tall" id="carrusel-basico">
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_1.png')">
+              <img src="imagenes/portafolio_basico/basico_1.png" alt="Portafolio alumno 1 — Inicio y Presentación" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 1 · Inicio & Hero</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_2.png')">
+              <img src="imagenes/portafolio_basico/basico_2.png" alt="Portafolio alumno 2 — Sección Sobre Mí" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 2 · Sobre Mí</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_3.png')">
+              <img src="imagenes/portafolio_basico/basico_3.png" alt="Portafolio alumno 3 — Habilidades Técnicas" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 3 · Habilidades</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_4.png')">
+              <img src="imagenes/portafolio_basico/basico_4.png" alt="Portafolio alumno 4 — Galería de Proyectos" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 4 · Proyectos</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_5.png')">
+              <img src="imagenes/portafolio_basico/basico_5.png" alt="Portafolio alumno 5 — Adaptabilidad Mobile" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 5 · Responsive</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_6.png')">
+              <img src="imagenes/portafolio_basico/basico_6.png" alt="Portafolio alumno 6 — Trayectoria" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 6 · Experiencia</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_7.png')">
+              <img src="imagenes/portafolio_basico/basico_7.png" alt="Portafolio alumno 7 — Formulario y Contacto" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 7 · Contacto</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_8.png')">
+              <img src="imagenes/portafolio_basico/basico_8.png" alt="Portafolio alumno 8 — Despliegue en la Web" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 8 · Despliegue</div>
+            </div>
+            <!-- Duplicados para loop infinito suave -->
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_1.png')" aria-hidden="true">
+              <img src="imagenes/portafolio_basico/basico_1.png" alt="" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 1 · Inicio & Hero</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_2.png')" aria-hidden="true">
+              <img src="imagenes/portafolio_basico/basico_2.png" alt="" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 2 · Sobre Mí</div>
+            </div>
+            <div class="carrusel-card carrusel-card-tall" onclick="abrirLightbox('imagenes/portafolio_basico/basico_3.png')" aria-hidden="true">
+              <img src="imagenes/portafolio_basico/basico_3.png" alt="" loading="lazy">
+              <div class="carrusel-card-caption">Alumno 3 · Habilidades</div>
+            </div>
+          </div>
+        </div>
 
-          <!-- ENLACES FINALES SOLICITADOS -->
-          <div class="links-finales">
-            <a href="https://portfolio-dante-martinez.netlify.app/" target="_blank" class="btn-link-final btn-link-portafolio">
-              🌐 Portafolio Profesional de Dante Martínez
-            </a>
-            <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe" target="_blank" class="btn-link-final btn-link-youtube">
-              📺 Canal de YouTube "Nico Code"
+        <div class="carrusel-footer-info">
+          <span>🎯 <strong>Logro pedagógico:</strong> 100% de los estudiantes maquetaron, adaptaron a mobile y desplegaron su portafolio real en vivo.</span>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 6 — HABITACIÓN → CASA (Vue.js + Astro)
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="Del HTML al Framework — Vue.js & Astro" data-theme="vue" aria-label="Diapositiva 6" aria-hidden="true">
+
+      <div class="slide-bg" aria-hidden="true">
+        <svg class="neural-svg" viewBox="0 0 1000 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+          <circle class="neural-node" cx="120" cy="100" r="6" fill="#4A90E2"/>
+          <circle class="neural-node" cx="320" cy="200" r="6" fill="#41B883"/>
+          <circle class="neural-node" cx="480" cy="80"  r="6" fill="#FF5D01"/>
+          <circle class="neural-node" cx="680" cy="180" r="6" fill="#41B883"/>
+          <circle class="neural-node" cx="840" cy="100" r="6" fill="#00C8FF"/>
+          <circle class="neural-node" cx="180" cy="380" r="6" fill="#41B883"/>
+          <circle class="neural-node" cx="380" cy="440" r="6" fill="#FF5D01"/>
+          <circle class="neural-node" cx="580" cy="360" r="6" fill="#E6B800"/>
+          <circle class="neural-node" cx="780" cy="440" r="6" fill="#41B883"/>
+          <circle class="neural-node" cx="940" cy="320" r="6" fill="#4A90E2"/>
+          <line class="neural-link" stroke="#41B883" x1="120" y1="100" x2="320" y2="200"/>
+          <line class="neural-link" stroke="#FF5D01" x1="320" y1="200" x2="480" y2="80"/>
+          <line class="neural-link" stroke="#E6B800" x1="480" y1="80"  x2="680" y2="180"/>
+          <line class="neural-link" stroke="#41B883" x1="680" y1="180" x2="840" y2="100"/>
+          <line class="neural-link" stroke="#41B883" x1="180" y1="380" x2="380" y2="440"/>
+          <line class="neural-link" stroke="#FF5D01" x1="380" y1="440" x2="580" y2="360"/>
+        </svg>
+      </div>
+
+      <div class="slide-contenido">
+        <h1>Del HTML al Framework: Vue.js & Astro</h1>
+        <h2>¿Qué es un framework? Una analogía visual arquitectónica</h2>
+
+        <div style="flex:1; display:flex; flex-direction:column; gap:var(--sp-xs);">
+          <div class="analogia-grid">
+
+            <!-- HABITACIÓN ÚNICA (desarrollo lineal) -->
+            <div class="analogia-card habitacion">
+              <div class="analogia-header">
+                <span class="analogia-icon">🏚</span>
+                <div>
+                  <p class="analogia-titulo">Una Sola Habitación Monolítica</p>
+                  <p class="analogia-sub">Desarrollo lineal sin modularizar · HTML/CSS puro</p>
+                </div>
+              </div>
+              <div class="bloque-caotico" aria-label="Código monolítico">
+                <div class="caos-linea">header() { todo_en_un_solo_lugar }</div>
+                <div class="caos-linea">nav()    { estilos_mezclados_aqui }</div>
+                <div class="caos-linea">main()   { 3000_lineas_sin_separar }</div>
+                <div class="caos-linea">footer() { conflicto_de_variables }</div>
+                <div class="caos-linea">error()  { si_falla_cae_todo_el_sitio }</div>
+              </div>
+              <ul class="analogia-bullets">
+                <li>⚠ Todo el código convive apretado en un único archivo inmenso</li>
+                <li>⚠ Mantenimiento complejo y alto riesgo de romper otras partes</li>
+                <li>⚠ Difícil de escalar y de trabajar colaborativamente</li>
+              </ul>
+            </div>
+
+            <!-- FLECHA DE EVOLUCIÓN -->
+            <div class="analogia-flecha" aria-hidden="true">
+              <span class="flecha-icon">⟶</span>
+              <span class="flecha-lbl">Modularidad</span>
+            </div>
+
+            <!-- CASA ORGANIZADA (Vue.js + Astro) -->
+            <div class="analogia-card casa">
+              <div class="analogia-header">
+                <span class="analogia-icon">🏡</span>
+                <div>
+                  <p class="analogia-titulo">Casa Organizada por Componentes</p>
+                  <p class="analogia-sub">Vue.js & Astro · Arquitectura Modular & Reactiva</p>
+                </div>
+              </div>
+              <div class="habitaciones-grid">
+                <div class="habitacion-chip active-chip" id="chip-1" onclick="iluminarComponente(this)">
+                  <span class="hab-emoji">🛋</span>
+                  <div>
+                    <p class="hab-nombre">&lt;TheNavbar /&gt;</p>
+                    <p class="hab-desc">Navegación encapsulada</p>
+                  </div>
+                  <span class="pulse-dot"></span>
+                </div>
+                <div class="habitacion-chip" id="chip-2" onclick="iluminarComponente(this)">
+                  <span class="hab-emoji">🎨</span>
+                  <div>
+                    <p class="hab-nombre">&lt;ProjectsGrid /&gt;</p>
+                    <p class="hab-desc">Galería reactiva reutilizable</p>
+                  </div>
+                  <span class="pulse-dot"></span>
+                </div>
+                <div class="habitacion-chip" id="chip-3" onclick="iluminarComponente(this)">
+                  <span class="hab-emoji">📬</span>
+                  <div>
+                    <p class="hab-nombre">&lt;ContactForm /&gt;</p>
+                    <p class="hab-desc">Validación y estado propio</p>
+                  </div>
+                  <span class="pulse-dot"></span>
+                </div>
+                <div class="habitacion-chip" id="chip-4" onclick="iluminarComponente(this)">
+                  <span class="hab-emoji">🌙</span>
+                  <div>
+                    <p class="hab-nombre">&lt;ThemeToggle /&gt;</p>
+                    <p class="hab-desc">Estado global de tema oscuro</p>
+                  </div>
+                  <span class="pulse-dot"></span>
+                </div>
+              </div>
+              <ul class="analogia-bullets">
+                <li>✅ Cada componente es independiente, limpio y reutilizable</li>
+                <li>✅ Modificamos una habitación sin alterar ninguna de las demás</li>
+                <li>✅ Escalabilidad profesional: la base sólida de la industria moderna</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- BARRA DE FRAMEWORKS CON ASTRO Y VUE -->
+          <div class="vuejs-bar">
+            <strong style="color:var(--texto-s);font-size:0.76rem;white-space:nowrap;">Ecosistema moderno implementado:</strong>
+            <span class="fw-badge vue">Vue 3</span>
+            <span class="fw-badge astro">🚀 Astro</span>
+            <span class="fw-badge">Vite</span>
+            <span class="fw-badge">Netlify</span>
+            <span style="font-size:0.76rem;color:var(--texto-s);margin-left:auto;">
+              👉 <a href="https://tutorial-portafolio-vuejs.netlify.app/" target="_blank" rel="noopener"
+                   style="color:var(--electrico);text-decoration:none;font-weight:700;">tutorial-portafolio-vuejs.netlify.app</a>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         SLIDE 7 — PORTAFOLIO AVANZADO (3D COVERFLOW SHOWCASE) + CANAL
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva" data-titulo="Portafolio Avanzado y Canal" data-theme="yt" aria-label="Diapositiva 7" aria-hidden="true">
+
+      <div class="slide-bg" aria-hidden="true">
+        <svg class="hex-svg" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <polygon class="hex-celda" points="100,30 170,70 170,150 100,190 30,150 30,70"/>
+          <polygon class="hex-celda" points="260,30 330,70 330,150 260,190 190,150 190,70"/>
+          <polygon class="hex-celda" points="180,160 250,200 250,280 180,320 110,280 110,200"/>
+          <polygon class="hex-celda" points="340,160 410,200 410,280 340,320 270,280 270,200"/>
+          <polygon class="hex-celda" points="100,290 170,330 170,410 100,450 30,410 30,330"/>
+          <polygon class="hex-celda" points="260,290 330,330 330,410 260,450 190,410 190,330"/>
+        </svg>
+      </div>
+
+      <div class="slide-contenido">
+        <h1>Portafolio Avanzado y Canal "Nico Code"</h1>
+        <h2>Producciones con Vue.js y transposición didáctica 24/7 en YouTube</h2>
+
+        <div class="yt-layout">
+          <!-- 3D COVERFLOW SHOWCASE -->
+          <div class="coverflow-container">
+            <div class="coverflow-header-row">
+              <span class="coverflow-title-tag">✦ <strong>Showcase 3D Coverflow</strong> · Haz clic en las tarjetas para navegar</span>
+              <div class="coverflow-nav-buttons">
+                <button type="button" class="btn-coverflow-prev" onclick="moverCoverflow(-1)" aria-label="Tarjeta Anterior">◀ Anterior</button>
+                <span id="coverflow-indicator" class="coverflow-pill-idx">1 / 8</span>
+                <button type="button" class="btn-coverflow-next" onclick="moverCoverflow(1)" aria-label="Tarjeta Siguiente">Siguiente ▶</button>
+              </div>
+            </div>
+
+            <!-- Escenario 3D Coverflow -->
+            <div class="coverflow-stage" id="coverflow-stage">
+              <div class="coverflow-item active" data-index="0" onclick="seleccionarCoverflow(0)">
+                <img src="imagenes/portafolio_avanzado/avanzado_1.png" alt="Avanzado 1 — Componente Header">
+                <span class="coverflow-caption">Comp. &lt;Header /&gt;</span>
+              </div>
+              <div class="coverflow-item next-1" data-index="1" onclick="seleccionarCoverflow(1)">
+                <img src="imagenes/portafolio_avanzado/avanzado_2.png" alt="Avanzado 2 — Comp. Proyectos">
+                <span class="coverflow-caption">Comp. &lt;Proyectos /&gt;</span>
+              </div>
+              <div class="coverflow-item next-2" data-index="2" onclick="seleccionarCoverflow(2)">
+                <img src="imagenes/portafolio_avanzado/avanzado_3.png" alt="Avanzado 3 — Datos Reactivos">
+                <span class="coverflow-caption">Estado Reactivo</span>
+              </div>
+              <div class="coverflow-item hidden-right" data-index="3" onclick="seleccionarCoverflow(3)">
+                <img src="imagenes/portafolio_avanzado/avanzado_5.png" alt="Avanzado 5 — Interactividad y Filtros">
+                <span class="coverflow-caption">Filtros en Vivo</span>
+              </div>
+              <div class="coverflow-item hidden-right" data-index="4" onclick="seleccionarCoverflow(4)">
+                <img src="imagenes/portafolio_avanzado/avanzado_6.png" alt="Avanzado 6 — Responsive en Vue">
+                <span class="coverflow-caption">Diseño Fluido</span>
+              </div>
+              <div class="coverflow-item hidden-right" data-index="5" onclick="seleccionarCoverflow(5)">
+                <img src="imagenes/portafolio_avanzado/avanzado_7.png" alt="Avanzado 7 — Tema Claro / Oscuro">
+                <span class="coverflow-caption">Modo Oscuro</span>
+              </div>
+              <div class="coverflow-item hidden-right" data-index="6" onclick="seleccionarCoverflow(6)">
+                <img src="imagenes/portafolio_avanzado/avanzado_8.png" alt="Avanzado 8 — Modularidad y Slots">
+                <span class="coverflow-caption">Slots & Props</span>
+              </div>
+              <div class="coverflow-item hidden-right" data-index="7" onclick="seleccionarCoverflow(7)">
+                <img src="imagenes/portafolio_avanzado/avanzado_9.png" alt="Avanzado 9 — Publicación y CI/CD">
+                <span class="coverflow-caption">Despliegue Netlify</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA Canal YouTube -->
+          <div class="yt-cta-card">
+            <div class="yt-badge-top">TRANSFERENCIA PEDAGÓGICA</div>
+            <span class="yt-logo">📺</span>
+            <p class="yt-canal-nombre">"Nico Code"</p>
+            <p class="yt-desc">Canal educativo en YouTube con cursos completos, paso a paso y gratuitos para futuros técnicos de Mendoza</p>
+            <div class="yt-stats">
+              <span class="yt-stat">🎬 <span>7</span> Clases HTML/CSS Básico</span>
+              <span class="yt-stat">🚀 <span>10</span> Clases Vue.js Avanzado</span>
+            </div>
+            <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe"
+               target="_blank" rel="noopener noreferrer"
+               class="btn-link-final btn-link-youtube">
+              ▶ Acceder al Canal
             </a>
           </div>
         </div>
       </div>
-      <div class="footer">
-        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
-        <span>Diapositiva 8 / 8</span>
-      </div>
+
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
     </section>
 
-  </div>
+    <!-- ══════════════════════════════════════════
+         SLIDE 8 — REFLEXIÓN DOCENTE Y CIERRE
+         ══════════════════════════════════════════ -->
+    <section class="diapositiva slide-cierre-epic" data-titulo="Reflexión Docente y Cierre" data-theme="star" aria-label="Diapositiva 8" aria-hidden="true">
 
-  <!-- Botones de navegación -->
-  <div id="controles">
-    <button id="btnAnterior" onclick="cambiarDiapositiva(-1)">◀ Anterior</button>
-    <button id="btnSiguiente" onclick="cambiarDiapositiva(1)">Siguiente ▶</button>
-  </div>
+      <div class="slide-bg" aria-hidden="true">
+        <svg class="const-svg" viewBox="0 0 1200 600" xmlns="http://www.w3.org/2000/svg">
+          <circle class="estrella" cx="80"   cy="60"  r="3.5"/>
+          <circle class="estrella" cx="200"  cy="120" r="4.5"/>
+          <circle class="estrella" cx="380"  cy="80"  r="3"/>
+          <circle class="estrella" cx="520"  cy="140" r="5"/>
+          <circle class="estrella" cx="680"  cy="60"  r="3.5"/>
+          <circle class="estrella" cx="840"  cy="100" r="3"/>
+          <circle class="estrella" cx="980"  cy="140" r="4.5"/>
+          <circle class="estrella" cx="1100" cy="80"  r="3.5"/>
+          <circle class="estrella" cx="140"  cy="280" r="4"/>
+          <circle class="estrella" cx="300"  cy="340" r="3.5"/>
+          <circle class="estrella" cx="460"  cy="300" r="3"/>
+          <circle class="estrella" cx="620"  cy="360" r="5"/>
+          <circle class="estrella" cx="780"  cy="300" r="3.5"/>
+          <circle class="estrella" cx="940"  cy="360" r="3"/>
+          <circle class="estrella" cx="50"   cy="450" r="3.5"/>
+          <circle class="estrella" cx="250"  cy="500" r="4"/>
+          <circle class="estrella" cx="450"  cy="480" r="3"/>
+          <circle class="estrella" cx="700"  cy="520" r="3.5"/>
+          <circle class="estrella" cx="900"  cy="480" r="4"/>
+          <circle class="estrella" cx="1150" cy="520" r="3.5"/>
+          <line class="linea-const" stroke="#4A90E2" stroke-width="1"  x1="80"  y1="60"  x2="200" y2="120"/>
+          <line class="linea-const" stroke="#E6B800" stroke-width="1"  x1="200" y1="120" x2="380" y2="80"/>
+          <line class="linea-const" stroke="#00C8FF" stroke-width="1"  x1="380" y1="80"  x2="520" y2="140"/>
+          <line class="linea-const" stroke="#4A90E2" stroke-width="1"  x1="520" y1="140" x2="680" y2="60"/>
+          <line class="linea-const" stroke="#E6B800" stroke-width="1"  x1="680" y1="60"  x2="840" y2="100"/>
+          <line class="linea-const" stroke="#00C8FF" stroke-width="1"  x1="840" y1="100" x2="980" y2="140"/>
+          <line class="linea-const" stroke="#4A90E2" stroke-width="1"  x1="200" y1="120" x2="140" y2="280"/>
+          <line class="linea-const" stroke="#E6B800" stroke-width="1"  x1="520" y1="140" x2="620" y2="360"/>
+          <line class="linea-const" stroke="#00C8FF" stroke-width="1"  x1="840" y1="100" x2="940" y2="360"/>
+        </svg>
+      </div>
 
-  <script>
-    let actual = 0;
-    const diapositivas = document.querySelectorAll('.diapositiva');
-    const indicadoresContainer = document.getElementById('indicadores');
-    const barra = document.getElementById('progreso');
+      <div class="slide-contenido">
+        <h1>Reflexión Docente y Cierre</h1>
+        <h2 style="color:var(--dorado);">Articulación con la Educación Técnico-Profesional de Mendoza</h2>
 
-    // Generar indicadores dinámicos
-    diapositivas.forEach((_, i) => {
-      const ind = document.createElement('div');
-      ind.classList.add('indicador');
-      if(i === 0) ind.classList.add('activo');
-      ind.title = "Diapositiva " + (i + 1);
-      ind.onclick = () => irADiapositiva(i);
-      indicadoresContainer.appendChild(ind);
-    });
+        <div class="conclusion-layout">
+          <div style="display:flex;flex-direction:column;gap:var(--sp-xs);">
+            <blockquote class="conclusion-cita epic-quote">
+              "A lo largo de estas 192 horas, comprobé que el aprendizaje técnico se vuelve significativo cuando completamos el ciclo:
+              <strong>Comprendimos</strong> estándares internacionales, <strong>Construimos</strong> soluciones reales,
+              <strong>Enseñamos</strong> facilitando el camino a nuestros alumnos y <strong>Profesionalizamos</strong>
+              nuestra vocación docente para la ETP de Mendoza."
+            </blockquote>
 
-    const indicadores = document.querySelectorAll('.indicador');
+            <div class="ciclo-final-epic">
+              <div class="ciclo-final-card pilar-1">
+                <span class="ciclo-n-badge">1</span>
+                <span class="ciclo-p-title">Comprendimos</span>
+                <span class="ciclo-p-desc">Estándares web W3C e industria</span>
+              </div>
+              <div class="ciclo-final-card pilar-2">
+                <span class="ciclo-n-badge">2</span>
+                <span class="ciclo-p-title">Construimos</span>
+                <span class="ciclo-p-desc">Portafolios reales con alumnos UTN</span>
+              </div>
+              <div class="ciclo-final-card pilar-3">
+                <span class="ciclo-n-badge">3</span>
+                <span class="ciclo-p-title">Enseñamos</span>
+                <span class="ciclo-p-desc">Canal YouTube accesible 24/7</span>
+              </div>
+              <div class="ciclo-final-card pilar-4">
+                <span class="ciclo-n-badge">4</span>
+                <span class="ciclo-p-title">Profesionalizamos</span>
+                <span class="ciclo-p-desc">El rol docente en la ETP</span>
+              </div>
+            </div>
+          </div>
 
-    function actualizar() {
-      diapositivas.forEach((d, i) => {
-        d.classList.toggle('activa', i === actual);
-      });
-      indicadores.forEach((ind, i) => {
-        ind.classList.toggle('activo', i === actual);
-      });
-      barra.style.width = ((actual + 1) / diapositivas.length) * 100 + '%';
+          <div class="etp-panel-epic">
+            <p class="etp-titulo">🏫 Vinculación Estratégica con la ETP:</p>
+            <ul class="etp-items-epic">
+              <li class="etp-item-card">
+                <span class="etp-icon-glow">📐</span>
+                <span><strong>Informática y Programación:</strong> HTML, CSS y diseño responsive como contenidos troncales de primer año técnico.</span>
+              </li>
+              <li class="etp-item-card">
+                <span class="etp-icon-glow">🎨</span>
+                <span><strong>Diseño Gráfico y Comunicación:</strong> Prototipado y maquetación web como herramienta profesional integradora.</span>
+              </li>
+              <li class="etp-item-card">
+                <span class="etp-icon-glow">🌐</span>
+                <span><strong>Emprendimiento y Trabajo:</strong> Portafolio web como presentación laboral real y carta de presentación para el egreso.</span>
+              </li>
+              <li class="etp-item-card">
+                <span class="etp-icon-glow">🤖</span>
+                <span><strong>Actualización permanente:</strong> Las bases de HTML+CSS son <em>insustituibles</em> incluso en la era de la IA generativa.</span>
+              </li>
+            </ul>
 
-      document.getElementById('btnAnterior').disabled = actual === 0;
-      document.getElementById('btnSiguiente').disabled = actual === diapositivas.length - 1;
-    }
+            <div class="gracias-banner">
+              <h3>¡Muchas gracias por su atención!</h3>
+              <p>Quedo a plena disposición del tribunal para preguntas y diálogo.</p>
+              <div class="links-finales">
+                <a href="https://portfolio-dante-martinez.netlify.app/" target="_blank" rel="noopener" class="btn-link-final btn-link-portafolio">🌐 Ver Portafolio</a>
+                <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe" target="_blank" rel="noopener" class="btn-link-final btn-link-youtube">📺 Canal YouTube</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    function cambiarDiapositiva(dir) {
-      if(actual + dir >= 0 && actual + dir < diapositivas.length) {
-        actual += dir;
-        actualizar();
-      }
-    }
+      <footer class="footer">
+        <span>TFI · Experiencia Significativa de Actualización · Prof. Celeste Derra</span>
+        <span class="footer-numero"></span>
+      </footer>
+    </section>
 
-    function irADiapositiva(i) {
-      actual = i;
-      actualizar();
-    }
+  </main>
 
-    // 🔍 FUNCIONES DEL LIGHTBOX (ZOOM EN PANTALLA COMPLETA)
-    function abrirLightbox(src) {
-      const lb = document.getElementById('lightbox');
-      const img = document.getElementById('lightbox-img');
-      img.src = src;
-      lb.style.display = 'flex';
-    }
+  <!-- CONTROLES -->
+  <nav id="controles" aria-label="Controles de navegación">
+    <button id="btnAnterior" class="nav-btn" onclick="cambiarDiapositiva(-1)" aria-label="Anterior">◀ Anterior</button>
+    <span id="slide-counter" aria-live="polite"></span>
+    <button id="btnSiguiente" class="nav-btn" onclick="cambiarDiapositiva(1)" aria-label="Siguiente">Siguiente ▶</button>
+  </nav>
 
-    function cerrarLightbox() {
-      const lb = document.getElementById('lightbox');
-      lb.style.display = 'none';
-    }
-
-    // Navegación por teclado
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
-        cambiarDiapositiva(1);
-      } else if(e.key === 'ArrowLeft' || e.key === 'PageUp') {
-        cambiarDiapositiva(-1);
-      } else if(e.key === 'Escape') {
-        cerrarLightbox();
-      }
-    });
-
-    actualizar();
-  </script>
+  <script src="js/presentacion.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guion TFI — Dante Nicolás Martínez · 25/09/2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,600&family=Inter:wght@400;500;600&family=Fira+Code:wght@400;500&display=swap">
+<style>
+:root{
+  --fondo:#0a0f1a;--surface:#101929;--border:#1e3050;
+  --dorado:#E6B800;--electrico:#00C8FF;--azul:#4A90E2;
+  --verde:#1DB954;--rojo:#E53935;--texto:#dce8f5;--dim:#4a6a8a;
+  --ff:'Plus Jakarta Sans',system-ui,sans-serif;
+  --ffi:'Inter',system-ui,sans-serif;--ffc:'Fira Code',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--fondo);color:var(--texto);font-family:var(--ffi);overflow-x:hidden;line-height:1.65;}
+@media print{body{background:#fff;color:#000;}.no-print{display:none!important;} .bloque{break-inside:avoid;} }
+
+/* HEADER */
+.header{background:linear-gradient(135deg,#060c18,#0d1e35);border-bottom:2px solid var(--dorado);padding:32px 60px;position:sticky;top:0;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:20px;box-shadow:0 8px 32px rgba(0,0,0,0.5);}
+.header-titulo{font-family:var(--ff);font-weight:800;font-size:1.3rem;color:var(--dorado);letter-spacing:-0.02em;}
+.header-sub{font-size:0.80rem;color:var(--dim);margin-top:3px;font-family:var(--ffi);}
+.header-meta{text-align:right;font-size:0.78rem;color:var(--dim);line-height:1.8;}
+.header-meta strong{color:var(--electrico);display:block;font-size:0.88rem;margin-bottom:2px;}
+
+/* LEYENDA */
+.leyenda{display:flex;flex-wrap:wrap;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 24px;margin:24px 60px;}
+.ley-item{display:flex;align-items:center;gap:6px;font-size:0.78rem;color:var(--dim);}
+.ley-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+
+/* MAIN */
+main{max-width:1000px;margin:0 auto;padding:30px 60px 60px;}
+
+/* BLOQUE DE SLIDE */
+.bloque{margin-bottom:40px;position:relative;}
+.slide-header{display:flex;align-items:center;gap:12px;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--border);}
+.slide-num{font-family:var(--ff);font-weight:800;font-size:2rem;color:var(--dorado);min-width:40px;line-height:1;}
+.slide-info{flex:1;}
+.slide-titulo-g{font-family:var(--ff);font-weight:700;font-size:1rem;color:var(--texto);}
+.slide-subtitle-g{font-size:0.76rem;color:var(--dim);margin-top:2px;}
+.slide-tiempo{
+  background:rgba(230,184,0,0.1);border:1px solid rgba(230,184,0,0.3);
+  border-radius:50px;padding:5px 14px;font-family:var(--ffc);
+  font-size:0.80rem;color:var(--dorado);white-space:nowrap;flex-shrink:0;
+}
+.slide-acum{font-size:0.68rem;color:var(--dim);text-align:right;font-family:var(--ffc);margin-top:3px;}
+
+/* CUE BOX */
+.cue{display:flex;align-items:flex-start;gap:10px;margin:8px 0;padding:10px 14px;border-radius:8px;font-size:0.87rem;line-height:1.6;}
+.cue-accion{background:rgba(0,200,255,0.07);border:1px solid rgba(0,200,255,0.2);}
+.cue-accion .cue-icon{color:var(--electrico);}
+.cue-pausa{background:rgba(230,184,0,0.07);border:1px solid rgba(230,184,0,0.2);}
+.cue-pausa .cue-icon{color:var(--dorado);}
+.cue-clave{background:rgba(29,185,84,0.07);border:1px solid rgba(29,185,84,0.2);}
+.cue-clave .cue-icon{color:var(--verde);}
+.cue-transicion{background:rgba(155,89,182,0.07);border:1px solid rgba(155,89,182,0.2);}
+.cue-transicion .cue-icon{color:#9B59B6;}
+.cue-icon{font-size:1rem;min-width:18px;flex-shrink:0;margin-top:1px;}
+
+/* TEXTO HABLADO */
+.texto{
+  background:var(--surface);border:1px solid var(--border);border-radius:10px;
+  padding:18px 22px;font-size:0.93rem;line-height:1.8;color:var(--texto);
+  position:relative;
+}
+.texto::before{
+  content:'"';font-size:3.5rem;color:var(--dorado);opacity:0.12;
+  position:absolute;top:0;left:8px;line-height:1;font-family:Georgia,serif;
+}
+.texto strong{color:var(--dorado);font-weight:600;}
+.texto em{color:var(--electrico);font-style:normal;}
+.texto .pausa{
+  display:inline-block;background:rgba(230,184,0,0.12);
+  border-radius:4px;padding:0 6px;font-family:var(--ffc);
+  font-size:0.75rem;color:var(--dorado);margin:0 2px;vertical-align:middle;
+}
+.texto .enfasis{
+  background:rgba(0,200,255,0.1);border-bottom:2px solid var(--electrico);
+  padding:0 3px;border-radius:2px;
+}
+
+/* FRASES CLAVE */
+.frase-clave{
+  font-family:var(--ff);font-style:italic;font-weight:600;
+  font-size:1rem;color:var(--dorado);
+  border-left:3px solid var(--dorado);
+  padding:10px 18px;margin:12px 0;
+  background:rgba(230,184,0,0.05);border-radius:0 8px 8px 0;
+}
+
+/* TIMER TOTAL */
+.timer-bar{
+  position:fixed;bottom:0;left:0;right:0;
+  background:rgba(10,15,26,0.97);border-top:1px solid var(--border);
+  padding:10px 40px;display:flex;align-items:center;gap:20px;
+  z-index:200;font-size:0.82rem;color:var(--dim);
+}
+.timer-bar strong{color:var(--dorado);font-family:var(--ffc);font-size:1rem;}
+.progress-total{flex:1;height:4px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--electrico),var(--dorado));border-radius:2px;transition:width 1s;}
+
+/* SEPARADORES */
+.separador{text-align:center;font-size:0.68rem;color:var(--dim);letter-spacing:0.2em;text-transform:uppercase;padding:10px 0;margin:10px 0;}
+
+/* TOTALES al final */
+.resumen-final{background:var(--surface);border:1px solid var(--border-gold,rgba(230,184,0,0.35));border-radius:14px;padding:24px;margin:40px 0 80px;}
+.resumen-titulo{font-family:var(--ff);font-weight:700;font-size:1rem;color:var(--dorado);margin-bottom:16px;}
+.resumen-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+.resumen-item{text-align:center;background:rgba(0,0,0,0.2);border-radius:10px;padding:12px;}
+.resumen-n{font-family:var(--ff);font-size:1.6rem;font-weight:800;color:var(--dorado);display:block;}
+.resumen-l{font-size:0.72rem;color:var(--dim);margin-top:2px;}
+
+/* BOTONES */
+.btn-accion{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,200,255,0.1);border:1px solid rgba(0,200,255,0.3);
+  border-radius:50px;padding:8px 20px;color:var(--electrico);
+  font-size:0.82rem;font-weight:600;cursor:pointer;
+  font-family:var(--ffi);transition:all 0.2s;text-decoration:none;
+}
+.btn-accion:hover{background:rgba(0,200,255,0.2);transform:translateY(-2px);}
+.no-print .controles{display:flex;gap:10px;justify-content:flex-end;margin-bottom:20px;flex-wrap:wrap;}
+</style>
+</head>
+<body>
+
+<header class="header">
+  <div>
+    <p class="header-titulo">📋 Guion de Exposición — TFI</p>
+    <p class="header-sub">Experiencia Significativa de Actualización Científico-Tecnológica</p>
+  </div>
+  <div class="header-meta">
+    <strong>Dante Nicolás Martínez</strong>
+    Viernes 25/09/2026 · 18:30 hs<br>
+    IPA Mendoza — Prof. Celeste Derra<br>
+    <span style="color:var(--verde);">⏱ 15–20 minutos totales</span>
+  </div>
+</header>
+
+<div class="leyenda no-print">
+  <span class="ley-item"><span class="ley-dot" style="background:var(--electrico)"></span>Acción / Mostrar</span>
+  <span class="ley-item"><span class="ley-dot" style="background:var(--dorado)"></span>Pausa / Respirar</span>
+  <span class="ley-item"><span class="ley-dot" style="background:var(--verde)"></span>Frase clave</span>
+  <span class="ley-item"><span class="ley-dot" style="background:#9B59B6"></span>Transición al siguiente slide</span>
+  <span class="ley-item"><span class="ley-dot" style="background:var(--texto)"></span>Texto hablado (en comillas)</span>
+  <div style="margin-left:auto;"><a onclick="window.print()" class="btn-accion no-print">🖨 Imprimir guion</a></div>
+</div>
+
+<main>
+
+  <!-- ══ BLOQUE 1 — APERTURA ══════════════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">01</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">PORTADA — Presentación personal</p>
+        <p class="slide-subtitle-g">Nombre, rol, institución. Primera impresión.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~1:30 min</span>
+        <p class="slide-acum">Acumulado: 0:00 → 1:30</p>
+      </div>
+    </div>
+
+    <div class="cue cue-accion"><span class="cue-icon">🖥</span><span>Abrir presentación en pantalla completa <strong>F11</strong>. Verificar que el slide 1 esté visible antes de empezar a hablar.</span></div>
+
+    <div class="texto">
+      "Buenas tardes a todos. <span class="pausa">⏸ 2s</span><br><br>
+      Mi nombre es <strong>Nicolás Martínez</strong>. Soy Técnico Universitario en Programación, me recibí en el año 2024 en la UTN FRSR. <span class="pausa">⏸ 1s</span><br><br>
+      Al finalizar la carrera me nombraron Tutor, y este año me ascendieron como Docente Auxiliar en la modalidad virtual para la tecnicatura en programación. <span class="pausa">⏸ 2s</span><br><br>
+      Hoy vengo a compartirles una experiencia que resume lo que creo que significa aprender algo técnico de verdad: <span class="pausa">⏸ 1s</span> <span class="enfasis">aprender, construir, y enseñar.</span>"
+    </div>
+
+    <div class="cue cue-pausa"><span class="cue-icon">⏸</span><span>Pausa de 2 segundos. Respirar. Contacto visual con el tribunal.</span></div>
+
+    <div class="frase-clave">🗣 "¿Cuándo podemos decir que realmente aprendimos algo técnico?"</div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 2 ──</div>
+
+  <!-- ══ BLOQUE 2 — LÍNEA DE TIEMPO ═══════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">02</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">TRAYECTORIA — Línea de tiempo y ciclo</p>
+        <p class="slide-subtitle-g">Mostrar imagen. Ciclo de los 4 momentos.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:00 min</span>
+        <p class="slide-acum">Acumulado: 1:30 → 3:30</p>
+      </div>
+    </div>
+
+    <div class="cue cue-accion"><span class="cue-icon">👉</span><span>Señalar la imagen de la línea de tiempo en la pantalla. Hablar al ritmo de los 4 puntos del ciclo.</span></div>
+
+    <div class="texto">
+      "En mi experiencia, aprender algo técnico ocurre en distintas etapas. <span class="pausa">⏸ 1s</span><br><br>
+      Primero: <strong>comprender</strong>. <span class="pausa">⏸ 0.5s</span> Necesitamos entender los fundamentos antes de poder hacer algo con ellos.<br><br>
+      Luego: <strong>construir</strong>. <span class="pausa">⏸ 0.5s</span> Cuando los conceptos dejan de ser ejercicios y se convierten en un producto real.<br><br>
+      Después: <strong>resolver</strong>. <span class="pausa">⏸ 0.5s</span> Enfrentar los problemas reales que no venían en el manual.<br><br>
+      Y finalmente: <strong>enseñar</strong>. <span class="pausa">⏸ 1s</span> Porque cuando uno puede explicar algo, ahí termina de aprenderlo de verdad. <span class="pausa">⏸ 2s</span><br><br>
+      Esta experiencia significativa que vengo a mostrarles resume justamente ese recorrido."
+    </div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 3 ──</div>
+
+  <!-- ══ BLOQUE 3 — FREECODECAMP ═══════════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">03</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">¿POR QUÉ FREECODECAMP? — Justificación de la elección</p>
+        <p class="slide-subtitle-g">4 razones concretas. Datos reales.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:30 min</span>
+        <p class="slide-acum">Acumulado: 3:30 → 6:00</p>
+      </div>
+    </div>
+
+    <div class="cue cue-clave"><span class="cue-icon">✦</span><span>Este bloque justifica la elección de la experiencia (criterio 1 de la rúbrica). Hablar con convicción.</span></div>
+
+    <div class="texto">
+      "Me especialicé en <strong>freeCodeCamp</strong> — una plataforma de certificación internacional en Desarrollo Web Responsive. <span class="pausa">⏸ 1s</span><br><br>
+      La elegí por razones concretas. <span class="pausa">⏸ 0.5s</span><br><br>
+      Primero: es <strong>completamente gratuita y sin fines de lucro</strong>. La educación técnica de calidad no puede tener precio. <span class="pausa">⏸ 1s</span><br><br>
+      Segundo: es <strong>100% práctica</strong>. Se aprende construyendo proyectos reales, directamente en el navegador, no leyendo diapositivas. <span class="pausa">⏸ 1s</span><br><br>
+      Tercero: tiene una <strong>comunidad global de más de 100.000 graduados</strong>, trabajando en empresas como Amazon, Spotify y Apple. <span class="pausa">⏸ 1s</span><br><br>
+      Y cuarto: el currículo es de <em>alta demanda en la industria</em> — HTML5, CSS3, Flexbox, Grid, Accesibilidad. Las bases de todo lo que existe en la web hoy. <span class="pausa">⏸ 2s</span>"
+    </div>
+
+    <div class="frase-clave">🗣 "El desafío no era solo escribir código, sino construir experiencias digitales que funcionaran en distintos contextos y dispositivos."</div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 4 ──</div>
+
+  <!-- ══ BLOQUE 4 — CERTIFICADO ═════════════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">04</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">CERTIFICACIÓN OFICIAL — El evidencia del aprendizaje</p>
+        <p class="slide-subtitle-g">Mostrar certificado. Pasá el mouse para ver el efecto 3D. 4 ejes formativos.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:30 min</span>
+        <p class="slide-acum">Acumulado: 6:00 → 8:30</p>
+      </div>
+    </div>
+
+    <div class="cue cue-accion"><span class="cue-icon">🖱</span><span>Pasar el mouse lentamente sobre el certificado para mostrar el efecto hover 3D al tribunal. Luego señalar los ejes del panel derecho.</span></div>
+
+    <div class="texto">
+      "Este es el certificado oficial que obtuve el <strong>13 de marzo de 2025</strong>. Representa <strong>300 horas de formación</strong> en Responsive Web Design. <span class="pausa">⏸ 1s</span><br><br>
+      Abarca cuatro grandes ejes. <span class="pausa">⏸ 0.5s</span><br><br>
+      El primero: <strong>diseño adaptable</strong> — que un sitio funcione correctamente en el celular, la tablet y la computadora. Hoy, más del 60% del tráfico web viene de dispositivos móviles. <span class="pausa">⏸ 1s</span><br><br>
+      El segundo: <strong>accesibilidad</strong> — que cualquier persona, independientemente de sus capacidades, pueda navegar el sitio. <span class="pausa">⏸ 1s</span><br><br>
+      El tercero: <strong>HTML5 semántico</strong> — una estructura con significado, que el navegador y los buscadores entienden. <span class="pausa">⏸ 1s</span><br><br>
+      Y el cuarto: <strong>CSS3 moderno</strong> — Flexbox, Grid, Variables, Animaciones. Herramientas que hacen posible diseños como esta presentación que están viendo ahora. <span class="pausa">⏸ 2s</span>"
+    </div>
+
+    <div class="cue cue-clave"><span class="cue-icon">✦</span><span>Podés señalar la presentación misma como ejemplo de CSS puro. "Lo que están viendo ahora es 100% HTML y CSS, sin frameworks."</span></div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 5 ──</div>
+
+  <!-- ══ BLOQUE 5 — PORTAFOLIO BÁSICO ══════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">05</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">PORTAFOLIO BÁSICO — Del curso al aula</p>
+        <p class="slide-subtitle-g">Collage de alumnos. Mostrar hover-zoom en vivo.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:30 min</span>
+        <p class="slide-acum">Acumulado: 8:30 → 11:00</p>
+      </div>
+    </div>
+
+    <div class="cue cue-accion"><span class="cue-icon">🖱</span><span>Pasar el mouse sobre 2 o 3 imágenes del collage para mostrar el efecto zoom en vivo. Hacer clic en una para mostrar el lightbox.</span></div>
+
+    <div class="texto">
+      "Esta especialización me permitió llevarlo directamente al aula. <span class="pausa">⏸ 1s</span><br><br>
+      En la tecnicatura, introducimos a los alumnos al mundo laboral comenzando por lo más concreto: <strong>crear su primer portafolio web</strong>. <span class="pausa">⏸ 1s</span><br><br>
+      Basamos el formato en el <em>modelo Harvard de currículum</em> — el estándar mundial. Cada alumno adaptó su propio currículum a formato digital y aprendió diseño web responsive siguiendo un tutorial que yo mismo creé para ellos en YouTube. <span class="pausa">⏸ 2s</span><br><br>
+      Lo que están viendo son producciones reales de los estudiantes. <span class="pausa">⏸ 1s</span> No son ejemplos del docente. Son de ellos."
+    </div>
+
+    <div class="frase-clave">🗣 "El aprendizaje comenzó a consolidarse cuando los conceptos dejaron de ser ejercicios y se transformaron en un producto concreto."</div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 6 ──</div>
+
+  <!-- ══ BLOQUE 6 — VUE.JS / ANALOGÍA ══════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">06</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">HABITACIÓN → CASA — Del HTML al Framework</p>
+        <p class="slide-subtitle-g">La analogía central. Explicar Vue.js de forma simple.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:30 min</span>
+        <p class="slide-acum">Acumulado: 11:00 → 13:30</p>
+      </div>
+    </div>
+
+    <div class="cue cue-clave"><span class="cue-icon">✦</span><span>Esta es la analogía más importante de la presentación. Hablarla despacio. Señalar los dos paneles del slide.</span></div>
+
+    <div class="texto">
+      "En el segundo semestre, avanzamos a un portafolio hecho en un <strong>framework</strong>: <em>Vue.js</em>. <span class="pausa">⏸ 1s</span><br><br>
+      Un framework es un sistema ya preparado para el trabajo web avanzado. <span class="pausa">⏸ 0.5s</span> Para explicarlo de forma simple, uso esta analogía:<br><br>
+      Imaginen que aprenden a programar una sola habitación — todo en un espacio, todo mezclado. <span class="pausa">⏸ 1s</span> Funciona, pero si querés cambiar la cocina, tenés que tocar el dormitorio. <span class="pausa">⏸ 1s</span><br><br>
+      Un framework es <strong>como pasar de esa habitación única a una casa organizada por espacios</strong>. <span class="pausa">⏸ 2s</span> El living es el header. La cocina son los proyectos. El cuarto es el contacto. <span class="pausa">⏸ 1s</span><br><br>
+      Cada <em>componente</em> tiene su responsabilidad. Podés modificar uno sin tocar los demás. Podés reutilizarlo en otro proyecto. Podés trabajar en equipo. <span class="pausa">⏸ 2s</span>"
+    </div>
+
+    <div class="frase-clave">🗣 "Un sitio web que no se adapta hoy, es una experiencia que excluye."</div>
+
+    <div class="cue cue-transicion"><span class="cue-icon">📺</span><span>Mencionar que el tutorial de Vue.js también está en el canal de YouTube. Transición natural al próximo slide.</span></div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 7 ──</div>
+
+  <!-- ══ BLOQUE 7 — CANAL YOUTUBE ═══════════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">07</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">PORTAFOLIO AVANZADO + CANAL "NICO CODE"</p>
+        <p class="slide-subtitle-g">Evidencias avanzadas. Mostrar el canal. Hover-zoom en el collage.</span></div>
+      <div>
+        <span class="slide-tiempo">⏱ ~1:30 min</span>
+        <p class="slide-acum">Acumulado: 13:30 → 15:00</p>
+      </div>
+    </div>
+
+    <div class="cue cue-accion"><span class="cue-icon">🖱</span><span>Mostrar el hover-zoom en 2-3 imágenes del collage avanzado. Señalar el botón del canal en el panel derecho.</span></div>
+
+    <div class="texto">
+      "Y por último, fui más allá. <span class="pausa">⏸ 1s</span><br><br>
+      Creé un <strong>canal de YouTube</strong> educativo y gratuito, disponible las 24 horas, llamado <em>'Nico Code'</em>. <span class="pausa">⏸ 1s</span><br><br>
+      Allí publiqué las series completas: 7 clases para el portafolio básico, y 10 clases para el portafolio con Vue.js. <span class="pausa">⏸ 1s</span><br><br>
+      Los invito a verlo. Cualquier persona que se lo proponga puede lograrlo. <span class="pausa">⏸ 1s</span> Y más importante aún: en la era de la Inteligencia Artificial, <strong>saber las bases importa más que nunca</strong>. Porque si no entendés qué está generando la IA, no podés revisarlo, ni mejorarlo, ni enseñarlo."
+    </div>
+  </div>
+
+  <div class="separador">── AVANZAR AL SLIDE 8 ──</div>
+
+  <!-- ══ BLOQUE 8 — CIERRE Y ETP ═══════════════════════════════════════ -->
+  <div class="bloque">
+    <div class="slide-header">
+      <span class="slide-num">08</span>
+      <div class="slide-info">
+        <p class="slide-titulo-g">REFLEXIÓN DOCENTE Y CIERRE</p>
+        <p class="slide-subtitle-g">Articulación con ETP. Ciclo final. Agradecimiento.</p>
+      </div>
+      <div>
+        <span class="slide-tiempo">⏱ ~2:00 min</span>
+        <p class="slide-acum">Acumulado: 15:00 → 17:00</p>
+      </div>
+    </div>
+
+    <div class="cue cue-clave"><span class="cue-icon">✦</span><span>Este es el cierre pedagógico. Hablar más despacio. Contacto visual directo con el tribunal. No apresurar.</span></div>
+
+    <div class="texto">
+      "A lo largo de estas 192 horas de actualización, comprobé que el aprendizaje técnico se vuelve significativo cuando completamos ese ciclo: <span class="pausa">⏸ 1s</span><br><br>
+      <strong>Comprendimos</strong> estándares internacionales que hoy usan millones de desarrolladores. <span class="pausa">⏸ 0.5s</span><br>
+      <strong>Construimos</strong> soluciones reales con y para nuestros alumnos. <span class="pausa">⏸ 0.5s</span><br>
+      <strong>Enseñamos</strong> facilitando el camino a través del canal de YouTube. <span class="pausa">⏸ 0.5s</span><br>
+      Y <strong>profesionalizamos</strong> nuestra labor docente para la Educación Técnico-Profesional de Mendoza. <span class="pausa">⏸ 2s</span><br><br>
+      Estos saberes tienen lugar concreto en la ETP: en Informática, en Diseño Gráfico, en formación para el trabajo. <span class="pausa">⏸ 1s</span><br>
+      Un portafolio web no es solo un trabajo práctico — es la primera presencia digital real que tiene un estudiante técnico cuando sale a buscar empleo. <span class="pausa">⏸ 2s</span>"
+    </div>
+
+    <div class="cue cue-pausa"><span class="cue-icon">⏸</span><span>Pausa larga de 3 segundos. Dejar que el mensaje aterrice. Luego agradecer con calma.</span></div>
+
+    <div class="texto">
+      "Muchas gracias por su atención. <span class="pausa">⏸ 1s</span> Quedo a disposición del tribunal para las preguntas que quieran hacerme."
+    </div>
+  </div>
+
+  <!-- RESUMEN FINAL -->
+  <div class="resumen-final">
+    <p class="resumen-titulo">📊 Distribución de tiempos</p>
+    <div class="resumen-grid">
+      <div class="resumen-item"><span class="resumen-n">~1:30</span><span class="resumen-l">Slide 1 — Apertura</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:00</span><span class="resumen-l">Slide 2 — Trayectoria</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:30</span><span class="resumen-l">Slide 3 — freeCodeCamp</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:30</span><span class="resumen-l">Slide 4 — Certificado</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:30</span><span class="resumen-l">Slide 5 — Portafolio básico</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:30</span><span class="resumen-l">Slide 6 — Vue.js / Analogía</span></div>
+      <div class="resumen-item"><span class="resumen-n">~1:30</span><span class="resumen-l">Slide 7 — Canal YouTube</span></div>
+      <div class="resumen-item"><span class="resumen-n">~2:00</span><span class="resumen-l">Slide 8 — Cierre ETP</span></div>
+    </div>
+    <p style="text-align:center;margin-top:16px;font-size:0.88rem;color:var(--dorado);">
+      Total estimado: <strong>17 minutos</strong> · Margen para preguntas: 3 minutos
+    </p>
+  </div>
+
+</main>
+
+</body>
+</html>
