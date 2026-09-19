@@ -1,0 +1,51 @@
+Breve Presentación:
+ “Soy Nicolás Martínez, mi especialidad es Técnico Universitario en Programación” 
+Me egrese en el año 2024 de La UTN FRSR, al finalizar la carrera me nombraron Tutor y este año me ascendieron como docente auxiliar en la modalidad virtual para la tecnicatura en programación”
+Mi línea de tiempo con respecto a mí curiosidad por la tecnología
+Linea de tiempo
+BLOQUE 1 — APERTURA (4 min)
+Primero me pregunto y les pregunto 
+“¿Cuándo podemos decir realmente que aprendimos algo técnico?”
+Esperás algunas respuestas.
+“En mi experiencia, aprender algo técnico ocurre en distintas etapas:
+ primero comprender,
+ luego construir,
+ después resolver problemas reales
+ y finalmente poder enseñarlo.”
+Pausa.
+“Esta experiencia significativa que vengo a mostrarles resume justamente ese recorrido.”
+¿Por qué elegí FreeCodeCamp?
+Porque además de ser 100% Gratuito y Sin Fines de Lucro, su Enfoque Práctico esta orientado a un desarrollo de proyectos paso a paso directamente en el navegador.
+Y además su currículo de tiene alta demanda en la industria del software, también tiene una comunidad e Inserción Laboral: con una red global con más de 100,000 graduados en empresas tecnológicas líderes (Amazon, Spotify).
+BLOQUE 2 — desarrollo ( min)
+Me especialice en Responsive Web Design (Diseño Web Responsivo), donde el curso 
+comenzaba con un punto de partida para aprender el contenido esencial del curso basándose en dos lenguajes primordiales del mundo web como el HTML y el CSS, a través de una metodología interactiva y con ayuda de foros se crean diversos proyectos paso a paso aprendiendo todos los conceptos esenciales de diseño web responsivo, y sumando otras tecnologías esenciales como flexbox, css grid, y temas de adaptabilidad y accesibilidad , para lograr la inclusividad y usabilidad de los sitios web.
+“El desafío no consistía solamente en escribir código, sino en construir experiencias digitales que funcionaran correctamente en distintos contextos y dispositivos.”
+BLOQUE 3 — DE LA TEORÍA A LA CONSTRUCCIÓN (7–8 min)
+Esta especialización me hizo llevarlo a la practica en la Tecnicatura universitaria en programación.Introducimos a los alumnos al comienzo de la búsqueda laboral comenzando por crear su primer portafolio web para búsqueda de trabajajo, basándonos en el estilo de formato mundial de curriculum el modelo Harvard, cada alumno adapto su curriculum a su formato y aprendieron al seguir y completar un tutorial de desarrollo web creado por mi para que los alumnos logren el primer contacto con el diseño web responsive
+Clase de Portfolio básico Web para alumnos de primer Año  UTN
+https://www.youtube.com/watch?v=3b2ewrNDUpU&t=4152s
+https://www.youtube.com/watch?v=n0fSLBUFar8
+Narrativa:
+“El aprendizaje comenzó a consolidarse cuando los conceptos dejaron de ser ejercicios aislados y se transformaron en un producto concreto para el aprendizaje de los alumnos de la Tecnicatura”
+Los alumnos lograron crear sus primeros portafolios individuales, para evidenciar su aprendizaje les mostrare el portafolio que utilice de ejemplo para que aprendan Diseño Web Responsivo 
+Portafolio original
+https://www.youtube.com/watch?v=pjOSZeXnEjg&list=PLBEIghTAv7uMTczqi5jhGLc-Oj8o6lWnI
+https://portafolio-web-basico.netlify.app/
+El segundo semestre ya avanzamos a un portafolio pero realizado en un FrameWork, que es un sistema ya preparado para el trabajo avanzado web este framework llamado Vuejs tiene un cerebro programable con lenguaje como javascript y allí podemos hacer que nuestros sitios puedan ser mas interactivos con el usuario, también presente un tutorial de 10 clases aproximadamente y allí los alumnos vieron un paso mas avanzado del diseño web.
+Clase de Portfolio avanzado con VueJS
+Explicás Vue de forma simple:
+componentes 
+reutilización 
+organización 
+mantenimiento 
+Analogía:
+“Es como pasar de una habitación única a una casa organizada por espacios.”
+Portafolio VueJS
+https://tutorial-portafolio-vuejs.netlify.app/
+“Un sitio web que no se adapta hoy es una experiencia que excluye.”
+Responsivo en el celu:
+https://portfolio-dante-martinez.netlify.app/
+“Por ultimo fui mas alla y cree un canal online 24/7 en youtube donde me dedico a enseñar sobre desarrollo web y los invito a pasar y ver los tutoriales tanto del portafolio básico como el avanzado y verán que cualquiera que se lo proponga lo puede lograr y tener hoy en dia la perspectiva hasta para poder desarrollarlo con ia, por eso es importante saber las bases.
+Portafolio Basico: https://www.youtube.com/watch?v=pjOSZeXnEjg&list=PLBEIghTAv7uMTczqi5jhGLc-Oj8o6lWnI
+Portafolio Avanzado: https://www.youtube.com/watch?v=dJ-9ewBWp18&list=PLBEIghTAv7uOeBg-ewQlbnEHbQNU9w8KG

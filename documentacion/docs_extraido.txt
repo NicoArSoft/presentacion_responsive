@@ -1,0 +1,41 @@
+Actualización Científico-Tecnológica en Concurrencia con el Título de Base
+Prof. Celeste Derra
+TRABAJO FINAL INTEGRADOR
+Como instancia final de acreditación del espacio curricular, los/as estudiantes deberán realizar una presentación individual denominada “Experiencia Significativa de Actualización Científico-Tecnológica”.
+La misma tendrá como finalidad socializar y poner en valor los aprendizajes construidos durante el recorrido de actualización técnico-profesional desarrollado a lo largo de las 192 horas previstas en el diseño curricular.
+La presentación se realizará una vez cumplimentados la totalidad de las 192 horas del espacio, la entrega de informes correspondientes y la presentación de certificados y constancias que acrediten las actividades realizadas.
+La instancia consistirá en una exposición oral pública frente a un tribunal definido institucionalmente, en fecha y horario acordados previamente con la docente responsable del espacio curricular.
+Cada estudiante deberá seleccionar una experiencia, capacitación, curso, práctica, proyecto o instancia formativa que haya resultado significativa dentro de su recorrido de actualización científico-tecnológica y desarrollar una presentación que permita comunicar el contexto y características de la experiencia, los saberes técnicos abordados, los aprendizajes construidos, las herramientas, tecnologías, procedimientos o metodologías trabajadas y el impacto que dicha experiencia tuvo en su formación técnico-profesional.
+La exposición deberá incluir obligatoriamente recursos visuales, audiovisuales o materiales concretos que permitan acercar al tribunal y a los asistentes al campo técnico específico trabajado. Entre ellos podrán incluirse imágenes, videos, registros fotográficos, demostraciones, maquetas, planos, prototipos, herramientas, piezas técnicas, simulaciones, producciones digitales, muestras de procesos, entre otros recursos pertinentes según cada especialidad.
+Además de presentar y analizar la experiencia técnico-profesional seleccionada, el/la estudiante deberá incorporar una breve reflexión sobre las posibles vinculaciones entre los saberes abordados y su futura práctica docente en la Educación Técnico Profesional.
+La misma podrá incluir posibles espacios curriculares donde esos saberes podrían enseñarse, capacidades técnicas que podrían desarrollarse en estudiantes, importancia de la actualización tecnológica en la enseñanza técnica y desafíos que implica la transposición de saberes técnico-profesionales en contextos educativos actuales.
+No se espera una propuesta didáctica formal, sino una aproximación reflexiva que permita articular la formación técnica específica con el futuro rol docente.
+Se valorará especialmente la capacidad del/la estudiante para comunicar y fundamentar técnicamente la experiencia seleccionada, estableciendo relaciones entre la actualización realizada y las demandas actuales del sector socio-productivo.
+Quedará activo un Foro para consultas e información que vaya surgiendo durante el proceso: Trabajo Final Integrador 
+RÚBRICA DE EVALUACIÓN
+Escala de valoración sugerida
+25 a 28 puntos: Sobresaliente
+21 a 24 puntos: Muy Bueno
+17 a 20 puntos: Bueno
+13 a 16 puntos: Regular
+12 puntos o menos: Requiere revisión / recuperación
+Buenas tardes! Info importante para quienes rinden y para todo el curso!
+Ya tenemos fecha para la presentación del Trabajo Final Integrador: 
+📅 Viernes 25 de septiembre
+🕡 18:30 h
+📍 Modalidad presencial
+Cada estudiante contará con un tiempo de exposición de 15 a 20 minutos, para compartir su “Experiencia Significativa de Actualización Científico-Tecnológica”, de acuerdo con la propuesta y criterios publicados en la clase.
+La presentación será una instancia pública, por lo que están invitados/as a participar como oyentes los/as estudiantes de 1.º y 2.º año del Profesorado.
+Además, quienes participen como oyentes recibirán una certificación avalada por el Instituto, que acreditará 3 horas de capacitación para el espacio de Actualización Científico-Tecnológica.
+Criterios | 4 - Excelente | 3 - Muy Bueno | 2 - Bueno | 1 - En proceso
+1. Pertinencia y relevancia de la experiencia seleccionada | La experiencia evidencia una significativa actualización técnico-profesional y una clara relación con su especialidad. | La experiencia resulta pertinente y relevante para su campo técnico-profesional. | La experiencia presenta relación parcial con su especialidad. | La experiencia presenta escasa pertinencia o poca relación con el trayecto formativo.
+2. Comprensión y fundamentación de la experiencia técnica | Explica con claridad, coherencia y apropiación los procesos, herramientas y aprendizajes desarrollados. | Comunica adecuadamente la experiencia y los saberes abordados. | Presenta explicaciones generales o parcialmente desarrolladas. | Presenta dificultades para explicar y fundamentar la experiencia realizada.
+3. Capacidad de análisis y reflexión sobre la experiencia | Analiza críticamente los aprendizajes construidos y el impacto de la experiencia en su formación profesional. | Reflexiona de manera pertinente sobre la experiencia realizada. | Presenta reflexiones descriptivas o poco profundas. | Presenta escasa reflexión sobre el proceso transitado.
+4. Uso de recursos visuales, audiovisuales o materiales concretos | Los recursos utilizados enriquecen significativamente la presentación y permiten comprender claramente la experiencia desarrollada. | Los recursos acompañan adecuadamente la exposición y facilitan la comprensión. | Los recursos son limitados o presentan poca articulación con la exposición. | No incorpora recursos suficientes o no resultan pertinentes.
+5. Articulación con la futura práctica docente en ETP | Establece relaciones claras, pertinentes y reflexivas entre la experiencia técnica y la enseñanza en ETP. | Relaciona adecuadamente la experiencia con posibles prácticas de enseñanza. | Presenta relaciones generales o poco desarrolladas. | No logra establecer relaciones entre la experiencia y el rol docente.
+6. Comunicación oral y organización de la exposición | Expone con claridad, seguridad, organización y vocabulario técnico pertinente. | Mantiene una exposición clara y organizada. | Presenta algunas dificultades en la comunicación o secuenciación de ideas. | La exposición resulta poco clara, desorganizada o incompleta.
+7. Cumplimiento de requisitos formales | Presenta en tiempo y forma la totalidad de informes, certificados y documentación solicitada. | Presenta la documentación requerida con mínimas observaciones. | Presenta documentación incompleta o fuera de término. | No cumple con los requisitos establecidos para la acreditación.
+========== guioon-presentacion-freecode.docx ==========
+Traceback (most recent call last):
+  File "<string>", line 13, in <module>
+ValueError: I/O operation on closed file.

@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trabajo Final Integrador - Dante Nicolás Martínez</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+
+  <!-- 🌌 FONDO DINÁMICO: Geometría Sagrada (Flor de la Vida / Metatrón) Animada y Sutil -->
+  <div class="fondo-animado">
+    <svg class="geometria-svg" viewBox="0 0 1000 1000">
+      <!-- Círculos de Geometría Sagrada superpuestos (Flor de la Vida / Semilla) -->
+      <circle cx="500" cy="500" r="450" />
+      <circle cx="500" cy="500" r="300" />
+      <circle cx="500" cy="500" r="150" />
+      <circle cx="500" cy="200" r="300" />
+      <circle cx="500" cy="800" r="300" />
+      <circle cx="240" cy="350" r="300" />
+      <circle cx="760" cy="350" r="300" />
+      <circle cx="240" cy="650" r="300" />
+      <circle cx="760" cy="650" r="300" />
+      <!-- Polígonos de resonancia -->
+      <polygon points="500,50 900,750 100,750" />
+      <polygon points="500,950 100,250 900,250" />
+    </svg>
+
+    <svg class="geometria-dorada" viewBox="0 0 1000 1000">
+      <circle cx="500" cy="500" r="400" stroke-dasharray="8,8" />
+      <polygon points="500,100 850,500 500,900 150,500" />
+      <polygon points="500,200 800,500 500,800 200,500" />
+    </svg>
+  </div>
+
+  <div id="progreso"></div>
+  <div id="indicadores"></div>
+
+  <!-- 🔍 LIGHTBOX MODAL: Para ampliar Línea de Tiempo, Certificado y Capturas -->
+  <div id="lightbox" onclick="cerrarLightbox()">
+    <button class="lightbox-btn-cerrar" onclick="cerrarLightbox()">✖ Cerrar (Esc)</button>
+    <img id="lightbox-img" src="" alt="Ampliación en alta resolución" onclick="event.stopPropagation()">
+  </div>
+
+  <div id="escenario">
+
+    <!-- DIAPOSITIVA 1: Portada y Título -->
+    <section class="diapositiva activa" data-titulo="Portada">
+      <div>
+        <h1>Aprender, construir y enseñar</h1>
+        <h2>Experiencia de actualización en Desarrollo Web Responsive y su transferencia en la ETP</h2>
+
+        <div style="display:flex; gap:25px; align-items:center; margin-top:20px;">
+          <div style="flex:1.2;">
+            <h3>Dante Nicolás Martínez</h3>
+            <p><strong>Título de Base:</strong> Técnico Universitario en Programación (UTN FRSR)</p>
+            <p><strong>Desempeño actual:</strong> Auxiliar Docente y Tutor en la UTN FRSR (Modalidad Virtual)</p>
+            <p><strong>Formación pedagógica:</strong> 2.º Año del Profesorado para la ETP (Mendoza)</p>
+            <p><strong>Espacio Curricular:</strong> Actualización Científico-Tecnológica (192 hs) - Prof. Celeste Derra</p>
+          </div>
+          <div style="flex:1; background:rgba(74,144,226,.12); padding:20px; border-radius:14px; border-left:4px solid var(--azul-claro);">
+            <p class="idea-fuerza" style="margin:0; border:none; background:none; padding:0; text-align:left; font-size:1.05rem;">
+              “La actualización tecnológica adquiere sentido cuando puede aplicarse, compartirse y convertirse en oportunidades reales de formación.”
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 1 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 2: Línea de Tiempo Personal con Zoom -->
+    <section class="diapositiva" data-titulo="Línea de Tiempo y Ciclo">
+      <div>
+        <h1>Mi Trayectoria y el Ciclo de Aprendizaje</h1>
+        <h2>Línea de tiempo personal y evolución técnica</h2>
+
+        <div class="timeline-box">
+          <div class="img-wrap-zoom">
+            <img src="imagenes/linea_tiempo.png" id="img-linea-tiempo" alt="Línea de tiempo personal" onclick="abrirLightbox('imagenes/linea_tiempo.png')">
+            <br>
+            <button class="btn-zoom" onclick="abrirLightbox('imagenes/linea_tiempo.png')">🔍 Ampliar Línea de Tiempo (Pantalla Completa)</button>
+          </div>
+          <div style="flex:1;">
+            <h3 style="color:var(--dorado);">El Ciclo en 4 Momentos:</h3>
+            <ul style="margin-top:10px;">
+              <li><strong>1. Comprender:</strong> Fundamentos y estándares globales.</li>
+              <li><strong>2. Construir:</strong> Desarrollo de proyectos concretos y visibles.</li>
+              <li><strong>3. Resolver:</strong> Superación de problemas del mundo real.</li>
+              <li><strong>4. Enseñar:</strong> Multiplicación de saberes en la ETP.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 2 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 3: Certificación freeCodeCamp -->
+    <section class="diapositiva" data-titulo="Certificación Oficial">
+      <div>
+        <h1>Especialización en freeCodeCamp (300 Horas)</h1>
+        <h2>Certificación Internacional en Responsive Web Design</h2>
+
+        <div class="timeline-box">
+          <div class="img-wrap-zoom">
+            <img src="imagenes/mi certificado.jpeg" alt="Certificado freeCodeCamp" onclick="abrirLightbox('imagenes/mi certificado.jpeg')">
+            <br>
+            <button class="btn-zoom" onclick="abrirLightbox('imagenes/mi certificado.jpeg')">🔍 Ampliar Certificado Oficial</button>
+          </div>
+          <div style="flex:1;">
+            <h3>Ejes Formativos Abordados:</h3>
+            <ul>
+              <li><strong>Metodología práctica:</strong> Aprendizaje basado en proyectos paso a paso.</li>
+              <li><strong>Diseño Adaptable (Responsive):</strong> Interfaces fluidas en celulares, tablets y PC.</li>
+              <li><strong>Accesibilidad e Inclusión:</strong> Desarrollo pensado para todas las personas.</li>
+            </ul>
+            <p class="idea-fuerza" style="margin-top:12px; font-size:0.95rem;">
+              “Un sitio web que no se adapta hoy, es una experiencia que deja afuera a los usuarios.”
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 3 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 4: Collage Evidencias - Portafolio Básico (Efecto Hover Zoom) -->
+    <section class="diapositiva" data-titulo="Evidencias: Portafolio Básico">
+      <div>
+        <h1>De la Teoría a la Práctica: Portafolio Básico</h1>
+        <h2>Producciones reales de los estudiantes de 1.° Año UTN FRSR</h2>
+
+        <p style="font-size:0.9rem; color:var(--secundario);"><em>Pasa el mouse sobre cualquier portafolio para ver el zoom dinámico, o haz clic para ampliarlo en pantalla completa:</em></p>
+
+        <!-- Collage animado de 8 capturas -->
+        <div class="collage-container">
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_1.png')">
+            <img src="imagenes/portafolio_basico/basico_1.png" alt="Portafolio 1">
+            <div class="collage-caption">Alumno 1 - Inicio</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_2.png')">
+            <img src="imagenes/portafolio_basico/basico_2.png" alt="Portafolio 2">
+            <div class="collage-caption">Alumno 2 - Sobre Mí</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_3.png')">
+            <img src="imagenes/portafolio_basico/basico_3.png" alt="Portafolio 3">
+            <div class="collage-caption">Alumno 3 - Habilidades</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_4.png')">
+            <img src="imagenes/portafolio_basico/basico_4.png" alt="Portafolio 4">
+            <div class="collage-caption">Alumno 4 - Proyectos</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_5.png')">
+            <img src="imagenes/portafolio_basico/basico_5.png" alt="Portafolio 5">
+            <div class="collage-caption">Alumno 5 - Responsive</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_6.png')">
+            <img src="imagenes/portafolio_basico/basico_6.png" alt="Portafolio 6">
+            <div class="collage-caption">Alumno 6 - Experiencia</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_7.png')">
+            <img src="imagenes/portafolio_basico/basico_7.png" alt="Portafolio 7">
+            <div class="collage-caption">Alumno 7 - Contacto</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_basico/basico_8.png')">
+            <img src="imagenes/portafolio_basico/basico_8.png" alt="Portafolio 8">
+            <div class="collage-caption">Alumno 8 - Despliegue</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 4 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 5: Infografía Visual del Cuerpo Humano vs Desarrollo Web -->
+    <section class="diapositiva" data-titulo="Infografía: Cuerpo Humano y Frameworks">
+      <div>
+        <h1>Evolución Tecnológica: Arquitectura por Componentes</h1>
+        <h2>Analogía Didáctica del Cuerpo Humano aplicada a los Frameworks de Software</h2>
+
+        <div class="anatomia-grid">
+
+          <!-- Lado Izquierdo: Tradicional -->
+          <div class="anatomia-card tradicional">
+            <div class="anatomia-header">
+              <span class="anatomia-icon">🦴</span>
+              <div>
+                <h4 style="color:var(--rojo);">Desarrollo Lineal Tradicional</h4>
+                <p style="font-size:0.85rem; color:var(--secundario);">Como un hueso rígido sin articulaciones</p>
+              </div>
+            </div>
+            <p style="font-size:0.9rem;">Todo el código se encuentra acumulado en un único bloque continuo.</p>
+            <div class="anatomia-partes">
+              <div class="organo-item">⚠️ Difícil de modificar</div>
+              <div class="organo-item">⚠️ Riesgo de romper el todo</div>
+              <div class="organo-item">⚠️ Poco reutilizable</div>
+              <div class="organo-item">⚠️ Crecimiento complejo</div>
+            </div>
+          </div>
+
+          <!-- Lado Derecho: Modular -->
+          <div class="anatomia-card modular">
+            <div class="anatomia-header">
+              <span class="anatomia-icon">🫀</span>
+              <div>
+                <h4 style="color:var(--verde);">Frameworks y Componentes</h4>
+                <p style="font-size:0.85rem; color:var(--secundario);">Como los órganos del cuerpo humano</p>
+              </div>
+            </div>
+            <p style="font-size:0.9rem;">Módulos autónomos (Header, Proyectos) que se comunican coordinadamente.</p>
+            <div class="anatomia-partes">
+              <div class="organo-item">✅ Corazón: Lógica reactiva</div>
+              <div class="organo-item">✅ Pulmones: Intercambio datos</div>
+              <div class="organo-item">✅ Músculos: Módulos reusables</div>
+              <div class="organo-item">✅ Piel: Diseño responsive</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div style="background:rgba(0,56,101,0.25); padding:10px 15px; border-radius:10px; margin-top:6px;">
+          <p style="font-size:0.9rem;"><strong>Frameworks reconocidos en la industria:</strong> Herramientas estándar como React, Angular, Svelte o Vue permiten estructurar software robusto y escalable.</p>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 5 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 6: Collage Evidencias - Portafolio Avanzado (Efecto Hover Zoom) -->
+    <section class="diapositiva" data-titulo="Evidencias: Portafolio Avanzado">
+      <div>
+        <h1>Evidencias del Portafolio Avanzado (Frameworks)</h1>
+        <h2>Aplicación de arquitectura modular y buenas prácticas profesionales</h2>
+
+        <p style="font-size:0.9rem; color:var(--secundario);"><em>Pasa el mouse para interactuar con cada proyecto avanzado:</em></p>
+
+        <!-- Collage animado de 8 capturas avanzadas -->
+        <div class="collage-container">
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_1.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_1.png" alt="Avanzado 1">
+            <div class="collage-caption">Componente Header</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_2.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_2.png" alt="Avanzado 2">
+            <div class="collage-caption">Componente Proyectos</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_3.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_3.png" alt="Avanzado 3">
+            <div class="collage-caption">Manejo de Datos</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_5.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_5.png" alt="Avanzado 5">
+            <div class="collage-caption">Interactividad</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_6.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_6.png" alt="Avanzado 6">
+            <div class="collage-caption">Diseño Adaptable</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_7.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_7.png" alt="Avanzado 7">
+            <div class="collage-caption">Modo Oscuro</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_8.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_8.png" alt="Avanzado 8">
+            <div class="collage-caption">Estructura Modular</div>
+          </div>
+          <div class="collage-item" onclick="abrirLightbox('imagenes/portafolio_avanzado/avanzado_9.png')">
+            <img src="imagenes/portafolio_avanzado/avanzado_9.png" alt="Avanzado 9">
+            <div class="collage-caption">Publicación Web</div>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 6 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 7: Transposición Didáctica y Canal YouTube -->
+    <section class="diapositiva" data-titulo="Transposición Didáctica">
+      <div>
+        <h1>Transposición Didáctica: Canal "Nico Code"</h1>
+        <h2>Material audiovisual creado para acompañar a los estudiantes en la ETP</h2>
+
+        <div style="display:flex; gap:25px; align-items:center; margin-top:10px;">
+          <div style="flex:1.1;">
+            <p><strong>Recursos abiertos y libres:</strong> Acompañamiento a los alumnos mediante clases grabadas en YouTube:</p>
+            <ul style="margin-top:10px;">
+              <li><strong>Serie Portafolio Básico (7 clases):</strong> Maquetación paso a paso y despliegue gratuito.</li>
+              <li><strong>Serie Portafolio Avanzado (10 clases):</strong> Componentes y buenas prácticas.</li>
+            </ul>
+            <p style="margin-top:12px; color:var(--dorado); font-style:italic;">
+              “La transposición didáctica permite acercar desafíos reales de la industria a la realidad del aula técnica.”
+            </p>
+          </div>
+          <div style="flex:0.9; text-align:center; background:rgba(0,0,0,0.3); padding:20px; border-radius:14px; border:1px solid rgba(74,144,226,0.3);">
+            <p style="font-size:1.1rem; color:var(--dorado); margin-bottom:12px;">📺 Canal Oficial en YouTube</p>
+            <p style="font-size:0.9rem; margin-bottom:15px; color:var(--secundario);">Haz clic para abrir directamente los videos formativos:</p>
+            <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe" target="_blank" class="btn-link-final btn-link-youtube">
+              ▶ Ir al Canal "Nico Code" en YouTube
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 7 / 8</span>
+      </div>
+    </section>
+
+    <!-- DIAPOSITIVA 8: Conclusión, Síntesis y Enlaces Finales -->
+    <section class="diapositiva" data-titulo="Conclusión y Enlaces">
+      <div>
+        <h1>Conclusión y Diálogo con el Tribunal</h1>
+        <h2 style="color:var(--dorado);">Cierre de la Experiencia y Recursos de Contacto</h2>
+
+        <div style="background:rgba(230,184,0,0.08); border-left:4px solid var(--dorado); padding:16px 20px; border-radius:8px; margin:14px 0;">
+          <p style="font-size:1.05rem; line-height:1.6;">
+            "A lo largo de estas 192 horas de actualización, vivencié que el aprendizaje técnico se vuelve significativo cuando completamos el ciclo: <strong>Comprendimos</strong> estándares modernos, <strong>Construimos</strong> soluciones reales, <strong>Enseñamos</strong> facilitando el camino a nuestros alumnos y <strong>Profesionalizamos</strong> nuestra labor docente para la Educación Técnico-Profesional de Mendoza."
+          </p>
+        </div>
+
+        <div style="text-align:center; margin-top:15px;">
+          <h3 style="color:var(--azul-claro); margin-bottom:10px;">¡Muchas gracias por su atención!</h3>
+          <p style="font-size:0.9rem; color:var(--secundario);">Enlaces directos a los recursos desarrollados:</p>
+
+          <!-- ENLACES FINALES SOLICITADOS -->
+          <div class="links-finales">
+            <a href="https://portfolio-dante-martinez.netlify.app/" target="_blank" class="btn-link-final btn-link-portafolio">
+              🌐 Portafolio Profesional de Dante Martínez
+            </a>
+            <a href="https://youtube.com/@nicocode_programacion_simple?si=v0TufpfyqT4FD1Xe" target="_blank" class="btn-link-final btn-link-youtube">
+              📺 Canal de YouTube "Nico Code"
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>TFI - Experiencia Significativa de Actualización (Protec)</span>
+        <span>Diapositiva 8 / 8</span>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Botones de navegación -->
+  <div id="controles">
+    <button id="btnAnterior" onclick="cambiarDiapositiva(-1)">◀ Anterior</button>
+    <button id="btnSiguiente" onclick="cambiarDiapositiva(1)">Siguiente ▶</button>
+  </div>
+
+  <script>
+    let actual = 0;
+    const diapositivas = document.querySelectorAll('.diapositiva');
+    const indicadoresContainer = document.getElementById('indicadores');
+    const barra = document.getElementById('progreso');
+
+    // Generar indicadores dinámicos
+    diapositivas.forEach((_, i) => {
+      const ind = document.createElement('div');
+      ind.classList.add('indicador');
+      if(i === 0) ind.classList.add('activo');
+      ind.title = "Diapositiva " + (i + 1);
+      ind.onclick = () => irADiapositiva(i);
+      indicadoresContainer.appendChild(ind);
+    });
+
+    const indicadores = document.querySelectorAll('.indicador');
+
+    function actualizar() {
+      diapositivas.forEach((d, i) => {
+        d.classList.toggle('activa', i === actual);
+      });
+      indicadores.forEach((ind, i) => {
+        ind.classList.toggle('activo', i === actual);
+      });
+      barra.style.width = ((actual + 1) / diapositivas.length) * 100 + '%';
+
+      document.getElementById('btnAnterior').disabled = actual === 0;
+      document.getElementById('btnSiguiente').disabled = actual === diapositivas.length - 1;
+    }
+
+    function cambiarDiapositiva(dir) {
+      if(actual + dir >= 0 && actual + dir < diapositivas.length) {
+        actual += dir;
+        actualizar();
+      }
+    }
+
+    function irADiapositiva(i) {
+      actual = i;
+      actualizar();
+    }
+
+    // 🔍 FUNCIONES DEL LIGHTBOX (ZOOM EN PANTALLA COMPLETA)
+    function abrirLightbox(src) {
+      const lb = document.getElementById('lightbox');
+      const img = document.getElementById('lightbox-img');
+      img.src = src;
+      lb.style.display = 'flex';
+    }
+
+    function cerrarLightbox() {
+      const lb = document.getElementById('lightbox');
+      lb.style.display = 'none';
+    }
+
+    // Navegación por teclado
+    document.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') {
+        cambiarDiapositiva(1);
+      } else if(e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        cambiarDiapositiva(-1);
+      } else if(e.key === 'Escape') {
+        cerrarLightbox();
+      }
+    });
+
+    actualizar();
+  </script>
+</body>
+</html>

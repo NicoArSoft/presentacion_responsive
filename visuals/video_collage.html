@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Collage & Evidencias - TFI Dante Martínez</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    body{overflow:auto; padding:30px 20px;}
+    .container{max-width:1200px; margin:0 auto;}
+    .grid-videos{display:grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap:25px; margin-top:25px;}
+    .video-card{background:var(--tarjeta); border:1px solid rgba(74,144,226,.3); border-radius:14px; padding:20px;}
+    .video-card h3{color:var(--dorado); margin-bottom:10px; font-size:1.2rem;}
+    .video-card p{font-size:0.95rem; color:var(--secundario); margin-bottom:12px;}
+    .badge{display:inline-block; background:rgba(74,144,226,.2); color:var(--azul-claro); padding:4px 10px; border-radius:20px; font-size:0.8rem; margin-bottom:10px;}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 style="color:var(--dorado); text-align:center; margin-bottom:10px;">Video Collage & Evidencias Prácticas</h1>
+    <h2 style="color:var(--azul-claro); text-align:center; font-weight:400; margin-bottom:20px;">Demostración de la Utilidad del Certificado freeCodeCamp y Transposición en la ETP</h2>
+
+    <p style="text-align:center; max-width:800px; margin:0 auto 30px auto; color:var(--texto);">
+      Esta galería interactiva reúne los recursos audiovisuales y proyectos desarrollados que respaldan el cumplimiento de los criterios de evaluación (Criterio 4: Recursos Audiovisuales y Criterio 5: Articulación ETP).
+    </p>
+
+    <div class="grid-videos">
+
+      <!-- Video 1 -->
+      <div class="video-card">
+        <span class="badge">Criterio 4: Recursos Audiovisuales</span>
+        <h3>1. Portafolio Web Básico (UTN)</h3>
+        <p>Tutorial creado para guiar a los estudiantes de primer año en su primer portafolio web adaptado al formato Harvard.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/pjOSZeXnEjg" title="Portafolio Basico"></iframe>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="video-card">
+        <span class="badge">Criterio 5: Articulación ETP</span>
+        <h3>2. Clase Tutorial de Portafolio Web (Parte 1)</h3>
+        <p>Explicación paso a paso de maquetación HTML y CSS orientada a la inserción laboral de futuros técnicos.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/3b2ewrNDUpU" title="Tutorial Clase 1"></iframe>
+        </div>
+      </div>
+
+      <!-- Video 3 -->
+      <div class="video-card">
+        <span class="badge">Criterio 2: Fundamentación Técnica</span>
+        <h3>3. Portafolio Avanzado en Vue.js</h3>
+        <p>Implementación de componentes reutilizables, reactividad y empaquetado moderno con Vite.</p>
+        <div class="video-wrap">
+          <iframe src="https://www.youtube.com/embed/dJ-9ewBWp18" title="Portafolio VueJS"></iframe>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="text-align:center; margin-top:40px;">
+      <a href="index.html" style="background:var(--azul-utn); color:var(--texto); padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:bold; margin-right:15px;">🖥️ Volver a la Presentación</a>
+      <a href="resumen_visual.html" style="background:rgba(255,255,255,.1); color:var(--texto); padding:12px 30px; border-radius:50px; text-decoration:none; font-weight:bold;">📊 Ver Resumen Visual</a>
+    </div>
+  </div>
+</body>
+</html>
