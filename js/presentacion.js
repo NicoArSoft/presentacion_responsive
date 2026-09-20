@@ -1,11 +1,11 @@
 /**
- * presentacion.js — TFI Dante Nicolás Martínez v4.5
- * Lógica de presentación interactiva (HTML5 + CSS3 + JS puro, sin frameworks)
- * Puntero dinámico, Fullscreen Hover, Modo WCAG AAA, Carruseles Continuos e Interactividad.
+ * presentacion.js — PROTEC Dante Nicolás Martínez
+ * "Aprender, construir y enseñar"
+ * JavaScript Vanilla Senior — Alto rendimiento, 60fps rAF, 100% Offline
  */
 
 /* ═══════════════════════════════════════════
-   ESTADO Y SELECTORES
+   ESTADO GLOBAL Y SELECTORES
    ═══════════════════════════════════════════ */
 let actual    = 0;
 let direccion = 1;
@@ -17,13 +17,86 @@ const slideCounter         = document.getElementById('slide-counter');
 const tituloHud            = document.getElementById('titulo-actual');
 const totalSlides          = diapositivas.length;
 
-// Elementos de Cursor
+// Elementos de Cursor Dinámico
 const cursorDot   = document.getElementById('cursor-dot');
 const cursorRing  = document.getElementById('cursor-ring');
 const cursorBadge = document.getElementById('cursor-badge');
 
 /* ═══════════════════════════════════════════
-   PUNTERO DINÁMICO (CUSTOM CURSOR LERP)
+   SISTEMA DE PARTÍCULAS / CHISPAS SUTILES DE RATÓN (SLIDES 2 A 8)
+   ═══════════════════════════════════════════ */
+const canvasParticles = document.getElementById('mouse-particles-canvas');
+let ctxParticles = null;
+let chispas = [];
+
+if (canvasParticles) {
+  ctxParticles = canvasParticles.getContext('2d');
+  ajustarDimensionesCanvas();
+  window.addEventListener('resize', ajustarDimensionesCanvas);
+}
+
+function ajustarDimensionesCanvas() {
+  if (!canvasParticles) return;
+  canvasParticles.width  = window.innerWidth;
+  canvasParticles.height = window.innerHeight;
+}
+
+class Chispa {
+  constructor(x, y) {
+    this.x = x;
+    this.y = y;
+    const angulo = Math.random() * Math.PI * 2;
+    const velocidad = Math.random() * 1.8 + 0.4;
+    this.vx = Math.cos(angulo) * velocidad;
+    this.vy = Math.sin(angulo) * velocidad - 0.4; // leve ascenso
+    this.tamano = Math.random() * 2.8 + 1.2;
+    this.vida = 1.0;
+    this.decae = Math.random() * 0.025 + 0.015;
+
+    // Paleta sutil: dorada, eléctrica y plata
+    const colores = ['#E6B800', '#00C8FF', '#FFD700', '#E2E8F0', '#41B883'];
+    this.color = colores[Math.floor(Math.random() * colores.length)];
+  }
+
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    this.vida -= this.decae;
+    this.tamano *= 0.96;
+  }
+
+  draw(ctx) {
+    ctx.save();
+    ctx.globalAlpha = Math.max(this.vida, 0);
+    ctx.fillStyle = this.color;
+    ctx.shadowBlur = 6;
+    ctx.shadowColor = this.color;
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, Math.max(this.tamano, 0.5), 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function animarChispas() {
+  if (!ctxParticles) return;
+  ctxParticles.clearRect(0, 0, canvasParticles.width, canvasParticles.height);
+
+  for (let i = chispas.length - 1; i >= 0; i--) {
+    chispas[i].update();
+    if (chispas[i].vida <= 0 || chispas[i].tamano <= 0.4) {
+      chispas.splice(i, 1);
+    } else {
+      chispas[i].draw(ctxParticles);
+    }
+  }
+
+  requestAnimationFrame(animarChispas);
+}
+requestAnimationFrame(animarChispas);
+
+/* ═══════════════════════════════════════════
+   PUNTERO DINÁMICO (LERP INTERPOLADO)
    ═══════════════════════════════════════════ */
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
@@ -34,6 +107,13 @@ let isCursorMoving = false;
 window.addEventListener('mousemove', e => {
   mouseX = e.clientX;
   mouseY = e.clientY;
+
+  // Generar chispas solo en Slides 2 a 8 (Slide 1 tiene cursor estándar)
+  if (actual > 0 && Math.random() > 0.45) {
+    chispas.push(new Chispa(mouseX, mouseY));
+    if (chispas.length > 45) chispas.shift();
+  }
+
   if (cursorDot) {
     cursorDot.style.left = `${mouseX}px`;
     cursorDot.style.top  = `${mouseY}px`;
@@ -69,11 +149,7 @@ function setupCursorHovers() {
   const interactivos = document.querySelectorAll('button, a, .carrusel-card, .timeline-fullscreen-hover-trigger, .freecode-card, .cert-eje, .habitacion-chip, .btn-link-final, .indicador');
   interactivos.forEach(el => {
     el.addEventListener('mouseenter', () => {
-      document.body.classList.add('cursor-hover');
-      if (cursorBadge) {
-        const hint = el.getAttribute('data-cursor-hint') || (el.tagName === 'A' ? 'Visitar ↗' : (el.classList.contains('carrusel-card') ? 'Ampliar 🔍' : 'Probar ✦'));
-        cursorBadge.textContent = hint;
-      }
+      if (actual > 0) document.body.classList.add('cursor-hover');
     });
     el.addEventListener('mouseleave', () => {
       document.body.classList.remove('cursor-hover');
@@ -82,9 +158,27 @@ function setupCursorHovers() {
 }
 
 /* ═══════════════════════════════════════════
-   SLIDE 2 — FULLSCREEN HOVER DIRECTO
+   SLIDE 2 — LÍNEA DE TIEMPO CON COOLDOWN DE 2s
    ═══════════════════════════════════════════ */
 const hoverModal = document.getElementById('hover-fullscreen-overlay');
+let slide2CooldownTimer = null;
+
+function manejarHoverImagenSlide2(isEnter) {
+  if (isEnter) {
+    if (slide2CooldownTimer) {
+      clearTimeout(slide2CooldownTimer);
+      slide2CooldownTimer = null;
+    }
+    activarHoverFullscreen();
+  } else {
+    // Al salir, esperar cooldown de 2 segundos antes de volver
+    if (slide2CooldownTimer) clearTimeout(slide2CooldownTimer);
+    slide2CooldownTimer = setTimeout(() => {
+      desactivarHoverFullscreen();
+      slide2CooldownTimer = null;
+    }, 2000);
+  }
+}
 
 function activarHoverFullscreen() {
   if (hoverModal) hoverModal.classList.add('active');
@@ -98,119 +192,104 @@ if (hoverModal) {
   hoverModal.addEventListener('click', desactivarHoverFullscreen);
 }
 
+window.manejarHoverImagenSlide2  = manejarHoverImagenSlide2;
 window.activarHoverFullscreen    = activarHoverFullscreen;
 window.desactivarHoverFullscreen = desactivarHoverFullscreen;
 
 /* ═══════════════════════════════════════════
-   INICIALIZACIÓN DE INDICADORES DINÁMICOS
+   SLIDE 3 — SPOTLIGHT CON COOLDOWN DE 2s
    ═══════════════════════════════════════════ */
-diapositivas.forEach((slide, i) => {
-  const ind = document.createElement('button');
-  ind.classList.add('indicador');
-  ind.setAttribute('aria-label', `Ir a: ${slide.dataset.titulo || 'Diapositiva ' + (i + 1)}`);
-  ind.setAttribute('title', slide.dataset.titulo || '');
-  if (i === 0) {
-    ind.classList.add('activo');
-    ind.setAttribute('aria-current', 'true');
+let cardCooldownTimers = new Map();
+
+function iniciarSpotlightCard(card) {
+  const timer = cardCooldownTimers.get(card);
+  if (timer) {
+    clearTimeout(timer);
+    cardCooldownTimers.delete(card);
   }
-  ind.addEventListener('click', () => irADiapositiva(i));
-  indicadoresContainer.appendChild(ind);
+  card.classList.add('spotlight-active');
+}
 
-  const footerNum = slide.querySelector('.footer-numero');
-  if (footerNum) footerNum.textContent = `${i + 1} / ${totalSlides}`;
-});
+function finalizarSpotlightCard(card) {
+  // Se cierra inmediatamente cuando se deja de señalar (sin cooldown)
+  card.classList.remove('spotlight-active');
+  const timer = cardCooldownTimers.get(card);
+  if (timer) {
+    clearTimeout(timer);
+    cardCooldownTimers.delete(card);
+  }
+}
 
-const indicadores = document.querySelectorAll('.indicador');
+window.iniciarSpotlightCard   = iniciarSpotlightCard;
+window.finalizarSpotlightCard = finalizarSpotlightCard;
 
 /* ═══════════════════════════════════════════
-   NAVEGACIÓN DE DIAPOSITIVAS
+   SLIDE 4 — CERTIFICADO & INTERACTIVIDAD
    ═══════════════════════════════════════════ */
-function actualizar() {
-  diapositivas.forEach((d, i) => {
-    const esActual = i === actual;
-    d.classList.toggle('activa', esActual);
-    d.setAttribute('aria-hidden', esActual ? 'false' : 'true');
+let certCooldownTimer = null;
 
-    if (esActual) {
-      const tema = d.dataset.theme || 'metatron';
-      document.body.setAttribute('data-slide-theme', tema);
+function manejarHoverCertificado(isEnter) {
+  const certImg = document.getElementById('cert-img-element');
+  if (!certImg) return;
+
+  if (isEnter) {
+    if (certCooldownTimer) {
+      clearTimeout(certCooldownTimer);
+      certCooldownTimer = null;
     }
+    certImg.style.transform = 'perspective(1200px) rotateY(4deg) scale(1.1)';
+  } else {
+    if (certCooldownTimer) clearTimeout(certCooldownTimer);
+    certCooldownTimer = setTimeout(() => {
+      certImg.style.transform = '';
+      certCooldownTimer = null;
+    }, 2000);
+  }
+}
+window.manejarHoverCertificado = manejarHoverCertificado;
+
+// Modal Infografía Semántica
+const modalSemantica = document.getElementById('modal-semantica');
+
+function abrirModalSemantica() {
+  if (modalSemantica) modalSemantica.classList.add('active');
+}
+function cerrarModalSemantica() {
+  if (modalSemantica) modalSemantica.classList.remove('active');
+}
+if (modalSemantica) {
+  modalSemantica.addEventListener('click', (e) => {
+    if (e.target === modalSemantica) cerrarModalSemantica();
   });
+}
+window.abrirModalSemantica  = abrirModalSemantica;
+window.cerrarModalSemantica = cerrarModalSemantica;
 
-  indicadores.forEach((ind, i) => {
-    const esActual = i === actual;
-    ind.classList.toggle('activo', esActual);
-    ind.setAttribute('aria-current', esActual ? 'true' : 'false');
+// Demostración en vivo: "¿Y si no hubiera CSS3?" — Visor HTML Puro Crudo
+const modalHtmlPuro = document.getElementById('modal-html-puro');
+
+function toggleDemostrarSinCSS() {
+  if (modalHtmlPuro) {
+    modalHtmlPuro.classList.add('active');
+  }
+}
+
+function cerrarDemoSinCSS() {
+  if (modalHtmlPuro) {
+    modalHtmlPuro.classList.remove('active');
+  }
+}
+
+if (modalHtmlPuro) {
+  modalHtmlPuro.addEventListener('click', (e) => {
+    if (e.target === modalHtmlPuro) cerrarDemoSinCSS();
   });
-
-  if (barra) {
-    barra.style.width = `${((actual + 1) / totalSlides) * 100}%`;
-  }
-
-  if (slideCounter) {
-    slideCounter.textContent = `${actual + 1} / ${totalSlides}`;
-  }
-
-  if (tituloHud) {
-    tituloHud.textContent = diapositivas[actual]?.dataset.titulo || '';
-  }
-
-  const btnAnt = document.getElementById('btnAnterior');
-  const btnSig = document.getElementById('btnSiguiente');
-  if (btnAnt) btnAnt.disabled = (actual === 0);
-  if (btnSig) btnSig.disabled = (actual === totalSlides - 1);
 }
 
-function cambiarDiapositiva(dir) {
-  const nuevo = actual + dir;
-  if (nuevo >= 0 && nuevo < totalSlides) {
-    direccion = dir;
-    actual    = nuevo;
-    actualizar();
-  }
-}
+window.toggleDemostrarSinCSS = toggleDemostrarSinCSS;
+window.cerrarDemoSinCSS       = cerrarDemoSinCSS;
 
-function irADiapositiva(i) {
-  if (i === actual) return;
-  direccion = i > actual ? 1 : -1;
-  actual    = i;
-  actualizar();
-}
-
-window.cambiarDiapositiva = cambiarDiapositiva;
-window.irADiapositiva     = irADiapositiva;
-
-/* ═══════════════════════════════════════════
-   DEMOSTRACIÓN INTERACTIVA EN VIVO (SLIDE 3)
-   ═══════════════════════════════════════════ */
-function cambiarModoDemo(btn, modo) {
-  document.querySelectorAll('.btn-demo-mode').forEach(b => b.classList.remove('active'));
-  btn.classList.add('active');
-
-  const grid = document.getElementById('freecode-display-grid');
-  const status = document.getElementById('demo-status-text');
-  if (!grid) return;
-
-  grid.classList.remove('mode-flex', 'mode-grid-inspector', 'mode-cyberpunk');
-
-  if (modo === 'normal') {
-    if (status) status.textContent = 'Vista estándar: CSS Grid 2x2 equilibrado';
-  } else if (modo === 'flex') {
-    grid.classList.add('mode-flex');
-    if (status) status.textContent = 'Demostrando: Flexbox adaptativo en línea con CSS puro';
-  } else if (modo === 'grid') {
-    grid.classList.add('mode-grid-inspector');
-    if (status) status.textContent = 'Demostrando: Inspector CSS Grid 3D con coordenadas visuales';
-  } else if (modo === 'cyberpunk') {
-    grid.classList.add('mode-cyberpunk');
-    if (status) status.textContent = 'Demostrando: Tema Cyberpunk con glow neon y contrastes altos';
-  }
-}
-window.cambiarModoDemo = cambiarModoDemo;
-
-/* ═══════════════════════════════════════════
-   SLIDE 4 — SIMULADOR MOBILE-FIRST & MODO WCAG AAA
-   ═══════════════════════════════════════════ */
+// Simulador Mobile First
 function toggleSimuladorMobileFirst() {
   const sim = document.getElementById('simulador-mobile-first');
   if (!sim) return;
@@ -289,6 +368,63 @@ window.activarEfectoEje    = activarEfectoEje;
 window.desactivarEfectoEje = desactivarEfectoEje;
 
 /* ═══════════════════════════════════════════
+   SLIDE 8 — MODAL EMOTIVO DE CIERRE 🙏
+   ═══════════════════════════════════════════ */
+const modalCierre = document.getElementById('modal-cierre-emotivo');
+
+function abrirModalCierreEmotivo() {
+  if (modalCierre) modalCierre.classList.add('active');
+
+  // Lanzar ráfaga de chispas festivas al abrir
+  for (let i = 0; i < 40; i++) {
+    const rx = window.innerWidth / 2 + (Math.random() * 200 - 100);
+    const ry = window.innerHeight / 2 + (Math.random() * 200 - 100);
+    chispas.push(new Chispa(rx, ry));
+  }
+}
+
+function cerrarModalCierreEmotivo() {
+  if (modalCierre) modalCierre.classList.remove('active');
+}
+
+if (modalCierre) {
+  modalCierre.addEventListener('click', (e) => {
+    if (e.target === modalCierre) cerrarModalCierreEmotivo();
+  });
+}
+
+window.abrirModalCierreEmotivo  = abrirModalCierreEmotivo;
+window.cerrarModalCierreEmotivo = cerrarModalCierreEmotivo;
+
+/* ═══════════════════════════════════════════
+   DEMOSTRACIÓN INTERACTIVA EN VIVO (SLIDE 3)
+   ═══════════════════════════════════════════ */
+function cambiarModoDemo(btn, modo) {
+  document.querySelectorAll('.btn-demo-mode').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  const grid = document.getElementById('freecode-display-grid');
+  const status = document.getElementById('demo-status-text');
+  if (!grid) return;
+
+  grid.classList.remove('mode-flex', 'mode-grid-inspector', 'mode-cyberpunk');
+
+  if (modo === 'normal') {
+    if (status) status.textContent = 'Vista estándar: CSS Grid 2x2 equilibrado';
+  } else if (modo === 'flex') {
+    grid.classList.add('mode-flex');
+    if (status) status.textContent = 'Demostrando: Flexbox adaptativo en línea con CSS puro';
+  } else if (modo === 'grid') {
+    grid.classList.add('mode-grid-inspector');
+    if (status) status.textContent = 'Demostrando: Inspector CSS Grid 3D con coordenadas visuales';
+  } else if (modo === 'cyberpunk') {
+    grid.classList.add('mode-cyberpunk');
+    if (status) status.textContent = 'Demostrando: Tema Cyberpunk con glow neon y contrastes altos';
+  }
+}
+window.cambiarModoDemo = cambiarModoDemo;
+
+/* ═══════════════════════════════════════════
    CARRUSELES LOOP CONTINUOS (SLIDES 5 Y 7)
    ═══════════════════════════════════════════ */
 function moverCarrusel(trackId, dir) {
@@ -313,26 +449,158 @@ window.pausarCarrusel   = pausarCarrusel;
 window.reanudarCarrusel = reanudarCarrusel;
 
 /* ═══════════════════════════════════════════
-   ILUMINACIÓN DE COMPONENTES VUE/ASTRO (SLIDE 6)
+   SLIDE 5 — MATRIX RAIN ENGINE (CANVAS)
+   Palabras clave: PROTEC, NICO CODE, FreeCodeCamp
    ═══════════════════════════════════════════ */
-function iluminarComponente(el) {
-  document.querySelectorAll('.habitacion-chip').forEach(c => c.classList.remove('active-chip'));
-  el.classList.add('active-chip');
-}
-window.iluminarComponente = iluminarComponente;
+const matrixCanvas = document.getElementById('matrix-rain-canvas');
+let matrixCtx = null;
+let matrixAnimationId = null;
+let matrixColumns = [];
+const matrixKeywords = ['PROTEC', 'NICO CODE', 'FreeCodeCamp', '<div>', 'const', 'return', 'Vue', 'flex', 'grid', '0', '1', '()=>{}'];
 
-let chipIndex = 1;
-setInterval(() => {
-  const slide6 = document.querySelector('.diapositiva[data-titulo*="Framework"]');
-  if (slide6 && slide6.classList.contains('activa')) {
-    chipIndex = (chipIndex % 4) + 1;
-    const targetChip = document.getElementById(`chip-${chipIndex}`);
-    if (targetChip) {
-      document.querySelectorAll('.habitacion-chip').forEach(c => c.classList.remove('active-chip'));
-      targetChip.classList.add('active-chip');
+function ajustarDimensionesMatrix() {
+  if (!matrixCanvas) return;
+  matrixCanvas.width = window.innerWidth;
+  matrixCanvas.height = window.innerHeight;
+  const colCount = Math.floor(matrixCanvas.width / 24);
+  matrixColumns = Array.from({ length: colCount }, () => ({
+    y: Math.random() * -100,
+    speed: Math.random() * 1.5 + 1.1,
+    wordIdx: Math.floor(Math.random() * matrixKeywords.length),
+    charIdx: 0
+  }));
+}
+
+if (matrixCanvas) {
+  matrixCtx = matrixCanvas.getContext('2d');
+  ajustarDimensionesMatrix();
+  window.addEventListener('resize', ajustarDimensionesMatrix);
+}
+
+function animarMatrixRain() {
+  if (!matrixCtx || !matrixCanvas) return;
+
+  matrixCtx.fillStyle = 'rgba(5, 10, 20, 0.16)';
+  matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+  matrixCtx.font = '13px monospace';
+
+  for (let i = 0; i < matrixColumns.length; i++) {
+    const col = matrixColumns[i];
+    const word = matrixKeywords[col.wordIdx];
+    const char = word[col.charIdx % word.length];
+
+    const x = i * 24;
+    const y = col.y;
+
+    if (Math.random() > 0.88) {
+      matrixCtx.fillStyle = '#FFFFFF';
+      matrixCtx.shadowColor = '#00FF66';
+      matrixCtx.shadowBlur = 8;
+    } else if (word === 'PROTEC' || word === 'NICO CODE' || word === 'FreeCodeCamp') {
+      matrixCtx.fillStyle = '#00FF88';
+      matrixCtx.shadowColor = '#00FF88';
+      matrixCtx.shadowBlur = 6;
+    } else {
+      matrixCtx.fillStyle = 'rgba(0, 200, 120, 0.75)';
+      matrixCtx.shadowBlur = 0;
+    }
+
+    matrixCtx.fillText(char, x, y);
+
+    col.y += 18 * col.speed;
+    col.charIdx++;
+
+    if (col.y > matrixCanvas.height + 60 && Math.random() > 0.96) {
+      col.y = -20;
+      col.speed = Math.random() * 1.5 + 1.1;
+      col.wordIdx = Math.floor(Math.random() * matrixKeywords.length);
+      col.charIdx = 0;
     }
   }
-}, 3000);
+
+  matrixAnimationId = requestAnimationFrame(animarMatrixRain);
+}
+
+function iniciarMatrixRain() {
+  if (!matrixCanvas || matrixAnimationId) return;
+  ajustarDimensionesMatrix();
+  matrixAnimationId = requestAnimationFrame(animarMatrixRain);
+}
+
+function detenerMatrixRain() {
+  if (matrixAnimationId) {
+    cancelAnimationFrame(matrixAnimationId);
+    matrixAnimationId = null;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   ILUMINACIÓN Y ACCIÓN REACTIVA DE COMPONENTES VUE/ASTRO (SLIDE 6)
+   ═══════════════════════════════════════════ */
+const compFeedbackTxt  = document.getElementById('comp-feedback-txt');
+const compFeedbackIcon = document.getElementById('comp-feedback-icon');
+
+function iluminarComponente(el) {
+  document.querySelectorAll('.habitacion-chip').forEach(c => c.classList.remove('active-chip'));
+  if (el) el.classList.add('active-chip');
+}
+
+function ejecutarAccionComponente(tipo, el) {
+  iluminarComponente(el);
+
+  if (tipo === 'theme' || tipo === 'toggle') {
+    const slide6 = document.querySelector('.diapositiva[data-titulo*="Framework"]');
+    if (slide6) {
+      const isLight = slide6.classList.toggle('slide6-tema-claro');
+      if (compFeedbackTxt) {
+        compFeedbackTxt.textContent = isLight
+          ? '☀️ <ThemeToggle />: Modo Claro Activado — Estilos adaptables y contraste diurno.'
+          : '🌙 <ThemeToggle />: Modo Oscuro Restaurado — Paleta nocturna con degradados Metatrón.';
+      }
+      if (compFeedbackIcon) {
+        compFeedbackIcon.textContent = isLight ? '☀️' : '🌙';
+      }
+    }
+  } else {
+    const acciones = {
+      navbar: {
+        icon: '🧭',
+        txt: '⚡ <TheNavbar />: Emite evento reactivo "@navigate" y monta rutas dinámicas en el Virtual DOM.'
+      },
+      grid: {
+        icon: '📦',
+        txt: '⚡ <ProjectsGrid />: Renderiza 8 tarjetas reactivas vía v-for iterando un array desacoplado.'
+      },
+      form: {
+        icon: '✉️',
+        txt: '⚡ <ContactForm />: Aplica Two-Way Data Binding con v-model y validación en tiempo real.'
+      }
+    };
+
+    const accion = acciones[tipo];
+    if (accion && compFeedbackTxt) {
+      compFeedbackTxt.textContent = accion.txt;
+      if (compFeedbackIcon) compFeedbackIcon.textContent = accion.icon;
+    }
+  }
+
+  const panel = document.getElementById('comp-feedback-panel');
+  if (panel) {
+    panel.style.transform = 'scale(1.02)';
+    setTimeout(() => { panel.style.transform = ''; }, 250);
+  }
+
+  if (el) {
+    const rect = el.getBoundingClientRect();
+    for (let i = 0; i < 15; i++) {
+      chispas.push(new Chispa(rect.left + rect.width / 2, rect.top + rect.height / 2));
+    }
+  }
+}
+
+window.iluminarComponente        = iluminarComponente;
+window.ejecutarAccionComponente = ejecutarAccionComponente;
 
 /* ═══════════════════════════════════════════
    3D COVERFLOW SHOWCASE (SLIDE 7)
@@ -417,9 +685,107 @@ window.abrirLightbox  = abrirLightbox;
 window.cerrarLightbox = cerrarLightbox;
 
 /* ═══════════════════════════════════════════
+   INICIALIZACIÓN DE INDICADORES DINÁMICOS
+   ═══════════════════════════════════════════ */
+diapositivas.forEach((slide, i) => {
+  const ind = document.createElement('button');
+  ind.classList.add('indicador');
+  ind.setAttribute('aria-label', `Ir a: ${slide.dataset.titulo || 'Diapositiva ' + (i + 1)}`);
+  ind.setAttribute('title', slide.dataset.titulo || '');
+  if (i === 0) {
+    ind.classList.add('activo');
+    ind.setAttribute('aria-current', 'true');
+  }
+  ind.addEventListener('click', () => irADiapositiva(i));
+  indicadoresContainer.appendChild(ind);
+
+  const footerNum = slide.querySelector('.footer-numero');
+  if (footerNum) footerNum.textContent = `${i + 1} / ${totalSlides}`;
+});
+
+const indicadores = document.querySelectorAll('.indicador');
+
+/* ═══════════════════════════════════════════
+   NAVEGACIÓN DE DIAPOSITIVAS
+   ═══════════════════════════════════════════ */
+function actualizar() {
+  diapositivas.forEach((d, i) => {
+    const esActual = i === actual;
+    d.classList.toggle('activa', esActual);
+    d.setAttribute('aria-hidden', esActual ? 'false' : 'true');
+
+    if (esActual) {
+      const tema = d.dataset.theme || 'metatron';
+      document.body.setAttribute('data-slide-theme', tema);
+    }
+  });
+
+  indicadores.forEach((ind, i) => {
+    const esActual = i === actual;
+    ind.classList.toggle('activo', esActual);
+    ind.setAttribute('aria-current', esActual ? 'true' : 'false');
+  });
+
+  if (barra) {
+    barra.style.width = `${((actual + 1) / totalSlides) * 100}%`;
+  }
+
+  if (slideCounter) {
+    slideCounter.textContent = `${actual + 1} / ${totalSlides}`;
+  }
+
+  if (tituloHud) {
+    tituloHud.textContent = diapositivas[actual]?.dataset.titulo || '';
+  }
+
+  const btnAnt = document.getElementById('btnAnterior');
+  const btnSig = document.getElementById('btnSiguiente');
+  if (btnAnt) btnAnt.disabled = (actual === 0);
+  if (btnSig) btnSig.disabled = (actual === totalSlides - 1);
+
+  // Control de Matrix Rain (Slide 5: índice 4)
+  if (actual === 4) {
+    iniciarMatrixRain();
+  } else {
+    detenerMatrixRain();
+  }
+}
+
+function cambiarDiapositiva(dir) {
+  const nuevo = actual + dir;
+  if (nuevo >= 0 && nuevo < totalSlides) {
+    direccion = dir;
+    actual    = nuevo;
+    actualizar();
+  }
+}
+
+function irADiapositiva(i) {
+  if (i === actual) return;
+  direccion = i > actual ? 1 : -1;
+  actual    = i;
+  actualizar();
+}
+
+window.cambiarDiapositiva = cambiarDiapositiva;
+window.irADiapositiva     = irADiapositiva;
+
+/* ═══════════════════════════════════════════
    TECLADO
    ═══════════════════════════════════════════ */
 document.addEventListener('keydown', (e) => {
+  if (modalHtmlPuro && modalHtmlPuro.classList.contains('active')) {
+    if (e.key === 'Escape') cerrarDemoSinCSS();
+    return;
+  }
+  if (modalCierre && modalCierre.classList.contains('active')) {
+    if (e.key === 'Escape') cerrarModalCierreEmotivo();
+    return;
+  }
+  if (modalSemantica && modalSemantica.classList.contains('active')) {
+    if (e.key === 'Escape') cerrarModalSemantica();
+    return;
+  }
   if (lightbox && lightbox.classList.contains('visible')) {
     if (e.key === 'Escape') cerrarLightbox();
     return;
@@ -453,6 +819,8 @@ document.addEventListener('keydown', (e) => {
       cerrarLightbox();
       cerrarSimulador();
       desactivarHoverFullscreen();
+      cerrarModalSemantica();
+      cerrarModalCierreEmotivo();
       break;
 
     case 't':
