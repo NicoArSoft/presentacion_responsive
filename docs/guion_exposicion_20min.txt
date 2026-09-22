@@ -1,0 +1,365 @@
+================================================================================
+  GUION OFICIAL DE EXPOSICIÓN ORAL (20 MINUTOS)
+  TRABAJO FINAL INTEGRADOR: "Aprender, construir y enseñar"
+  Actualización Científico-Tecnológica (192 hs) — ETP Mendoza
+================================================================================
+  Expositor: Dante Nicolás Martínez
+  Título Base: Técnico Universitario en Programación (UTN FRSR)
+  Rol Actual: Auxiliar Docente / Tutor (UTN FRSR - Modalidad Virtual)
+  Carrera Docente: Profesorado para la ETP (2.° Año, PROTEC - IPA San Rafael)
+  Docente Evaluadora: Prof. Celeste Derra
+  Duración Total: 20 Minutos (17 min Disertación + 3 min Preguntas del Tribunal)
+================================================================================
+
+--------------------------------------------------------------------------------
+ TABLA DE CONTROL DE TIEMPOS Y DIAPOSITIVAS (CRONÓMETRO: TECLA "T")
+--------------------------------------------------------------------------------
+ [00:00 - 02:00]  Slide 1: Portada, Presentación Personal e Idea Fuerza (2 min)
+ [02:00 - 04:30]  Slide 2: Trayectoria y el Ciclo de Aprendizaje en 4 Etapas (2.5 min)
+ [04:30 - 07:00]  Slide 3: ¿Por qué freeCodeCamp? Pilares y Demo en Vivo (2.5 min)
+ [07:00 - 10:00]  Slide 4: Certificación 300 hs y Simulador Mobile-First (3 min)
+ [10:00 - 12:30]  Slide 5: Transferencia al Aula: Portafolio Básico Harvard (2.5 min)
+ [12:30 - 15:00]  Slide 6: Frameworks Modernos: Analogía "Imagina una Casa" (2.5 min)
+ [15:00 - 17:00]  Slide 7: Portafolio Avanzado Vue.js y Canal YouTube (2 min)
+ [17:00 - 18:30]  Slide 8: Cierre, Impacto en la ETP y Agradecimiento (1.5 min)
+ [18:30 - 20:00]  Bloque de Preguntas del Tribunal y Conclusiones (1.5 min)
+--------------------------------------------------------------------------------
+
+REGLAS DE ORO PARA EL EXPOSITOR:
+ 1. Al iniciar en pantalla completa (F11), presiona la tecla [ T ] para encender
+    el cronómetro digital en la esquina superior de la pantalla.
+ 2. No leas las diapositivas: la pantalla es tu soporte visual; tu voz y tu mirada
+    deben dirigirse siempre a la profesora Celeste Derra y al tribunal evaluador.
+ 3. Mantén un tono sereno, seguro, pedagógico y con pausas intencionadas (2 seg)
+    antes de enunciar las ideas fuerza.
+
+
+================================================================================
+ SLIDE 1 [00:00 - 02:00] PORTADA, INTRODUCCIÓN E IDEA FUERZA
+================================================================================
+ PANTALLA: Fondo de Geometría Sagrada / Sello Metatrón color plata.
+ ACCIÓN: Postura erguida, manos visibles, contacto visual directo. No toques nada
+         aún, deja que se aprecie la elegancia y la identidad institucional.
+
+ PALABRAS DEL EXPOSITOR:
+ "Buenas tardes, profesora Celeste Derra y estimados miembros del tribunal
+ evaluador.
+
+ Mi nombre es Dante Nicolás Martínez. Soy Técnico Universitario en Programación,
+ egresado de la UTN Facultad Regional San Rafael. Tras concluir mis estudios,
+ comencé a desempeñarme como tutor y actualmente cumplo el rol de auxiliar
+ docente en la modalidad virtual de la misma casa de estudios. A su vez, curso el
+ segundo año del Profesorado para la Educación Técnico-Profesional en este
+ Instituto.
+
+ En esta oportunidad, tengo el honor de presentar la defensa de mi Trabajo Final
+ Integrador para el espacio de Actualización Científico-Tecnológica, con una carga
+ acreditada de 192 horas, titulado:
+ 'Aprender, construir y enseñar: Experiencia de actualización en Desarrollo Web
+  Responsive y su transferencia en la ETP'.
+
+ Toda la experiencia que hoy vengo a compartirles se sintetiza en nuestra
+ idea fuerza central:
+
+ (PAUSA DE 2 SEGUNDOS - CONTACTO VISUAL)
+
+ 'La actualización tecnológica adquiere sentido cuando puede aplicarse,
+  compartirse y convertirse en oportunidades reales de formación'."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 2 [02:00 - 04:30] TRAYECTORIA Y EL CICLO DE APRENDIZAJE
+================================================================================
+ PANTALLA: Línea de tiempo gráfica y el Ciclo de 4 Etapas.
+ ACCIÓN: Pasa el cursor por encima de la imagen de la izquierda para que se
+         amplíe automáticamente, o haz un clic sobre ella para abrirla si deseas
+         destacar algún hito. Luego centra la atención en el ciclo numerado.
+
+ PALABRAS DEL EXPOSITOR:
+ "Para comprender el origen de este trabajo, les comparto mi línea de tiempo
+ formativa. En ella se evidencia cómo la curiosidad técnica inicial por el
+ desarrollo de software fue madurando hasta convertirse en una genuina vocación
+ pedagógica dentro del aula técnica.
+
+ A partir de este recorrido, me planteé un interrogante que interpela a todo
+ docente de materias tecnológicas:
+ '¿Cuándo podemos decir que realmente aprendimos algo técnico?'
+
+ ¿Basta con memorizar una sintaxis? ¿Basta con aprobar un examen teórico?
+ En mi experiencia, el aprendizaje técnico significativo ocurre únicamente cuando
+ se recorre un ciclo continuo de cuatro etapas:
+
+ 1. COMPRENDER: Apropiarse de los fundamentos y estándares internacionales de la
+    industria digital.
+ 2. CONSTRUIR: Llevar esos conceptos a la práctica desarrollando proyectos reales,
+    funcionales y operativos.
+ 3. RESOLVER: Enfrentar el error, depurar el código y superar la frustración del
+    desafío técnico real.
+ 4. ENSEÑAR: Desglosar ese saber, transponerlo didácticamente y ponerlo a
+    disposición de los estudiantes para multiplicar su alcance.
+
+ Si falta la etapa de enseñar y transferir, la actualización queda reducida a un
+ logro individual; cuando la compartimos, se convierte en valor pedagógico."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 3 [04:30 - 07:00] ¿POR QUÉ FREECODECAMP? Y DEMO EN VIVO
+================================================================================
+ PANTALLA: 4 Tarjetas de Pilares y la Barra de Demostración en Vivo CSS.
+ ACCIÓN: Pasa el mouse sobre las tarjetas (tienen efecto foco/spotlight).
+         Luego haz clic en los botones de '⚡ Demostración en Vivo':
+         - Clic en 'Flexbox Dinámico'
+         - Clic en 'CSS Grid Inspector 3D'
+         - Clic en '⚡ Modo Neon'
+         - Vuelve a 'Normal'
+
+ PALABRAS DEL EXPOSITOR:
+ "Para concretar esta actualización técnica de 192 horas, seleccioné el trayecto
+ formativo de la organización internacional freeCodeCamp. ¿Por qué esta elección?
+ Principalmente por cuatro razones estratégicas:
+
+ 1. 100% Gratuito y sin fines de lucro: Un modelo de democratización real del
+    conocimiento, accesible para cualquier estudiante de la ETP sin barreras
+    económicas.
+ 2. Aprendizaje Basado en Proyectos (ABP): No hay evaluaciones abstractas; el
+    alumno programa directamente en el navegador y valida sus soluciones contra
+    baterías de pruebas unitarias automatizadas.
+ 3. Comunidad Global: Respaldada por más de 100.000 graduados insertos en empresas
+    líderes de tecnología.
+ 4. Estándares Troncales: Domina HTML5 semántico, CSS3 moderno, maquetación fluida
+    con Flexbox y Grid, y normas de accesibilidad universal.
+
+ (HACER CLIC EN LOS BOTONES DE DEMO EN LA PARTE INFERIOR)
+
+ Como pueden observar en esta barra de demostración interactiva que construí para
+ la presentación: con solo activar 'Flexbox Dinámico' o 'CSS Grid 3D', la interfaz
+ redistribuye sus elementos instantáneamente por hardware. Esto demuestra que
+ dominar las bases puras de la web permite crear experiencias fluidas y veloces
+ sin depender de pesadas librerías externas.
+
+ Como decimos siempre: el desafío no era solo escribir código, sino construir
+ experiencias digitales que funcionen en cualquier contexto y pantalla."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 4 [07:00 - 10:00] CERTIFICACIÓN 300 HS Y SIMULADOR MOBILE-FIRST
+================================================================================
+ PANTALLA: Certificado oficial de freeCodeCamp y 4 Ejes Formativos interactivos.
+ ACCIÓN CLAVE:
+ 1. Señala el certificado (expedido el 13 de marzo de 2025, 300 horas reloj).
+ 2. Haz clic en el primer eje: '📱 Diseño Adaptable (Mobile-First) ▶ Simular'.
+    Se desplegará el simulador de pantalla. Haz clic en los botones:
+    [📱 Mobile (375px)] -> [📟 Tablet (768px)] -> [💻 Desktop (1024px)].
+    Muestra cómo la maqueta interna se reordena en vivo. Luego haz clic en [✕ Cerrar].
+ 3. Clic en el botón '¿Y sin CSS? ⚡' del cuarto eje (se despoja el estilo mostrando
+    el esqueleto semántico puro, y haz clic de nuevo para restaurarlo).
+
+ PALABRAS DEL EXPOSITOR:
+ "Aquí exhibo la acreditación oficial obtenida: la Certificación Internacional
+ en 'Responsive Web Design', que involucró más de 300 horas reloj de trabajo
+ práctico intensivo.
+
+ Esta formación profundizó en cuatro ejes medulares:
+ - Primero: La metodología Mobile-First. Pensar la web prioritariamente para el
+   teléfono móvil, que es la vía de acceso principal de la mayoría de nuestros
+   estudiantes y ciudadanos.
+   (ABRES EL SIMULADOR Y MUESTRAS LA VISTA MOBILE Y DESKTOP)
+   Observen en este simulador interactivo: no achicamos una web de escritorio para
+   que entre a la fuerza en un celular; diseñamos la información esencial para la
+   pantalla táctil y luego, progresivamente, la expandimos hacia pantallas mayores.
+
+ - Segundo: Accesibilidad e Inclusión Web (Normas WCAG AAA). Garantizar contrastes
+   de color aptos para baja visión y etiquetas para lectores de pantalla.
+ - Tercero: HTML5 Semántico. Brindarle estructura y significado lógico al
+   documento digital.
+ - Cuarto: CSS3 Moderno sin dependencias.
+
+ Concluimos este eje con una reflexión insoslayable:
+ 'Un sitio web que no se adapta hoy en día, es una experiencia digital que excluye'."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 5 [10:00 - 12:30] DEL CURSO AL AULA: PORTAFOLIO BÁSICO (HARVARD)
+================================================================================
+ PANTALLA: Carrusel continuo a todo el alto con capturas de proyectos de alumnos.
+ ACCIÓN: Pasa el cursor sobre el carrusel para detener el movimiento automático.
+         Haz clic sobre una de las capturas (por ejemplo, basico_1 o basico_3)
+         para que se abra en el Lightbox en pantalla completa.
+         Presiona [ Esc ] o haz clic afuera para cerrarlo.
+
+ PALABRAS DEL EXPOSITOR:
+ "Llegamos aquí al núcleo pedagógico de este trabajo: la transferencia efectiva al
+ aula de la Educación Técnico-Profesional.
+
+ Esta formación no se quedó en un diploma colgado en la pared. Inmediatamente
+ articulé estos conocimientos con los alumnos de primer año de la Tecnicatura en
+ Programación de la UTN. Diseñamos un proyecto integrador donde cada estudiante
+ construyó su primer Portafolio Web Profesional.
+
+ Para que tuviera valor formativo y de inserción sociolaboral, articulamos la
+ estructura con el formato curricular estandarizado de la Universidad de Harvard:
+ datos personales, trayectoria, proyectos destacados y habilidades técnicas.
+
+ (PONES EL CURSOR SOBRE EL CARRUSEL Y ABRES UNA IMAGEN CON CLIC)
+
+ En este carrusel que están viendo en pantalla se muestran producciones 100% reales
+ desarrolladas por mis alumnos.
+ Observen la limpieza del diseño, la jerarquía visual y, sobre todo, cómo cada uno
+ de estos proyectos se adapta impecablemente tanto en una computadora como en un
+ teléfono celular.
+
+ Los alumnos pasaron de ser meros consumidores pasivos de tecnología a ser
+ creadores de su propia identidad digital profesional."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 6 [12:30 - 15:00] DE HTML AL FRAMEWORK: ANALOGÍA "IMAGINA UNA CASA"
+================================================================================
+ PANTALLA: Red neural interactiva y Comparativa: "Una Sola Habitación Monolítica"
+           vs "Casa Organizada por Componentes (Vue.js)".
+ ACCIÓN CLAVE:
+ En la columna derecha ('Casa Organizada'), haz clic en los 4 componentes:
+ - Clic en '<TheNavbar />': muestra navegación encapsulada.
+ - Clic en '<ProjectsGrid />': muestra galería reactiva.
+ - Clic en '<ContactForm />': muestra estado propio del formulario.
+ - Clic en '<ThemeToggle />': conmuta el tema Claro / Oscuro en tiempo real.
+
+ PALABRAS DEL EXPOSITOR:
+ "La industria del software actual no se detiene en el maquetado estático. El
+ siguiente paso en mi trayecto y en la transferencia fue la transición hacia los
+ Frameworks Modernos, específicamente Vue.js 3 y la herramienta de compilación Vite.
+
+ Pero surge un desafío didáctico mayúsculo:
+ ¿Cómo le explicamos a un estudiante qué es un framework o la arquitectura basada
+  en componentes sin abrumarlo con tecnicismos abstractos?
+
+ Para lograrlo, desarrollé en clase la analogía visual que he bautizado como:
+ 'Imagina una Casa'.
+
+ - El desarrollo lineal tradicional es como vivir en una precaria CASA MONOLÍTICA
+   DE UNA SOLA HABITACIÓN: donde la cocina, la cama, el baño y las cañerías están
+   mezcladas en un mismo espacio de 3000 líneas de código. Si hay una fuga de agua,
+   se inunda toda la casa y colapsa el sistema completo.
+
+ - En cambio, un FRAMEWORK como Vue.js es como una CASA MODERNA, ORGANIZADA POR
+   HABITACIONES INDEPENDIENTES Y ESPECIALIZADAS.
+   (HACES CLIC EN '<TheNavbar />' Y EN '<ThemeToggle />')
+   Cada componente tiene sus propias paredes, sus estilos encapsulados y sus
+   funciones. Si mañana quiero remodelar la galería o cambiar el color de la sala,
+   lo hago sin tocar la cocina ni comprometer la estabilidad del resto del hogar.
+
+ Esta analogía permitió que los estudiantes comprendieran la modularidad y
+ estuvieran listos para programar con estándares profesionales."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 7 [15:00 - 17:00] PORTAFOLIO AVANZADO Y CANAL "NICO CODE"
+================================================================================
+ PANTALLA: Escenario 3D Coverflow con proyectos avanzados y Ficha del Canal YouTube.
+ ACCIÓN: En el Coverflow, presiona los botones [ Anterior / Siguiente ] o usa las
+         teclas [ J ] y [ K ] para girar las tarjetas en 3D.
+         Luego señala la captura del canal de YouTube 'Nico Code' (puedes hacerle
+         clic para ampliarla).
+
+ PALABRAS DEL EXPOSITOR:
+ "Gracias a este entendimiento conceptual, los estudiantes avanzaron hacia la
+ construcción de su Portafolio Avanzado con Vue.js, integrando estados reactivos,
+ filtros dinámicos, modos nocturnos y despliegue automático continuo en la nube
+ mediante Netlify.
+
+ (GIRAS LAS TARJETAS 3D CON EL BOTÓN SIGUIENTE O TECLAS J / K)
+ En este showcase tridimensional que he programado pueden apreciar las capturas
+ de estas arquitecturas complejas terminadas por los alumnos.
+
+ Sin embargo, en la modalidad virtual de la UTN surgió una necesidad didáctica:
+ los alumnos requerían un andamiaje que estuviera disponible a su propio ritmo,
+ sin importar el horario de conexión.
+
+ Por ello, realicé un ejercicio integral de transposición didáctica creando mi
+ propio canal educativo en YouTube llamado 'Nico Code'.
+ En él grabé y publiqué de manera abierta y gratuita:
+ - Un curso inicial de 7 clases para el Portafolio Básico.
+ - Un trayecto avanzado de 10 clases para dominar la arquitectura de Vue.js.
+
+ Esto convirtió el material del aula en un recurso educativo abierto disponible
+ las 24 horas para futuros técnicos de Mendoza y de toda la región."
+
+ (Presionas [ Flecha Derecha ] para avanzar)
+
+
+================================================================================
+ SLIDE 8 [17:00 - 18:30] REFLEXIÓN DOCENTE, IMPACTO EN LA ETP Y CIERRE
+================================================================================
+ PANTALLA: Mapa de constelaciones, los 4 Pilares del Ciclo Final y Vinculación ETP.
+ ACCIÓN:
+ 1. Tono cálido, pausado y con profunda convicción pedagógica.
+ 2. Haz clic en el botón con el ícono [ 🙏 ] situado en la esquina inferior derecha.
+    Se abrirá un elegante modal emergente con el mensaje de agradecimiento.
+
+ PALABRAS DEL EXPOSITOR:
+ "Para concluir esta defensa, quiero enfatizar el valor transversal que este
+ proyecto aporta a la Educación Técnico-Profesional de nuestra provincia:
+
+ - En Informática y Programación: consolida las bases insustituibles de desarrollo web.
+ - En Diseño y Comunicación: aporta criterios de usabilidad y accesibilidad inclusiva.
+ - En Emprendimiento y Formación para el Trabajo: le entrega a cada egresado un
+   portafolio real en línea para insertarse en el mercado productivo.
+ - Y en la era de la Inteligencia Artificial: reafirma que para guiar o auditar
+   código generado automáticamente, el futuro técnico debe dominar con solidez los
+   fundamentos humanos del código.
+
+ Hoy puedo decir con orgullo que cerramos el ciclo completo:
+ Comprendí estándares de calidad internacional;
+ Construimos junto a los alumnos proyectos reales;
+ Enseñé y compartí abiertamente en el aula y en la comunidad;
+ y continúo Profesionalizando mi labor como futuro profesor de la ETP.
+
+ (HACES CLIC EN EL BOTÓN 🙏 Y DEJAS QUE SE VEA EL MODAL DE AGRADECIMIENTO)
+
+ Agradezco profundamente a la profesora Celeste Derra por su guía durante estas
+ 192 horas, a las autoridades de la institución y a este respetado tribunal por
+ su atenta escucha.
+
+ Quedo a su entera disposición para responder sus preguntas. Muchas gracias."
+
+ (Cierras el modal con [ Esc ] o clic en la cruz, y quedas listo para el tribunal).
+
+
+================================================================================
+ BLOQUE DE PREGUNTAS DEL TRIBUNAL [18:30 - 20:00] (GUÍA RÁPIDA DE RESPUESTAS)
+================================================================================
+ Pregunta 1: "¿Por qué enseñar HTML y CSS puro si hoy la IA genera páginas solas?"
+ RESPUESTA CLAVE:
+ "La inteligencia artificial es una potente herramienta de asistencia, pero no
+ reemplaza el criterio del programador. Si un técnico no comprende la semántica,
+ la accesibilidad o el modelo de cajas, no puede auditar el código, corregir
+ fallos de seguridad ni garantizar que la interfaz sea accesible para personas
+ con discapacidad. Las bases conceptuales son hoy más necesarias que nunca."
+
+ Pregunta 2: "¿Cómo evaluó el aprendizaje de los alumnos en el portafolio?"
+ RESPUESTA CLAVE:
+ "A través de rúbricas de evaluación de desempeño basadas en criterios objetivos:
+ adaptabilidad en 3 resoluciones (móvil, tablet y escritorio), validez del código
+ HTML5, accesibilidad WCAG y originalidad en la transposición del modelo Harvard."
+
+ Pregunta 3: "¿Qué impacto tuvo el canal de YouTube 'Nico Code' en el aula?"
+ RESPUESTA CLAVE:
+ "Permitió implementar el modelo de aula invertida (Flipped Classroom): los
+ estudiantes podían ver el paso a paso técnico a su ritmo y pausar el video tantas
+ veces como necesitaran, reservando las tutorías sincrónicas para la resolución
+ de dudas complejas y el debate pedagógico."
+================================================================================
+ FIN DEL GUION OFICIAL
+================================================================================

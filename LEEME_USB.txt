@@ -1,0 +1,43 @@
+========================================================================
+ GUÍA RÁPIDA: CÓMO USAR LA PRESENTACIÓN DESDE ESTE PENDRIVE (USB)
+ Trabajo Final Integrador: Dante Nicolás Martínez
+========================================================================
+
+1. ARCHIVOS NECESARIOS PARA EXPONER (LA PRESENTACIÓN):
+   Para que la presentación funcione 100% en cualquier computadora,
+   solo necesitas esta carpeta con los siguientes 4 elementos clave:
+
+   📁 imagenes/        -> Contiene todas las fotos y capturas (.webp)
+   📁 js/              -> Contiene 'presentacion.js' (lógica y controles)
+   📄 estilos.css      -> Hoja de estilos visuales
+   📄 index.html       -> EL ARCHIVO PRINCIPAL DE LA PRESENTACIÓN
+
+   * NOTA: La carpeta 'docs/' contiene los resúmenes, guiones, PDFs y
+     Word de respaldo. En especial:
+     -> 'docs/guion_exposicion_20min.txt' : Guion de 20 minutos con tiempos y qué decir.
+     No es obligatoria para que la web funcione, pero es ideal tenerla a mano.
+
+
+2. PASOS PARA EL DÍA DE LA DEFENSA:
+   Paso 1: Conecta el pendrive a la computadora donde vas a proyectar.
+   
+   Paso 2 (RECOMENDADO): Copia toda la carpeta 'presentacion_responsive'
+          al Escritorio de la PC. Esto asegura máxima velocidad y evita
+          problemas si alguien mueve o desconecta el pendrive sin querer.
+
+   Paso 3: Abre la carpeta y haz DOBLE CLIC en 'index.html'.
+          Se abrirá automáticamente en Google Chrome, Microsoft Edge, Brave o Firefox.
+          * NO requiere internet.
+          * NO requiere instalar Node.js ni ningún programa especial.
+
+   Paso 4: Presiona la tecla [ F11 ] en tu teclado para poner PANTALLA COMPLETA.
+
+
+3. ATAJOS DE TECLADO DURANTE LA PRESENTACIÓN:
+   - [ Flecha Derecha ] o [ Barra Espaciadora ] : Siguiente diapositiva.
+   - [ Flecha Izquierda ]                       : Diapositiva anterior.
+   - [ Tecla T ]                                : Iniciar / Pausar cronómetro del expositor.
+   - [ Tecla J ] / [ Tecla K ]                  : Girar carrusel 3D Coverflow (Slide 7).
+   - [ Escape ]                                 : Salir de la foto ampliada (Lightbox) o simulador.
+   - [ F11 ]                                    : Entrar / Salir de pantalla completa.
+========================================================================

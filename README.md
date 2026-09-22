@@ -13,9 +13,10 @@
 - [`js/presentacion.js`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/js/presentacion.js): Motor de navegación por teclado/táctil, HUD, timer para el expositor, simulador y Coverflow.
 
 ### 📜 Documentación y Preparación de la Defensa
-- [`documentacion/guion.html`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/documentacion/guion.html): Guion completo para la disertación (17 min + 3 min preguntas) con cues de oratoria y botón de impresión.
-- [`documentacion/guia_estudio.html`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/documentacion/guia_estudio.html): Guía de estudio con flashcards interactivas, 6 frases clave y preguntas anticipadas del tribunal.
-- [`documentacion/contexto_proyecto_sesion.md`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/documentacion/contexto_proyecto_sesion.md): Memoria técnica detallada de todo lo implementado.
+- [`docs/guion_exposicion_20min.txt`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/docs/guion_exposicion_20min.txt): Guion oficial en texto plano para 20 minutos con tiempos y acciones en vivo.
+- [`docs/guion.html`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/docs/guion.html): Guion completo para la disertación (17 min + 3 min preguntas) con cues de oratoria y botón de impresión.
+- [`docs/guia_estudio.html`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/docs/guia_estudio.html): Guía de estudio con flashcards interactivas, 6 frases clave y preguntas anticipadas del tribunal.
+- [`docs/contexto_proyecto_sesion.md`](file:///d:/IPA2026/ACTUALIZACION%20CIENTIFICO%20TECNOLOGICA%202/presentacion_responsive/docs/contexto_proyecto_sesion.md): Memoria técnica detallada de todo lo implementado.
 
 ---
 
