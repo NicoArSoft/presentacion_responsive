@@ -691,9 +691,20 @@ function ejecutarAccionComponente(tipo, el) {
   iluminarComponente(el);
 
   if (tipo === 'theme' || tipo === 'toggle') {
-    const slide6 = document.querySelector('.diapositiva[data-titulo*="Framework"]');
+    const slide6 = el?.closest('.diapositiva') || document.querySelector('.diapositiva[data-theme="framework"]') || diapositivas[5];
     if (slide6) {
       const isLight = slide6.classList.toggle('slide6-tema-claro');
+      
+      // Actualización visual reactiva del propio chip <ThemeToggle />
+      const chipTheme = document.getElementById('chip-4') || el;
+      if (chipTheme) {
+        const emoji = chipTheme.querySelector('.hab-emoji');
+        const desc = chipTheme.querySelector('.hab-desc');
+        if (emoji) emoji.textContent = isLight ? '☀️' : '🌙';
+        if (desc) desc.textContent = isLight ? 'Estado global de tema claro' : 'Estado global de tema oscuro';
+        chipTheme.title = isLight ? 'Clic para volver al tema Oscuro' : 'Clic para alternar a tema Claro';
+      }
+
       if (compFeedbackTxt) {
         compFeedbackTxt.textContent = isLight
           ? '☀️ <ThemeToggle />: Modo Claro Activado — Estilos adaptables y contraste diurno.'
@@ -709,8 +720,12 @@ function ejecutarAccionComponente(tipo, el) {
         icon: '🧭',
         txt: '⚡ <TheNavbar />: Emite evento reactivo "@navigate" y monta rutas dinámicas en el Virtual DOM.'
       },
+      projects: {
+        icon: '🎨',
+        txt: '⚡ <ProjectsGrid />: Renderiza 8 tarjetas reactivas vía v-for iterando un array desacoplado.'
+      },
       grid: {
-        icon: '📦',
+        icon: '🎨',
         txt: '⚡ <ProjectsGrid />: Renderiza 8 tarjetas reactivas vía v-for iterando un array desacoplado.'
       },
       form: {
@@ -1038,6 +1053,35 @@ document.addEventListener('keydown', (e) => {
     if (e.key === 'r' || e.key === 'R' || e.key === '0' || e.key === 'Backspace') {
       e.preventDefault();
       resetearCiclo();
+      return;
+    }
+  }
+
+  // Atajos para interactividad en Slide 6 (Vue & Componentes)
+  if (actual === 5) {
+    if (e.key === 't' || e.key === 'T') {
+      const chip4 = document.getElementById('chip-4');
+      ejecutarAccionComponente('theme', chip4);
+      return;
+    }
+    if (e.key === '1') {
+      const chip1 = document.getElementById('chip-1');
+      ejecutarAccionComponente('navbar', chip1);
+      return;
+    }
+    if (e.key === '2') {
+      const chip2 = document.getElementById('chip-2');
+      ejecutarAccionComponente('projects', chip2);
+      return;
+    }
+    if (e.key === '3') {
+      const chip3 = document.getElementById('chip-3');
+      ejecutarAccionComponente('form', chip3);
+      return;
+    }
+    if (e.key === '4') {
+      const chip4 = document.getElementById('chip-4');
+      ejecutarAccionComponente('theme', chip4);
       return;
     }
   }

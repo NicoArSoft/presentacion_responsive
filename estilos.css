@@ -1441,8 +1441,13 @@ strong { font-weight: 700; color: #FFFFFF; }
 
 /* TEMA CLARO DINÁMICO EXCLUSIVO PARA SLIDE 6 */
 .diapositiva.slide6-tema-claro {
-  background: #F4F6FA !important;
+  background: #F8FAFC !important;
   color: #0F172A !important;
+  border-color: rgba(65, 184, 131, 0.45) !important;
+  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12), 0 0 0 1px rgba(65, 184, 131, 0.25) !important;
+}
+.diapositiva.slide6-tema-claro .neural-svg.neural-svg-multicolor {
+  opacity: 0.10 !important;
 }
 .diapositiva.slide6-tema-claro .titulo-centrado {
   color: #0B2545 !important; border-bottom-color: rgba(11,37,69,0.2) !important;
@@ -1459,14 +1464,38 @@ strong { font-weight: 700; color: #FFFFFF; }
 .diapositiva.slide6-tema-claro .analogia-card.habitacion {
   background: #FFF1F2 !important; border-color: #E11D48 !important;
 }
+.diapositiva.slide6-tema-claro .analogia-card.habitacion .analogia-titulo {
+  color: #BE123C !important;
+}
+.diapositiva.slide6-tema-claro .analogia-card.habitacion .analogia-sub {
+  color: #64748B !important;
+}
 .diapositiva.slide6-tema-claro .analogia-card.casa {
   background: #ECFDF5 !important; border-color: #059669 !important;
+}
+.diapositiva.slide6-tema-claro .analogia-card.casa .analogia-titulo {
+  color: #047857 !important;
+}
+.diapositiva.slide6-tema-claro .analogia-card.casa .analogia-sub {
+  color: #475569 !important;
 }
 .diapositiva.slide6-tema-claro .bloque-caotico {
   background: #FFE4E6 !important; color: #9F1239 !important; border-color: #F43F5E !important;
 }
+.diapositiva.slide6-tema-claro .caos-bracket { color: #881337 !important; }
+.diapositiva.slide6-tema-claro .caos-val { color: #9A3412 !important; text-shadow: none !important; }
+.diapositiva.slide6-tema-claro .caos-fn { color: #BE123C !important; text-shadow: none !important; }
+.diapositiva.slide6-tema-claro .modularidad-badge-vertical {
+  color: #0284C7 !important; text-shadow: none !important;
+}
+.diapositiva.slide6-tema-claro .bullet-tag {
+  background: #FEE2E2 !important; color: #BE123C !important;
+}
+.diapositiva.slide6-tema-claro .bullet-tag-ok {
+  background: #DCFCE7 !important; color: #15803D !important;
+}
 .diapositiva.slide6-tema-claro .habitacion-chip {
-  background: #FFFFFF !important; border-color: #94A3B8 !important;
+  background: #FFFFFF !important; border-color: #CBD5E1 !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
 }
 .diapositiva.slide6-tema-claro .habitacion-chip:hover,
@@ -1475,6 +1504,7 @@ strong { font-weight: 700; color: #FFFFFF; }
 }
 .diapositiva.slide6-tema-claro .hab-nombre { color: #047857 !important; }
 .diapositiva.slide6-tema-claro .hab-desc { color: #64748B !important; }
+.diapositiva.slide6-tema-claro .pulse-dot { background: #059669 !important; }
 .diapositiva.slide6-tema-claro .comp-feedback-panel {
   background: #FFFFFF !important; border-color: #059669 !important;
   color: #0F172A !important; box-shadow: 0 4px 18px rgba(0,0,0,0.12) !important;
@@ -1482,6 +1512,14 @@ strong { font-weight: 700; color: #FFFFFF; }
 .diapositiva.slide6-tema-claro .comp-feedback-txt { color: #0F172A !important; }
 .diapositiva.slide6-tema-claro .vuejs-bar {
   background: #FFFFFF !important; border-color: #CBD5E1 !important;
+}
+.diapositiva.slide6-tema-claro .vuejs-bar strong { color: #475569 !important; }
+.diapositiva.slide6-tema-claro .vuejs-bar a { color: #0284C7 !important; }
+.diapositiva.slide6-tema-claro .fw-badge {
+  background: #F1F5F9 !important; border-color: #CBD5E1 !important; color: #334155 !important;
+}
+.diapositiva.slide6-tema-claro .fw-badge.vue {
+  background: #DCFCE7 !important; border-color: #86EFAC !important; color: #15803D !important;
 }
 .diapositiva.slide6-tema-claro .footer {
   border-top-color: rgba(0,0,0,0.1) !important; color: #64748B !important;
