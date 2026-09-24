@@ -1,6 +1,6 @@
 ========================================================================
  GUÍA RÁPIDA: CÓMO USAR LA PRESENTACIÓN DESDE ESTE PENDRIVE (USB)
- Trabajo Final Integrador: Dante Nicolás Martínez
+ Trabajo Final Integrador: Nicolás Martínez
 ========================================================================
 
 1. ARCHIVOS NECESARIOS PARA EXPONER (LA PRESENTACIÓN):
@@ -37,7 +37,9 @@
    - [ Flecha Derecha ] o [ Barra Espaciadora ] : Siguiente diapositiva.
    - [ Flecha Izquierda ]                       : Diapositiva anterior.
    - [ Tecla T ]                                : Iniciar / Pausar cronómetro del expositor.
-   - [ Tecla J ] / [ Tecla K ]                  : Girar carrusel 3D Coverflow (Slide 7).
-   - [ Escape ]                                 : Salir de la foto ampliada (Lightbox) o simulador.
-   - [ F11 ]                                    : Entrar / Salir de pantalla completa.
+   - [ Teclas 1, 2, 3, 4 ]                      : Revelar y encender las 4 etapas con efectos CSS3 (Slide 2).
+   - [ Tecla J ] / [ Tecla K ]                  : Avanzar/Retroceder etapas en Slide 2 // Girar Coverflow 3D en Slide 7.
+   - [ Tecla R ] o [ Tecla 0 ]                  : Reiniciar y ocultar etapas para volver a encenderlas (Slide 2).
+   - [ Escape ]                                 : Salir de la foto ampliada (Lightbox), modal o simulador.
+   - [ F11 ]                                    : Entrar / Salir de pantalla completa en el navegador.
 ========================================================================
