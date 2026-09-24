@@ -197,6 +197,114 @@ window.activarHoverFullscreen    = activarHoverFullscreen;
 window.desactivarHoverFullscreen = desactivarHoverFullscreen;
 
 /* ═══════════════════════════════════════════
+   SLIDE 2 — ENCENDIDO INTERACTIVO Y SECUENCIAL DE ETAPAS (1..4 / J, K / RESET)
+   ═══════════════════════════════════════════ */
+let etapasReveladasSlide2 = 0; // Cantidad de etapas visibles descubiertas (0 a 4)
+let etapaFocoSlide2 = -1;       // Cuál tiene el foco/efecto CSS3 activo (0 a 3)
+
+function revelarHastaEtapa(numeroEtapa) {
+  const items = document.querySelectorAll('#ciclo-lista-etapas .ciclo-item');
+  if (!items || !items.length) return;
+  if (numeroEtapa < 1 || numeroEtapa > items.length) return;
+
+  // Revela hasta la etapa indicada (si no estaba descubierta)
+  etapasReveladasSlide2 = Math.max(etapasReveladasSlide2, numeroEtapa);
+  etapaFocoSlide2 = numeroEtapa - 1;
+
+  items.forEach((item, i) => {
+    const etapaNum = i + 1;
+    const esRevelada = etapaNum <= etapasReveladasSlide2;
+    const esFoco = i === etapaFocoSlide2;
+
+    item.classList.toggle('revelado', esRevelada);
+
+    if (esFoco) {
+      item.classList.remove('encendido');
+      void item.offsetWidth; // Reflow para reiniciar la animación CSS3 al activarse
+      item.classList.add('encendido');
+      item.setAttribute('aria-selected', 'true');
+    } else {
+      item.classList.remove('encendido');
+      item.setAttribute('aria-selected', 'false');
+    }
+  });
+
+  actualizarIndicadorCiclo();
+}
+
+function avanzarEtapaCiclo() {
+  const items = document.querySelectorAll('#ciclo-lista-etapas .ciclo-item');
+  if (!items || !items.length) return;
+
+  if (etapasReveladasSlide2 < items.length) {
+    revelarHastaEtapa(etapasReveladasSlide2 + 1);
+  } else {
+    // Si ya están las 4 reveladas, alterna el foco a la siguiente circularmente
+    let nuevoFoco = (etapaFocoSlide2 + 1) % items.length;
+    revelarHastaEtapa(nuevoFoco + 1);
+  }
+}
+
+function retrocederEtapaCiclo() {
+  const items = document.querySelectorAll('#ciclo-lista-etapas .ciclo-item');
+  if (!items || !items.length) return;
+
+  if (etapasReveladasSlide2 > 0) {
+    etapasReveladasSlide2--;
+    etapaFocoSlide2 = etapasReveladasSlide2 > 0 ? etapasReveladasSlide2 - 1 : -1;
+
+    items.forEach((item, i) => {
+      const etapaNum = i + 1;
+      const esRevelada = etapaNum <= etapasReveladasSlide2;
+      const esFoco = i === etapaFocoSlide2;
+
+      item.classList.toggle('revelado', esRevelada);
+      item.classList.toggle('encendido', esFoco);
+      item.setAttribute('aria-selected', esFoco ? 'true' : 'false');
+    });
+
+    actualizarIndicadorCiclo();
+  }
+}
+
+function resetearCiclo() {
+  etapasReveladasSlide2 = 0;
+  etapaFocoSlide2 = -1;
+  const items = document.querySelectorAll('#ciclo-lista-etapas .ciclo-item');
+  if (items) {
+    items.forEach(item => {
+      item.classList.remove('revelado', 'encendido');
+      item.setAttribute('aria-selected', 'false');
+    });
+  }
+  actualizarIndicadorCiclo();
+}
+
+function actualizarIndicadorCiclo() {
+  const hintTxt = document.getElementById('ciclo-hint-dinamico');
+  const btnReset = document.getElementById('btn-reset-ciclo');
+
+  if (btnReset) {
+    btnReset.style.display = etapasReveladasSlide2 > 0 ? 'inline-flex' : 'none';
+  }
+
+  if (hintTxt) {
+    if (etapasReveladasSlide2 === 0) {
+      hintTxt.innerHTML = 'Pulsa <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(1)">1</kbd> o <kbd class="ciclo-kbd" onclick="avanzarEtapaCiclo()">J</kbd> para encender la 1.ª etapa';
+    } else if (etapasReveladasSlide2 < 4) {
+      hintTxt.innerHTML = `Etapa ${etapasReveladasSlide2}/4 encendida · Pulsa <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(${etapasReveladasSlide2 + 1})">${etapasReveladasSlide2 + 1}</kbd> o <kbd class="ciclo-kbd" onclick="avanzarEtapaCiclo()">J</kbd> para la siguiente`;
+    } else {
+      hintTxt.innerHTML = '✓ 4 etapas completadas · Pulsa <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(1)">1</kbd>-<kbd class="ciclo-kbd" onclick="revelarHastaEtapa(4)">4</kbd> para enfocar';
+    }
+  }
+}
+
+window.revelarHastaEtapa    = revelarHastaEtapa;
+window.avanzarEtapaCiclo    = avanzarEtapaCiclo;
+window.retrocederEtapaCiclo = retrocederEtapaCiclo;
+window.resetearCiclo        = resetearCiclo;
+
+/* ═══════════════════════════════════════════
    SLIDE 3 — SPOTLIGHT CON COOLDOWN DE 2s
    ═══════════════════════════════════════════ */
 let cardCooldownTimers = new Map();
@@ -385,6 +493,38 @@ function abrirModalCierreEmotivo() {
 
 function cerrarModalCierreEmotivo() {
   if (modalCierre) modalCierre.classList.remove('active');
+  // Colapsar paneles QR al cerrar para mantener el modal limpio
+  document.querySelectorAll('.qr-panel-item').forEach(p => {
+    p.classList.remove('visible');
+    p.setAttribute('aria-hidden', 'true');
+  });
+  document.querySelectorAll('.btn-qr-trigger').forEach(b => {
+    b.classList.remove('active');
+    b.setAttribute('aria-expanded', 'false');
+  });
+}
+
+function toggleQR(panelId) {
+  const panel = document.getElementById(panelId);
+  const btn = document.querySelector(`.btn-qr-trigger[data-target="${panelId}"]`);
+  if (!panel) return;
+
+  const isVisible = panel.classList.contains('visible');
+  if (isVisible) {
+    panel.classList.remove('visible');
+    panel.setAttribute('aria-hidden', 'true');
+    if (btn) {
+      btn.classList.remove('active');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  } else {
+    panel.classList.add('visible');
+    panel.setAttribute('aria-hidden', 'false');
+    if (btn) {
+      btn.classList.add('active');
+      btn.setAttribute('aria-expanded', 'true');
+    }
+  }
 }
 
 if (modalCierre) {
@@ -395,6 +535,7 @@ if (modalCierre) {
 
 window.abrirModalCierreEmotivo  = abrirModalCierreEmotivo;
 window.cerrarModalCierreEmotivo = cerrarModalCierreEmotivo;
+window.toggleQR                 = toggleQR;
 
 /* ═══════════════════════════════════════════
    DEMOSTRACIÓN INTERACTIVA EN VIVO (SLIDE 3)
@@ -660,13 +801,23 @@ window.seleccionarCoverflow = seleccionarCoverflow;
 /* ═══════════════════════════════════════════
    LIGHTBOX
    ═══════════════════════════════════════════ */
-const lightbox    = document.getElementById('lightbox');
-const lightboxImg = document.getElementById('lightbox-img');
-const btnCerrar   = document.getElementById('lightbox-cerrar');
+const lightbox        = document.getElementById('lightbox');
+const lightboxImg     = document.getElementById('lightbox-img');
+const lightboxCaption = document.getElementById('lightbox-caption');
+const btnCerrar       = document.getElementById('lightbox-cerrar');
 
-function abrirLightbox(src) {
+function abrirLightbox(src, caption = '') {
   if (!lightbox || !lightboxImg) return;
   lightboxImg.src = src;
+  if (lightboxCaption) {
+    if (caption) {
+      lightboxCaption.textContent = caption;
+      lightboxCaption.style.display = 'block';
+    } else {
+      lightboxCaption.textContent = '';
+      lightboxCaption.style.display = 'none';
+    }
+  }
   lightbox.classList.add('visible');
   document.body.style.overflow = 'hidden';
 }
@@ -674,15 +825,82 @@ function abrirLightbox(src) {
 function cerrarLightbox() {
   if (!lightbox || !lightboxImg) return;
   lightbox.classList.remove('visible');
-  setTimeout(() => { lightboxImg.src = ''; }, 350);
+  setTimeout(() => {
+    lightboxImg.src = '';
+    if (lightboxCaption) {
+      lightboxCaption.textContent = '';
+      lightboxCaption.style.display = 'none';
+    }
+  }, 350);
 }
 
 if (lightbox) lightbox.addEventListener('click', cerrarLightbox);
 if (lightboxImg) lightboxImg.addEventListener('click', e => e.stopPropagation());
+if (lightboxCaption) lightboxCaption.addEventListener('click', e => e.stopPropagation());
 if (btnCerrar) btnCerrar.addEventListener('click', cerrarLightbox);
 
 window.abrirLightbox  = abrirLightbox;
 window.cerrarLightbox = cerrarLightbox;
+
+/* ═══════════════════════════════════════════
+   PORTAFOLIO BÁSICO (ENLACE NETLIFY & FALLBACK CAPTURA)
+   ═══════════════════════════════════════════ */
+const URL_PORTAFOLIO_BASICO = 'https://tutorial-portafolio-vuejs.netlify.app/';
+const CAPTURA_PORTAFOLIO_BASICO = 'imagenes/portafolio_basico_demo.webp';
+
+function ingresarPortafolioBasico(event) {
+  // Si el navegador está sin conexión (offline)
+  if (!navigator.onLine) {
+    if (event) event.preventDefault();
+    mostrarToastPortafolio('⚠️ Sin conexión a internet detectada. Mostrando captura de respaldo del portafolio...', true);
+    abrirLightbox(CAPTURA_PORTAFOLIO_BASICO, 'Captura de Respaldo — Portafolio Básico (Sin conexión a Internet)');
+    return false;
+  }
+
+  // Si está online, hacemos una verificación preventiva rápida con timeout
+  const controller = new AbortController();
+  const timeoutId = setTimeout(() => controller.abort(), 2200);
+
+  fetch(URL_PORTAFOLIO_BASICO, {
+    method: 'HEAD',
+    mode: 'no-cors',
+    cache: 'no-store',
+    signal: controller.signal
+  })
+    .catch(() => {
+      // Si la petición falla (bloqueo de red institucional, Netlify caído, etc.)
+      mostrarToastPortafolio('⚠️ ¿Problemas para cargar Netlify? Haz clic aquí para ver la captura de respaldo.', true);
+    })
+    .finally(() => {
+      clearTimeout(timeoutId);
+    });
+
+  return true;
+}
+
+function mostrarToastPortafolio(mensaje, conAccion = false) {
+  let toast = document.getElementById('toast-portafolio-fallback');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'toast-portafolio-fallback';
+    toast.className = 'toast-portafolio-alerta';
+    document.body.appendChild(toast);
+  }
+
+  toast.innerHTML = `
+    <span>${mensaje}</span>
+    ${conAccion ? `<button type="button" class="btn-toast-ver-captura" onclick="abrirLightbox('${CAPTURA_PORTAFOLIO_BASICO}', 'Captura de Respaldo — Portafolio Básico');">Ver Captura</button>` : ''}
+    <button type="button" class="btn-toast-cerrar" onclick="this.parentElement.classList.remove('visible')">✕</button>
+  `;
+
+  toast.classList.add('visible');
+  setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 7000);
+}
+
+window.ingresarPortafolioBasico = ingresarPortafolioBasico;
+window.mostrarToastPortafolio  = mostrarToastPortafolio;
 
 /* ═══════════════════════════════════════════
    INICIALIZACIÓN DE INDICADORES DINÁMICOS
@@ -749,6 +967,11 @@ function actualizar() {
   } else {
     detenerMatrixRain();
   }
+
+  // Limpiar selección de etapas en Slide 2 al salir de ella
+  if (actual !== 1) {
+    resetearCiclo();
+  }
 }
 
 function cambiarDiapositiva(dir) {
@@ -793,6 +1016,30 @@ document.addEventListener('keydown', (e) => {
   if (hoverModal && hoverModal.classList.contains('active')) {
     if (e.key === 'Escape') desactivarHoverFullscreen();
     return;
+  }
+
+  // Atajos para etapas del ciclo de aprendizaje en Slide 2 (índice 1: teclas 1..4, J/K, R, 0, Flechas)
+  if (actual === 1) {
+    if (e.key === '1' || e.key === '2' || e.key === '3' || e.key === '4') {
+      e.preventDefault();
+      revelarHastaEtapa(parseInt(e.key, 10));
+      return;
+    }
+    if (e.key === 'j' || e.key === 'J' || e.key === 'ArrowDown') {
+      e.preventDefault();
+      avanzarEtapaCiclo();
+      return;
+    }
+    if (e.key === 'k' || e.key === 'K' || e.key === 'ArrowUp') {
+      e.preventDefault();
+      retrocederEtapaCiclo();
+      return;
+    }
+    if (e.key === 'r' || e.key === 'R' || e.key === '0' || e.key === 'Backspace') {
+      e.preventDefault();
+      resetearCiclo();
+      return;
+    }
   }
 
   // Atajos para Coverflow en Slide 7

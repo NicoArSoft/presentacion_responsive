@@ -44,6 +44,9 @@ El Trabajo Final Integrador (TFI) titulado **"Aprender, construir y enseñar"** 
    - Panel de Idea Fuerza con malla de gradientes CSS continuos.
 2. **Slide 2 — Trayectoria y Ciclo**:
    - Infografía de la línea de tiempo con **pantalla completa automática directa en hover** (`#hover-fullscreen-overlay`) y fondo de *Flor de la Vida*.
+   - **Revelado interactivo secuencial de las 4 etapas con CSS3**: Las tarjetas inician invisibles y se van revelando paso a paso al presionar las teclas **`1`**, **`2`**, **`3`**, **`4`** o con avance progresivo **`J`** y retroceso **`K`** (o flechas).
+   - **4 Efectos visuales CSS3 independientes**: Holograma Neón Cian con scanline láser (Comprender), 3D Isométrico Arquitectónico Esmeralda (Construir), Ignición de Alto Voltaje y Calor Ámbar (Resolver sin IA) y Onda Expansiva Aurora Cósmica (Enseñar).
+   - **Modo Reinicio Infinito**: Tecla **`R`**, **`0`** o botón dinámico `[↻ Reiniciar (R)]` para ocultar todo y volver a exponer secuencialmente cuantas veces sea necesario. Al salir de la diapositiva, se resetea automáticamente.
 3. **Slide 3 — ¿Por qué freeCodeCamp?**:
    - Fondo orgánico multieje con movimiento procedural en X e Y (`floatOrganic1`, `floatOrganic2`, `floatOrganic3`).
    - Cajas de contenido con zoom suave contenido (`scale(1.18)`), sin cooldown al retirar el puntero y cursor limpio sin texto "Explorar".
@@ -55,8 +58,8 @@ El Trabajo Final Integrador (TFI) titulado **"Aprender, construir y enseñar"** 
 5. **Slide 5 — Del Curso al Aula: Portafolio Básico**:
    - Carrusel continuo en loop infinito a todo el alto de la diapositiva en WebP.
    - Margen de seguridad inferior (52px) para que el bloque *Logro pedagógico* no se superponga con el menú de navegación.
-6. **Slide 6 — Del HTML al Framework: Vue.js**:
-   - Título depurado a **`Del HTML al Framework: Vue.js`**.
+6. **Slide 6 — Portafolio Avanzado, Segundo Año**:
+   - Título: **`Portafolio Avanzado, Segundo Año`** y Subtítulo: **`Del HTML al Framework: Vue.js`**.
    - Habitación monolítica con sintaxis en alto contraste (rojo brillante `#FF5252`, blanco `#FFFFFF` y dorado `#FFD166`).
    - Chips de componentes estáticos con padding cómodo y chip interactivo `<ThemeToggle />` con alternancia funcional de modo claro/oscuro.
    - Enlace actualizado: `🎬 Tutorial de Vue.js: Crea tu portafolio web` redirigiendo al canal de YouTube.

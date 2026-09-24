@@ -253,9 +253,7 @@
           para nuestros estudiantes."
         </p>
         <p class="cierre-subtexto-emotivo">
-          Quedo a plena y grata disposición de la
-          <strong>Prof. Celeste Derra</strong> y del honorable tribunal para
-          preguntas, diálogo y reflexiones pedagógicas.
+          Quedo a plena y grata disposición para preguntas, diálogo y reflexiones pedagógicas.
         </p>
         <div class="cierre-links-row">
           <a
@@ -273,6 +271,86 @@
             >📺 Canal YouTube "Nico Code"</a
           >
         </div>
+
+        <!-- SECCIÓN DE CÓDIGOS QR (DESPLEGABLES INDIVIDUALES SIN TAPAR EL AGRADECIMIENTO) -->
+        <div class="cierre-qr-container">
+          <div class="cierre-qr-triggers">
+            <button
+              type="button"
+              class="btn-qr-trigger btn-qr-online"
+              data-target="panel-qr-presentacion"
+              onclick="toggleQR('panel-qr-presentacion')"
+              aria-expanded="false"
+              aria-controls="panel-qr-presentacion"
+            >
+              <span class="qr-btn-badge">📱</span>
+              <span class="qr-btn-label">Ver presentación en línea</span>
+              <span class="qr-toggle-indicator" aria-hidden="true">▾</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn-qr-trigger btn-qr-no-escanear"
+              data-target="panel-qr-no-escanear"
+              onclick="toggleQR('panel-qr-no-escanear')"
+              aria-expanded="false"
+              aria-controls="panel-qr-no-escanear"
+            >
+              <span class="qr-btn-badge">⚠️</span>
+              <span class="qr-btn-label">Por favor no escanear</span>
+              <span class="qr-toggle-indicator" aria-hidden="true">▾</span>
+            </button>
+          </div>
+
+          <!-- PANELES DESPLEGABLES DE LOS CÓDIGOS QR -->
+          <div class="cierre-qr-displays">
+            <!-- QR 1: Ver presentación en línea (espacio reservado para el futuro QR) -->
+            <div
+              id="panel-qr-presentacion"
+              class="qr-panel-item"
+              aria-hidden="true"
+            >
+              <div class="qr-card-frame qr-frame-cyan">
+                <div class="qr-placeholder-box">
+                  <span class="qr-placeholder-icon">📷</span>
+                  <p class="qr-placeholder-text">QR Presentación en Línea</p>
+                  <span class="qr-tag-pendiente">Espacio reservado</span>
+                </div>
+              </div>
+              <p class="qr-card-caption">📱 Ver presentación en línea</p>
+            </div>
+
+            <!-- QR 2: Por favor no escanear (QR adjunto) -->
+            <div
+              id="panel-qr-no-escanear"
+              class="qr-panel-item"
+              aria-hidden="true"
+            >
+              <div
+                class="qr-card-frame qr-frame-gold"
+                onclick="
+                  abrirLightbox(
+                    'imagenes/qr_no_escanear.webp',
+                    'Código QR: Por favor no escanear',
+                  )
+                "
+                title="Clic para ampliar en pantalla completa"
+              >
+                <img
+                  src="imagenes/qr_no_escanear.webp"
+                  alt="Código QR — Por favor no escanear"
+                  class="qr-imagen-render"
+                  loading="lazy"
+                />
+                <span class="qr-zoom-hint">🔍 Clic para ampliar</span>
+              </div>
+              <p class="qr-card-caption qr-caption-warning">
+                ⚠️ Por favor no escanear
+              </p>
+            </div>
+          </div>
+        </div>
+
         <button
           type="button"
           class="btn-cerrar-emotivo"
@@ -317,6 +395,7 @@
         ✕ Cerrar (Esc)
       </button>
       <img id="lightbox-img" src="" alt="Imagen ampliada" />
+      <div id="lightbox-caption" class="lightbox-caption"></div>
     </div>
 
     <main id="escenario">
@@ -372,18 +451,20 @@
               <span class="badge badge-ipa"
                 >🎓 IPA - San Rafael Mendoza - PROTEC 2026</span
               >
-              <span class="badge badge-hrs">✓ 192 hs Actualización C.T.</span>
+              <span class="badge badge-hrs"
+                >✓ 192 hs Actualización Cientifico Tecnológica</span
+              >
             </div>
             <h1 class="titulo-centrado">Aprender, construir y enseñar</h1>
             <h2 class="subtitulo-centrado">
               Experiencia de actualización en Desarrollo Web Responsive y su
-              transferencia en la ETP
+              transferencia a la Educación Técnica
             </h2>
           </div>
 
           <div class="portada-layout-centrado">
             <div class="portada-autor-bloque">
-              <h2 class="nombre-principal-grande">Dante Nicolás Martínez</h2>
+              <h2 class="nombre-principal-grande">Nicolás Martínez</h2>
               <p class="portada-rol-centrado">
                 Técnico Universitario en Programación · Auxiliar Docente UTN
                 FRSR
@@ -395,8 +476,7 @@
                 <li class="dato-item">
                   <span class="dato-label">Título de base</span>
                   <span
-                    >Técnico Universitario en Programación (UTN FRSR) — Egresado
-                    2024</span
+                    >Técnico Universitario en Programación — Egresado 2024</span
                   >
                 </li>
                 <li class="dato-item">
@@ -424,7 +504,9 @@
                     aplicarse, compartirse y convertirse en oportunidades reales
                     de formación."
                   </p>
-                  <span class="cita-firma">(Martínez, 2026)</span>
+                  <span class="cita-firma"
+                    >(Idea de Fuerza - Martínez, 2026)</span
+                  >
                 </div>
                 <div class="cita-borde-brillo" aria-hidden="true"></div>
               </aside>
@@ -434,8 +516,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -579,9 +661,7 @@
         </div>
 
         <div class="slide-contenido">
-          <h1 class="titulo-centrado">
-            Mi Trayectoria y el Ciclo de Aprendizaje
-          </h1>
+          <h1 class="titulo-centrado">Mi Trayectoria y Ciclo de Aprendizaje</h1>
           <h2 class="subtitulo-centrado">
             ¿Cuándo podemos decir que realmente aprendimos algo técnico?
           </h2>
@@ -621,46 +701,108 @@
 
             <div class="timeline-info-refactor">
               <h3 class="ciclo-titulo-centrado">
-                En mi experiencia, aprender ocurre en 4 etapas:
+                En mi experiencia, aprender ocurrió en 4 etapas:
               </h3>
-              <ul class="ciclo-lista">
-                <li class="ciclo-item">
+              <ul class="ciclo-lista" id="ciclo-lista-etapas" role="tablist" aria-label="Etapas del ciclo de aprendizaje">
+                <li
+                  class="ciclo-item"
+                  data-etapa="1"
+                  onclick="revelarHastaEtapa(1)"
+                  role="tab"
+                  tabindex="0"
+                  aria-selected="false"
+                  title="Presiona la tecla 1 o haz clic para encender"
+                >
                   <span class="ciclo-n">1</span>
                   <span class="ciclo-txt"
                     ><strong>Comprender:</strong> Fundamentos y estándares
-                    globales del desarrollo web.</span
+                    globales del desarrollo.</span
                   >
+                  <span class="ciclo-key-hint" aria-hidden="true">1</span>
                 </li>
-                <li class="ciclo-item">
+                <li
+                  class="ciclo-item"
+                  data-etapa="2"
+                  onclick="revelarHastaEtapa(2)"
+                  role="tab"
+                  tabindex="0"
+                  aria-selected="false"
+                  title="Presiona la tecla 2 o haz clic para encender"
+                >
                   <span class="ciclo-n">2</span>
                   <span class="ciclo-txt"
-                    ><strong>Construir:</strong> Traducir esos saberes en
-                    productos concretos y funcionales.</span
+                    ><strong>Construir:</strong> Traducir esos saberes
+                    comprendidos en productos concretos y funcionales.</span
                   >
+                  <span class="ciclo-key-hint" aria-hidden="true">2</span>
                 </li>
-                <li class="ciclo-item">
+                <li
+                  class="ciclo-item"
+                  data-etapa="3"
+                  onclick="revelarHastaEtapa(3)"
+                  role="tab"
+                  tabindex="0"
+                  aria-selected="false"
+                  title="Presiona la tecla 3 o haz clic para encender"
+                >
                   <span class="ciclo-n">3</span>
                   <span class="ciclo-txt"
                     ><strong>Resolver:</strong> Enfrentar y superar los
-                    problemas prácticos del desarrollo real.</span
+                    problemas prácticos del desarrollo real sin iA.</span
                   >
+                  <span class="ciclo-key-hint" aria-hidden="true">3</span>
                 </li>
-                <li class="ciclo-item">
+                <li
+                  class="ciclo-item"
+                  data-etapa="4"
+                  onclick="revelarHastaEtapa(4)"
+                  role="tab"
+                  tabindex="0"
+                  aria-selected="false"
+                  title="Presiona la tecla 4 o haz clic para encender"
+                >
                   <span class="ciclo-n">4</span>
                   <span class="ciclo-txt"
                     ><strong>Enseñar:</strong> Llevar el conocimiento al aula
                     para multiplicar su impacto.</span
                   >
+                  <span class="ciclo-key-hint" aria-hidden="true">4</span>
                 </li>
               </ul>
+
+              <div class="ciclo-nav-hint" aria-label="Atajos de teclado interactivos">
+                <span class="ciclo-hint-dot" aria-hidden="true"></span>
+                <span id="ciclo-hint-dinamico" class="ciclo-hint-txt"
+                  >Pulsa <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(1)">1</kbd> o <kbd class="ciclo-kbd" onclick="avanzarEtapaCiclo()">J</kbd> para encender la 1.ª etapa</span
+                >
+                <div class="ciclo-hint-keys">
+                  <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(1)" title="Tecla 1">1</kbd>
+                  <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(2)" title="Tecla 2">2</kbd>
+                  <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(3)" title="Tecla 3">3</kbd>
+                  <kbd class="ciclo-kbd" onclick="revelarHastaEtapa(4)" title="Tecla 4">4</kbd>
+                  <span class="ciclo-hint-sep">·</span>
+                  <kbd class="ciclo-kbd" onclick="avanzarEtapaCiclo()" title="Avanzar (J)">J</kbd>
+                  <kbd class="ciclo-kbd" onclick="retrocederEtapaCiclo()" title="Retroceder (K)">K</kbd>
+                </div>
+                <button
+                  type="button"
+                  id="btn-reset-ciclo"
+                  class="btn-reset-ciclo"
+                  onclick="resetearCiclo()"
+                  title="Reiniciar y ocultar etapas (Tecla R o 0)"
+                  style="display: none;"
+                >
+                  <span>↻ Reiniciar (R)</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -713,8 +855,8 @@
                 <p class="freecode-desc">
                   Acceso universal y libre.
                   <strong>Sin costo ni barreras de entrada</strong> para que
-                  cualquier estudiante técnico pueda formarse al nivel de la
-                  industria global.
+                  cualquier estudiante pueda formarse al nivel de la industria
+                  global.
                 </p>
               </div>
             </div>
@@ -729,12 +871,14 @@
                 <span class="freecode-icon">💻</span>
               </div>
               <div class="freecode-text-content">
-                <p class="freecode-titulo">Metodología ABP en Vivo</p>
+                <p class="freecode-titulo">
+                  Metodología ABP en situaciones reales
+                </p>
                 <p class="freecode-desc">
                   <strong
                     >Aprendizaje basado en proyectos reales (ABP), iterando
                     directamente en el navegador con pruebas automáticas
-                    integradas.</strong
+                    integradas de la plataforma.</strong
                   >
                 </p>
               </div>
@@ -773,9 +917,9 @@
                   Estándares Demandados en la Industria
                 </p>
                 <p class="freecode-desc">
-                  HTML5 semántico, CSS3 moderno, Flexbox, CSS Grid y
-                  accesibilidad universal (a11y) — las
-                  <strong>bases insustituibles</strong> del software.
+                  HTML5 semántico, CSS3 moderno con Flexbox, CSS Grid y
+                  accesibilidad universal — son las
+                  <strong>bases insustituibles</strong> del software actual.
                 </p>
               </div>
             </div>
@@ -827,8 +971,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -876,9 +1020,7 @@
 
         <div class="slide-contenido">
           <h1 class="titulo-centrado">Certificación Oficial — FreeCodeCamp</h1>
-          <h2 class="subtitulo-centrado">
-            Responsive Web Design · Expedida el 13 de marzo de 2025
-          </h2>
+          <h2 class="subtitulo-centrado">Responsive Web Design · 2025</h2>
 
           <div class="cert-layout">
             <!-- Columna visual: Certificado (Sin botón dorado detrás) -->
@@ -1043,8 +1185,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -1066,9 +1208,44 @@
 
         <div class="slide-contenido slide-full-height-carrusel">
           <h1 class="titulo-centrado">Del Curso al Aula: Portafolio Básico</h1>
+
           <h2 class="subtitulo-centrado">
-            Producciones reales de los estudiantes de 1.° Año UTN FRSR
+            Producciones reales de los estudiantes de 1° Año UTN FRSR
           </h2>
+
+          <!-- ACCESO AL PORTAFOLIO BÁSICO (DEMO EN VIVO / RESPALDO OFFLINE) -->
+          <div class="portafolio-acceso-container">
+            <a
+              id="btn-portafolio-basico"
+              class="btn-ingreso-portafolio"
+              href="https://tutorial-portafolio-vuejs.netlify.app/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onclick="ingresarPortafolioBasico(event)"
+              title="Abrir portafolio básico en vivo en Netlify"
+            >
+              <span class="live-pulse-dot" aria-hidden="true"></span>
+              <span class="btn-icono">🌐</span>
+              <span class="btn-texto">Ingresar al Portafolio Básico base</span>
+              <span class="btn-badge-live">Netlify ↗</span>
+            </a>
+
+            <button
+              type="button"
+              class="btn-captura-respaldo"
+              onclick="
+                abrirLightbox(
+                  'imagenes/portafolio_basico_demo.webp',
+                  'Captura de Respaldo — Portafolio Básico de Alumnos UTN FRSR',
+                )
+              "
+              title="Ver captura de pantalla si no hay internet o el enlace no responde"
+              aria-label="Ver captura de respaldo offline"
+            >
+              <span class="respaldo-icon"></span>
+              <span>📸</span>
+            </button>
+          </div>
 
           <div class="carrusel-header-bar">
             <p class="carrusel-intro-txt">
@@ -1268,16 +1445,16 @@
           <div class="carrusel-footer-info">
             <span class="logro-pedagogico-destacado"
               >🎯 <strong>Logro pedagógico:</strong> 100% de los estudiantes
-              maquetaron, adaptaron a mobile y desplegaron su portafolio real
-              por primera vez.</span
+              maquetaron HTML y CSS, adaptaron a mobile y desplegaron su
+              portafolio real por primera vez a Internet Gratis.</span
             >
           </div>
         </div>
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Prof. Celeste
-            Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -1289,7 +1466,7 @@
          ══════════════════════════════════════════ -->
       <section
         class="diapositiva"
-        data-titulo="Del HTML al Framework: Vue.js"
+        data-titulo="Portafolio Avanzado, Segundo Año"
         data-theme="framework"
         aria-label="Diapositiva 6"
         aria-hidden="true"
@@ -1423,9 +1600,9 @@
         </div>
 
         <div class="slide-contenido">
-          <h1 class="titulo-centrado">Del HTML al Framework: Vue.js</h1>
+          <h1 class="titulo-centrado">Portafolio Avanzado, Segundo Año</h1>
           <h2 class="subtitulo-centrado">
-            ¿Qué es un framework? Una analogía visual "Imagina una Casa"
+            Del HTML y Css al Framework: Vue.js (JavaScript)
           </h2>
 
           <div
@@ -1645,8 +1822,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -1672,7 +1849,7 @@
 
         <div class="slide-contenido">
           <h1 class="titulo-centrado">
-            Portafolio Avanzado y Canal "Nico Code"
+            Portafolio Avanzado y Canal de Youtube
           </h1>
           <h2 class="subtitulo-centrado">
             Producciones con Vue.js y transposición didáctica 24/7 en YouTube
@@ -1833,7 +2010,7 @@
               </div>
 
               <div class="yt-info-bloque">
-                <p class="yt-canal-nombre">"Nico Code"</p>
+                <p class="yt-canal-nombre">Canal de Youtube: "Nico Code"</p>
                 <p class="yt-desc">
                   Canal educativo con clases completas, paso a paso y gratuitas
                   para futuros técnicos de Mendoza y el Mundo.
@@ -1843,7 +2020,7 @@
                     >🎬 <strong>7</strong> Clases HTML/CSS Básico</span
                   >
                   <span class="yt-stat"
-                    >🚀 <strong>10</strong> Clases Vue.js Avanzado</span
+                    >🚀 <strong>11</strong> Clases Vue.js Avanzado</span
                   >
                 </div>
                 <a
@@ -1861,8 +2038,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Prof. Celeste
-            Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
@@ -1992,7 +2169,7 @@
         <div class="slide-contenido">
           <h1 class="titulo-centrado">Reflexión Docente y Cierre</h1>
           <h2 class="subtitulo-centrado" style="color: var(--dorado)">
-            Articulación con la Educación Técnico-Profesional de Mendoza
+            Articulación con la Educación Técnica Secundaria de Mendoza
           </h2>
 
           <div class="conclusion-layout">
@@ -2002,8 +2179,8 @@
               <blockquote class="conclusion-cita epic-quote">
                 "A lo largo de estas 300 horas, comprobé que el aprendizaje
                 técnico se vuelve significativo cuando completamos el ciclo:
-                empezando por <strong>comprender</strong> estándares
-                internacionales, <strong>construir</strong> soluciones reales,
+                empezando por <strong>comprender</strong> estándares web
+                actuales modernos, <strong>construir</strong> soluciones reales,
                 <strong>enseñar públicamente</strong> facilitando el camino a
                 nuestros alumnos, esto nos ayuda a perfeccionar nuestras clases
                 y no parar de <strong>seguir profesionalizando</strong> en
@@ -2038,14 +2215,16 @@
                   <span class="ciclo-n-badge">4</span>
                   <span class="ciclo-p-title">Seguir Profesionalizando</span>
                   <span class="ciclo-p-desc"
-                    >En mi rol docente en la Educación Secundaria</span
+                    >En mi rol docente en la Educación Técnica Secundaria</span
                   >
                 </div>
               </div>
             </div>
 
             <div class="etp-panel-epic">
-              <p class="etp-titulo">🏫 Vinculación Estratégica con la ETP:</p>
+              <p class="etp-titulo">
+                🏫 Vinculación Estratégica con la educación:
+              </p>
               <ul class="etp-items-epic">
                 <li class="etp-item-card">
                   <span class="etp-icon-glow">📐</span>
@@ -2115,8 +2294,8 @@
 
         <footer class="footer">
           <span
-            >PROTEC · Experiencia Significativa de Actualización · Profesora.
-            Celeste Derra</span
+            >PROTEC · Experiencia Significativa de Actualización · Nicolás
+            Martínez</span
           >
           <span class="footer-numero"></span>
         </footer>
