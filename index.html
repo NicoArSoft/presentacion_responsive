@@ -304,20 +304,39 @@
 
           <!-- PANELES DESPLEGABLES DE LOS CÓDIGOS QR -->
           <div class="cierre-qr-displays">
-            <!-- QR 1: Ver presentación en línea (espacio reservado para el futuro QR) -->
+            <!-- QR 1: Ver presentación en línea (Netlify) -->
             <div
               id="panel-qr-presentacion"
               class="qr-panel-item"
               aria-hidden="true"
             >
-              <div class="qr-card-frame qr-frame-cyan">
-                <div class="qr-placeholder-box">
-                  <span class="qr-placeholder-icon">📷</span>
-                  <p class="qr-placeholder-text">QR Presentación en Línea</p>
-                  <span class="qr-tag-pendiente">Espacio reservado</span>
-                </div>
+              <div
+                class="qr-card-frame qr-frame-cyan"
+                onclick="
+                  abrirLightbox(
+                    'imagenes/qr_presentacion_online.webp',
+                    'Código QR: Presentación en Línea — presentacionwebactualizacion.netlify.app',
+                  )
+                "
+                title="Clic para ampliar en pantalla completa"
+              >
+                <img
+                  src="imagenes/qr_presentacion_online.webp"
+                  alt="Código QR — Presentación en Línea en Netlify"
+                  class="qr-imagen-render"
+                  loading="lazy"
+                />
+                <span class="qr-zoom-hint">🔍 Clic para ampliar</span>
               </div>
-              <p class="qr-card-caption">📱 Ver presentación en línea</p>
+              <a
+                href="https://presentacionwebactualizacion.netlify.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="qr-card-caption qr-caption-link"
+                title="Abrir presentación en Netlify en una pestaña nueva"
+              >
+                📱 presentacionwebactualizacion.netlify.app ↗
+              </a>
             </div>
 
             <!-- QR 2: Por favor no escanear (QR adjunto) -->

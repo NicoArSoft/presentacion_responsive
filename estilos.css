@@ -1820,6 +1820,7 @@ strong { font-weight: 700; color: #FFFFFF; }
 }
 .qr-frame-cyan {
   border: 2.5px solid var(--electrico); box-shadow: 0 0 25px rgba(0, 200, 255, 0.35);
+  cursor: pointer;
 }
 .qr-frame-gold {
   border: 2.5px solid var(--dorado); box-shadow: 0 0 25px rgba(230, 184, 0, 0.35);
@@ -1862,6 +1863,13 @@ strong { font-weight: 700; color: #FFFFFF; }
 }
 .qr-caption-warning {
   color: var(--dorado); font-weight: 700; text-shadow: 0 0 10px rgba(230,184,0,0.4);
+}
+.qr-caption-link {
+  color: var(--electrico); text-decoration: none; transition: color 0.2s, text-shadow 0.2s;
+  display: inline-block; max-width: 220px; word-break: break-all;
+}
+.qr-caption-link:hover {
+  color: #FFFFFF; text-shadow: 0 0 12px var(--electrico); text-decoration: underline;
 }
 
 /* ════════════════════════════════════════════════
